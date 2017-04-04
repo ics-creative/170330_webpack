@@ -63,12 +63,23 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
+/***/ 11:
+/***/ (function(module, exports, __webpack_require__) {
+
+// require()メソッドを使ってsub.jsファイルを読み込む。
+var sub = __webpack_require__(8);
+
+// sub.jsに定義されたJavaScriptを実行する。
+sub.hello();
+
+/***/ }),
+
+/***/ 8:
 /***/ (function(module, exports) {
 
 // module.exportを使ってhello関数を定義する。
@@ -76,17 +87,6 @@ module.exports.hello = function () {
   alert("helloメソッドが実行された。")
 }
 
-
-/***/ }),
-
-/***/ 12:
-/***/ (function(module, exports, __webpack_require__) {
-
-// require()メソッドを使ってsub.jsファイルを読み込む。
-var sub = __webpack_require__(1);
-
-// sub.jsに定義されたJavaScriptを実行する。
-sub.hello();
 
 /***/ })
 

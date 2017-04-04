@@ -1,11 +1,11 @@
 module.exports = {
   entry: {
-    "step1": "./step1/main.js",
-    "step2": "./step2/main.js",
-    "step3": "./step3/main.ts"
+    "step1": "./docs/step1/main.js",
+    "step2": "./docs/step2/main.js",
+    "step3": "./docs/step3/main.js"
   },
   output: { // ファイルの出力設定
-    path: __dirname,  //  出力ファイルのディレクトリ名
+    path: __dirname + "/docs",  //  出力ファイルのディレクトリ名
     filename: "[name]/bundle.js"  // 出力ファイル名
   },
   module: {
