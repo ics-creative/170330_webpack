@@ -9763,9 +9763,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _reactDom = __webpack_require__(83);
 
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _react = __webpack_require__(81);
 
+var _react2 = _interopRequireDefault(_react);
+
 var _subComponent = __webpack_require__(184);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9773,8 +9779,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_Component) {
-  _inherits(App, _Component);
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
 
   function App() {
     _classCallCheck(this, App);
@@ -9785,23 +9791,23 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
-      return React.createElement(
+      return _react2.default.createElement(
         'div',
         null,
-        React.createElement(
+        _react2.default.createElement(
           'h1',
           null,
           'Hello React!'
         ),
-        React.createElement(_subComponent.SubComponent, null)
+        _react2.default.createElement(_subComponent.SubComponent, null)
       );
     }
   }]);
 
   return App;
-}(_react.Component);
+}(_react2.default.Component);
 
-(0, _reactDom.render)(React.createElement(App, null), document.body);
+_reactDom2.default.render(_react2.default.createElement(App, null), document.querySelector('#app'));
 
 /***/ }),
 /* 83 */
@@ -22445,14 +22451,18 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = __webpack_require__(81);
 
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SubComponent = exports.SubComponent = function (_Component) {
-  _inherits(SubComponent, _Component);
+var SubComponent = exports.SubComponent = function (_React$Component) {
+  _inherits(SubComponent, _React$Component);
 
   function SubComponent() {
     _classCallCheck(this, SubComponent);
@@ -22463,29 +22473,29 @@ var SubComponent = exports.SubComponent = function (_Component) {
   _createClass(SubComponent, [{
     key: 'render',
     value: function render() {
-      return React.createElement(
+      return _react2.default.createElement(
         'div',
         null,
-        React.createElement(
+        _react2.default.createElement(
           'h2',
           null,
           'Shopping List for ',
           this.props.name
         ),
-        React.createElement(
+        _react2.default.createElement(
           'ul',
           null,
-          React.createElement(
+          _react2.default.createElement(
             'li',
             null,
             'Instagram'
           ),
-          React.createElement(
+          _react2.default.createElement(
             'li',
             null,
             'WhatsApp'
           ),
-          React.createElement(
+          _react2.default.createElement(
             'li',
             null,
             'Oculus'
@@ -22496,7 +22506,7 @@ var SubComponent = exports.SubComponent = function (_Component) {
   }]);
 
   return SubComponent;
-}(_react.Component);
+}(_react2.default.Component);
 
 /***/ })
 /******/ ]);

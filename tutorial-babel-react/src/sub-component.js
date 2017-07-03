@@ -1,6 +1,6 @@
-import {Component} from 'react';
+import React from 'react';
 
-export class SubComponent extends Component {
+export class SubComponent extends React.Component {
   render() {
     return (
       <div>
