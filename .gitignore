@@ -1,2 +1,7 @@
-/node_modules
-/.idea
+node_modules
+.idea
+
+.DS_Store
+Thumb.db
+
+package-lock.json
