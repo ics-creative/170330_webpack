@@ -13,8 +13,20 @@ module.exports = {
       {
         // 拡張子 .js の場合
         test: /\.js$/,
-        // Babel を利用する
-        use: 'babel-loader',
+        use: [
+          {
+            // Babel を利用する
+            loader: 'babel-loader',
+            // Babel のオプションを指定する
+            options: {
+              presets: [
+                // ES2015 を ES5 に変換
+                // {modules: false}で Tree Shaking 機能を有効にする
+                ['es2015', {modules: false}]
+              ]
+            }
+          }
+        ],
         // node_modules は除外する
         exclude: /node_modules/,
       }
