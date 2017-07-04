@@ -1,10 +1,15 @@
 import * as THREE from 'three';
 
 window.addEventListener('DOMContentLoaded', () => {
+
+  const VIEWPORT_W = window.innerWidth;
+  const VIEWPORT_H = window.innerHeight;
+
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer();
   // レンダラーのサイズを設定
-  renderer.setSize(800, 600);
+  renderer.setSize(VIEWPORT_W, VIEWPORT_H);
+  renderer.setPixelRatio(window.devicePixelRatio);
   // canvasをbodyに追加
   document.body.appendChild(renderer.domElement);
 
@@ -12,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(45, 800 / 600, 1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, VIEWPORT_W / VIEWPORT_H, 1, 1000);
 
   // 箱を作成
   const geometry = new THREE.BoxGeometry(1, 1, 1);

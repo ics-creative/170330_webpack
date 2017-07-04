@@ -65,30 +65,30 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub__ = __webpack_require__(1);
 
 
-var _sub = __webpack_require__(1);
+var message = 'Hello World';
 
 // sub.jsに定義されたJavaScriptを実行する。
-(0, _sub.hello)();
+__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */](message);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hello; });
 // module.exportを使ってhello関数を定義する。
-var hello = exports.hello = function hello() {
-  alert('helloメソッドが実行された。');
+var hello = function hello(message) {
+  document.body.innerHTML = "" + message;
+  console.log(message + "\u3092\u51FA\u529B\u3057\u307E\u3057\u305F");
 };
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map
