@@ -9780,7 +9780,7 @@ var App = (function (_super) {
     App.prototype.render = function () {
         return (React.createElement("div", null,
             React.createElement("h1", null, "Hello React!"),
-            React.createElement(sub_component_1.SubComponent, { name: "My App Store" })));
+            React.createElement(sub_component_1.SubComponent, { name: "My Counter for TypeScript" })));
     };
     return App;
 }(React.Component));
@@ -22434,17 +22434,22 @@ var React = __webpack_require__(49);
 var SubComponent = (function (_super) {
     __extends(SubComponent, _super);
     function SubComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        _this.state = {
+            count: 0
+        };
+        return _this;
     }
+    SubComponent.prototype.handleClick = function () {
+        this.setState({
+            count: this.state.count + 1
+        });
+    };
     SubComponent.prototype.render = function () {
         return (React.createElement("div", null,
-            React.createElement("h2", null,
-                "Shopping List for ",
-                this.props.name),
-            React.createElement("ul", null,
-                React.createElement("li", null, "Instagram"),
-                React.createElement("li", null, "WhatsApp"),
-                React.createElement("li", null, "Oculus"))));
+            React.createElement("h2", null, this.props.name),
+            React.createElement("div", null, this.state.count),
+            React.createElement("button", { onClick: this.handleClick.bind(this) }, "Add +1")));
     };
     return SubComponent;
 }(React.Component));

@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Hello React!</h1>
-        <SubComponent name="My Counter" />
+        <SubComponent name="My Counter for Babel" />
       </div>
     );
   }
