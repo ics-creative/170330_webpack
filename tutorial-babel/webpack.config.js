@@ -29,5 +29,7 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  // ソースマップを有効にする
+  devtool: 'source-map'
 };

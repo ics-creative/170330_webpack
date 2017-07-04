@@ -31,5 +31,7 @@ module.exports = {
         exclude: /node_modules/,
       }
     ]
-  }
+  },
+  // ソースマップを有効にする
+  devtool: 'source-map'
 };
