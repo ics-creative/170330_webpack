@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 module.exports = {
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: `./src/main.js`,
@@ -16,5 +14,5 @@ module.exports = {
   devServer: {
     contentBase: 'build',
     port: 8081
-  },
+  }
 };
