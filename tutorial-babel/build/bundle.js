@@ -75,7 +75,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var message = 'Hello World';
 
 // sub.jsに定義されたJavaScriptを実行する。
-__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */](message);
+Object(__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */])(message);
 
 /***/ }),
 /* 1 */
