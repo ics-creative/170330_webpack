@@ -1,2 +1,2 @@
-// require()メソッドを使ってstyle.cssファイルを読み込む。
-require('./style.css');
+// import 文を使ってstyle.cssファイルを読み込む。
+import './style.css';

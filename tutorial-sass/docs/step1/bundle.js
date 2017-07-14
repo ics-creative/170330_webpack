@@ -68,23 +68,27 @@
 /* 1 */,
 /* 2 */,
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// require()メソッドを使ってsub.jsファイルを読み込む。
-var sub = __webpack_require__(4);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub__ = __webpack_require__(4);
+// import 文を使って sub.js ファイルを読み込む。
+
 
 // sub.jsに定義されたJavaScriptを実行する。
-sub.hello();
+__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */]();
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// module.exportを使ってhello関数を定義する。
-module.exports.hello = function () {
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = hello;
+// export文を使ってhello関数を定義する。
+function hello() {
   alert('helloメソッドが実行された。');
-};
-
+}
 
 /***/ })
 /******/ ]);

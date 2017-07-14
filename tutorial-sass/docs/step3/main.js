@@ -1,2 +1,2 @@
-// require()メソッドを使ってSassファイルを読み込む。
-require('./sassStyle.scss');
+// import文を使ってSassファイルを読み込む。
+import './sassStyle.scss';

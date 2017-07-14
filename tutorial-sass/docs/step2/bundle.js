@@ -603,10 +603,13 @@ module.exports = function (css) {
 /* 3 */,
 /* 4 */,
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// require()メソッドを使ってstyle.cssファイルを読み込む。
-__webpack_require__(6);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_css__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__style_css__);
+// import 文を使ってstyle.cssファイルを読み込む。
 
 
 /***/ }),
