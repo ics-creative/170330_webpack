@@ -73,12 +73,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
-//jQuery.bind('load', function () {
-console.log('hogehoge');
-console.log(jQuery);
+// ドルマークに参照を代入(慣習的な $ を使うため)
+var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
+
 // テキストを取得
-var text = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#myText').text();
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#myText').empty() // 一旦、空にする
+var text = $('#myText').text();
+$('#myText').empty() // 一旦、空にする
 .show(); // 表示する
 
 var arr = text.split(''); // 一文字ずつ、配列に格納
@@ -86,17 +86,16 @@ var elements = [];
 
 // 一文字ずつ、spanタグで包む
 arr.map(function (str, index) {
-  elements[index] = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('<span>' + str + '</span>');
-  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#myText').append(elements[index]); // 元の場所に挿入
+  elements[index] = $('<span>' + str + '</span>');
+  $('#myText').append(elements[index]); // 元の場所に挿入
 });
 
 // エフェクトの適用
 elements.map(function (element, index) {
   element.delay(40 * index).queue(function () {
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).addClass('motion');
+    $(this).addClass('motion');
   });
 });
-//});
 
 /***/ }),
 /* 1 */
