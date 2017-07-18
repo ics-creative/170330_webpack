@@ -9796,7 +9796,7 @@ var App = function (_React$Component) {
           null,
           'Hello React!'
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__sub_component__["a" /* SubComponent */], { name: 'My Counter' })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__sub_component__["a" /* SubComponent */], { name: 'My Counter for Babel' })
       );
     }
   }]);

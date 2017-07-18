@@ -20,9 +20,10 @@ module.exports = {
             // Babel のオプションを指定する
             options: {
               presets: [
-                // ES2015 を ES5 に変換
-                // {modules: false}で Tree Shaking 機能を有効にする
-                ['es2015', {modules: false}],
+                // env を指定することで、ES2017 を ES5 に変換。
+                // {modules: false}にしないと import 文が Babel によって CommonJS に変換され、
+                // webpack の Tree Shaking 機能が使えない
+                ['env', {'modules': false}],
                 // React の JSX を解釈
                 'react'
               ]
