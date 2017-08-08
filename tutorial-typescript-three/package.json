@@ -1,15 +1,16 @@
 {
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack -w"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.2.1",
+    "awesome-typescript-loader": "^3.2.2",
     "source-map-loader": "^0.2.1",
-    "typescript": "^2.4.1",
-    "webpack": "^3.0.0"
+    "typescript": "^2.4.2",
+    "webpack": "^3.4.1"
   },
   "dependencies": {
-    "@types/three": "^0.84.15",
+    "@types/three": "^0.84.19",
     "three": "^0.86.0"
   }
 }
