@@ -9745,10 +9745,15 @@ module.exports = getHostComponentFromComposite;
 
 /***/ }),
 /* 82 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_component__ = __webpack_require__(184);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -9759,23 +9764,22 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(49);
-var ReactDOM = __webpack_require__(98);
-var sub_component_1 = __webpack_require__(184);
+
+
+
 var App = (function (_super) {
     __extends(App, _super);
     function App() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     App.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h1", null, "Hello React!"),
-            React.createElement(sub_component_1.SubComponent, { name: "My Counter for TypeScript" })));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Hello React!"),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__sub_component__["a" /* SubComponent */], { name: "My Counter for TypeScript" })));
     };
     return App;
-}(React.Component));
-ReactDOM.render(React.createElement(App, null), document.querySelector('#app'));
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"](__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](App, null), document.querySelector('#app'));
 
 
 /***/ }),
@@ -22406,10 +22410,12 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 184 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -22420,8 +22426,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(49);
+
 var SubComponent = (function (_super) {
     __extends(SubComponent, _super);
     function SubComponent() {
@@ -22437,14 +22442,14 @@ var SubComponent = (function (_super) {
         });
     };
     SubComponent.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h2", null, this.props.name),
-            React.createElement("div", null, this.state.count),
-            React.createElement("button", { onClick: this.handleClick.bind(this) }, "Add +1")));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h2", null, this.props.name),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, this.state.count),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { onClick: this.handleClick.bind(this) }, "Add +1")));
     };
     return SubComponent;
-}(React.Component));
-exports.SubComponent = SubComponent;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
 
 
 /***/ })
