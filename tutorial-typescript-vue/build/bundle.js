@@ -10161,6 +10161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
+    template: "<div class=\"app\">\n        <h1>Hello Vue.js!</h1>\n        <my-component message=\"My Counter for TypeScript\"></my-component>\n      </div>",
     components: {
         'my-component': __WEBPACK_IMPORTED_MODULE_1__sub__["a" /* default */]
     }
@@ -10226,18 +10227,17 @@ var MyComponent = (function (_super) {
     __extends(MyComponent, _super);
     function MyComponent() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        // 初期データはインスタンスプロパティとして宣言できます
-        _this.message = 'Hello!';
+        _this.count = 0;
         return _this;
     }
-    // コンポーネントメソッドはインスタンスメソッドとして宣言できます
     MyComponent.prototype.onClick = function () {
-        window.alert(this.message);
+        this.count = this.count + 1;
     };
     MyComponent = __decorate([
         __WEBPACK_IMPORTED_MODULE_1_vue_class_component___default()({
             // ここではすべてのコンポーネントオプションが許可されています
-            template: '<button @click="onClick">Click!</button>'
+            template: "<div>\n        <h2>{{message}}</h2>\n        <div>{{count}}</div>\n        <button @click=\"onClick\">Add +1</button>\n      </div>",
+            props: ['message']
         })
     ], MyComponent);
     return MyComponent;

@@ -1,16 +1,20 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import Component from 'vue-class-component';
+
 // @Component デコレータはクラスが Vue コンポーネントであることを示します
 @Component({
   // ここではすべてのコンポーネントオプションが許可されています
-  template: '<button @click="onClick">Click!</button>'
+  template: `<div>
+        <h2>{{message}}</h2>
+        <div>{{count}}</div>
+        <button @click="onClick">Add +1</button>
+      </div>`,
+  props   : ['message']
 })
 export default class MyComponent extends Vue {
-  // 初期データはインスタンスプロパティとして宣言できます
-  message: string = 'Hello!';
+  count = 0;
 
-  // コンポーネントメソッドはインスタンスメソッドとして宣言できます
   onClick(): void {
-    window.alert(this.message);
+    this.count = this.count + 1;
   }
 }

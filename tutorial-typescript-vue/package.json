@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack -w"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.2",
