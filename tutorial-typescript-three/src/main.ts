@@ -12,10 +12,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(45, 800 / 600, 1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, 800 / 600, 1, 10000);
+  camera.position.set(0, 0, 1000);
 
   // 箱を作成
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const geometry = new THREE.BoxGeometry(250, 250, 250);
   const material = new THREE.MeshPhongMaterial({color: 0xff0000});
   const box      = new THREE.Mesh(geometry, material);
   box.position.z = -5;

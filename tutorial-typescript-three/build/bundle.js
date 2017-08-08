@@ -81,9 +81,10 @@ window.addEventListener('DOMContentLoaded', function () {
     // シーンを作成
     var scene = new THREE.Scene();
     // カメラを作成
-    var camera = new THREE.PerspectiveCamera(45, 800 / 600, 1, 1000);
+    var camera = new THREE.PerspectiveCamera(45, 800 / 600, 1, 10000);
+    camera.position.set(0, 0, 1000);
     // 箱を作成
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var geometry = new THREE.BoxGeometry(250, 250, 250);
     var material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
     var box = new THREE.Mesh(geometry, material);
     box.position.z = -5;
