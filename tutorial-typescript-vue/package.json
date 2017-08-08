@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.2",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.4.2",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "vue": "^2.4.2",
+    "vue-class-component": "^5.0.2"
+  }
+}

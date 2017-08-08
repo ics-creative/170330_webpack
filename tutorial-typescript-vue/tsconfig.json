@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
+    // import Vue from 'vue' の書き方を許容する
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    // webpackとTypeScriptを組み合わせる設定
+    "module": "es2015",
+    "moduleResolution": "node",
+    // デコレーターを有効に設定
+    "experimentalDecorators": true
+  }
+}
