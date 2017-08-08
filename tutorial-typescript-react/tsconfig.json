@@ -3,6 +3,10 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "target": "es5",
-    "jsx": "react"
+    "jsx": "react",
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   }
 }

@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
         <div>
           <h1>Hello React!</h1>
-          <SubComponent name="My Counter for TypeScript" />
+          <SubComponent name="My Counter for TypeScript"/>
         </div>
     );
   }
