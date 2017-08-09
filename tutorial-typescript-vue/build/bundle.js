@@ -10222,7 +10222,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 
 
-// @Component デコレータはクラスが Vue コンポーネントであることを示します
 var MyComponent = (function (_super) {
     __extends(MyComponent, _super);
     function MyComponent() {
@@ -10235,8 +10234,7 @@ var MyComponent = (function (_super) {
     };
     MyComponent = __decorate([
         __WEBPACK_IMPORTED_MODULE_1_vue_class_component___default()({
-            // ここではすべてのコンポーネントオプションが許可されています
-            template: "<div>\n        <h2>{{message}}</h2>\n        <div>{{count}}</div>\n        <button @click=\"onClick\">Add +1</button>\n      </div>",
+            template: "\n      <div>\n        <h2>{{message}}</h2>\n        <p>{{count}}</p>\n        <p>\n          <button @click=\"onClick\">Add +1</button>\n        </p>\n      </div>",
             props: ['message']
         })
     ], MyComponent);
