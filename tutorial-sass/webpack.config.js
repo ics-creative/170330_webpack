@@ -1,6 +1,5 @@
 module.exports = {
   entry: {
-    'step1': './docs/step1/main.js',
     'step2': './docs/step2/main.js',
     'step3': './docs/step3/main.js'
   },
@@ -19,11 +18,6 @@ module.exports = {
       {
         test: /\.scss/, // 対象となるファイルの拡張子
         loaders: ['style-loader', 'css-loader', 'sass-loader']  // ローダー名
-      },
-      // TypeScriptファイルの読み込みとコンパイル
-      {
-        test: /\.ts/, // 対象となるファイルの拡張子
-        loaders: ['ts-loader']  // ローダー名
       }
     ]
   }
