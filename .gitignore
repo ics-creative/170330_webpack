@@ -5,3 +5,4 @@ node_modules
 Thumb.db
 
 package-lock.json
+/tutorial-sass/package-lock.json
