@@ -13,11 +13,20 @@ module.exports = {
       // CSSファイルの読み込み
       {
         test: /\.css/,  // 対象となるファイルの拡張子
-        loaders: ['style-loader', 'css-loader'] // ローダー名
+        // ローダー名
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            // オプションでCSS内のurl()メソッドの取り込みを禁止する¬
+            options: {url: false}
+          }
+        ]
       },
       // Sassファイルの読み込みとコンパイル
       {
         test: /\.scss/, // 対象となるファイルの拡張子
+        // ローダー名
         loaders: [
           'style-loader',
           {
@@ -25,7 +34,8 @@ module.exports = {
             // オプションでCSS内のurl()メソッドの取り込みを禁止する¬
             options: {url: false}
           },
-          'sass-loader']  // ローダー名
+          'sass-loader'
+        ]
       }
     ]
   }
