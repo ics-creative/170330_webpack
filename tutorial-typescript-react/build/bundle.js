@@ -9767,7 +9767,7 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
-var App = (function (_super) {
+var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -22427,7 +22427,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 
-var SubComponent = (function (_super) {
+var SubComponent = /** @class */ (function (_super) {
     __extends(SubComponent, _super);
     function SubComponent() {
         var _this = _super.call(this) || this;

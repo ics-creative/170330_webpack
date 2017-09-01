@@ -10222,7 +10222,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 
 
-var MyComponent = (function (_super) {
+var MyComponent = /** @class */ (function (_super) {
     __extends(MyComponent, _super);
     function MyComponent() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
