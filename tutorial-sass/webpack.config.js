@@ -1,7 +1,8 @@
 module.exports = {
   entry: {
     'step2': './docs/step2/main.js',
-    'step3': './docs/step3/main.js'
+    'step3': './docs/step3/main.js',
+    'step4': './docs/step4/main.js',
   },
   output: { // ファイルの出力設定
     path: `${__dirname}/docs`,  //  出力ファイルのディレクトリ名
@@ -17,7 +18,14 @@ module.exports = {
       // Sassファイルの読み込みとコンパイル
       {
         test: /\.scss/, // 対象となるファイルの拡張子
-        loaders: ['style-loader', 'css-loader', 'sass-loader']  // ローダー名
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            // オプションでCSS内のurl()メソッドの取り込みを禁止する¬
+            options: {url: false}
+          },
+          'sass-loader']  // ローダー名
       }
     ]
   }
