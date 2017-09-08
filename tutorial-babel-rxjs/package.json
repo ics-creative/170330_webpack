@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.5.6"
+  },
+  "dependencies": {
+    "rxjs": "^5.4.3"
+  }
+}
