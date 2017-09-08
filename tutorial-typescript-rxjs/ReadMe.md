@@ -1,8 +1,6 @@
 # TypeScript + RxJS + webpack の構成
 
-RxJSのimportの書き方で容量が変わるので、プロジェクトに応じて使い分けるべき。
-
-次に3通りの例を示す。
+RxJSのimportの書き方で容量が変わるので、次に3通りの例を示す。
 
 ## 1. 全部まるっとimport
 
@@ -18,6 +16,8 @@ Rx.Observable.interval(200)
 
 結果、730KB。RxJS全部が出力ファイルに格納される。
 
+[👉出力結果のファイルはこちら](build/import_all.js)
+
 ## 2. Observable だけimport
 
 ```ts
@@ -32,6 +32,8 @@ Observable.interval(200)
 
 結果、730KB。RxJS全部が出力ファイルに格納される。
 `Rx`という接頭語を書く必要が無くなる。
+
+[👉出力結果のファイルはこちら](build/import_observable.js)
 
 ## 3. 個別import
 
@@ -51,7 +53,9 @@ Observable.interval(200)
 
 結果、74KB。RxJSで使っているものだけが import されるので容量が小さく収まる。
 
-ただし、`import {Observable} from 'rxjs/Observable';` だけだとオペレーターが入らないので個別にオペレーターを含める必要がある。
+[👉出力結果のファイルはこちら](build/import_each.js)
+
+ただし、`import {Observable} from 'rxjs/Observable';` だけだとオペレーターが入らないので個別にオペレーターを含める必要がある。これは個人的には好かない。
 
 ```ts
 import 'rxjs/add/observable/interval';
