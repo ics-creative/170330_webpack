@@ -1,5 +1,5 @@
-// require()メソッドを使ってsub.jsファイルを読み込む。
-const sub = require('./sub.js');
+// import()メソッドを使ってsub.jsファイルを読み込む。
+import {hello} from './sub.js';
 
 // sub.jsに定義されたJavaScriptを実行する。
-sub.hello();
+hello();
