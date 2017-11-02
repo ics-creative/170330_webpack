@@ -6,6 +6,7 @@ module.exports = {
     'import_all': './src/import_all.ts',
     'import_observable': './src/import_observable.ts',
     'import_each': './src/import_each.ts',
+    'import_pipe': './src/import_pipe.ts',
   },
   // ファイルの出力設定
   output: {
@@ -20,7 +21,7 @@ module.exports = {
         // 拡張子 .ts の場合
         test: /\.ts$/,
         // TypeScript をコンパイルする
-        use: 'awesome-typescript-loader'
+        loader: 'awesome-typescript-loader'
       },
       // ソースマップファイルの処理
       {

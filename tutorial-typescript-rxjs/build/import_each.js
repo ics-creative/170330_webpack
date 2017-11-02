@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 354);
+/******/ 	return __webpack_require__(__webpack_require__.s = 457);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -70,9 +70,10 @@
 
 "use strict";
 
-var root_1 = __webpack_require__(5);
-var toSubscriber_1 = __webpack_require__(41);
-var observable_1 = __webpack_require__(20);
+var root_1 = __webpack_require__(8);
+var toSubscriber_1 = __webpack_require__(67);
+var observable_1 = __webpack_require__(25);
+var pipe_1 = __webpack_require__(32);
 /**
  * A representation of any set of values over any amount of time. This is the most basic building block
  * of RxJS.
@@ -308,6 +309,54 @@ var Observable = (function () {
     Observable.prototype[observable_1.observable] = function () {
         return this;
     };
+    /* tslint:enable:max-line-length */
+    /**
+     * Used to stitch together functional operators into a chain.
+     * @method pipe
+     * @return {Observable} the Observable result of all of the operators having
+     * been called in the order they were passed in.
+     *
+     * @example
+     *
+     * import { map, filter, scan } from 'rxjs/operators';
+     *
+     * Rx.Observable.interval(1000)
+     *   .pipe(
+     *     filter(x => x % 2 === 0),
+     *     map(x => x + x),
+     *     scan((acc, x) => acc + x)
+     *   )
+     *   .subscribe(x => console.log(x))
+     */
+    Observable.prototype.pipe = function () {
+        var operations = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            operations[_i - 0] = arguments[_i];
+        }
+        if (operations.length === 0) {
+            return this;
+        }
+        return pipe_1.pipeFromArray(operations)(this);
+    };
+    /* tslint:enable:max-line-length */
+    Observable.prototype.toPromise = function (PromiseCtor) {
+        var _this = this;
+        if (!PromiseCtor) {
+            if (root_1.root.Rx && root_1.root.Rx.config && root_1.root.Rx.config.Promise) {
+                PromiseCtor = root_1.root.Rx.config.Promise;
+            }
+            else if (root_1.root.Promise) {
+                PromiseCtor = root_1.root.Promise;
+            }
+        }
+        if (!PromiseCtor) {
+            throw new Error('no Promise impl found');
+        }
+        return new PromiseCtor(function (resolve, reject) {
+            var value;
+            _this.subscribe(function (x) { return value = x; }, function (err) { return reject(err); }, function () { return resolve(value); });
+        });
+    };
     // HACK: Since TypeScript inherits static properties too, we have to
     // fight against TypeScript here so Subject can have a different static create signature
     /**
@@ -338,10 +387,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(18);
-var Subscription_1 = __webpack_require__(4);
-var Observer_1 = __webpack_require__(31);
-var rxSubscriber_1 = __webpack_require__(19);
+var isFunction_1 = __webpack_require__(24);
+var Subscription_1 = __webpack_require__(5);
+var Observer_1 = __webpack_require__(38);
+var rxSubscriber_1 = __webpack_require__(17);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -609,7 +658,7 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 
 /***/ }),
 
-/***/ 13:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -707,8 +756,479 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(5);
-var Action_1 = __webpack_require__(50);
+/**
+ * An error thrown when an element was queried at a certain index of an
+ * Observable, but no such index or position exists in that sequence.
+ *
+ * @see {@link elementAt}
+ * @see {@link take}
+ * @see {@link takeLast}
+ *
+ * @class ArgumentOutOfRangeError
+ */
+var ArgumentOutOfRangeError = (function (_super) {
+    __extends(ArgumentOutOfRangeError, _super);
+    function ArgumentOutOfRangeError() {
+        var err = _super.call(this, 'argument out of range');
+        this.name = err.name = 'ArgumentOutOfRangeError';
+        this.stack = err.stack;
+        this.message = err.message;
+    }
+    return ArgumentOutOfRangeError;
+}(Error));
+exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError;
+
+
+/***/ }),
+
+/***/ 156:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(0);
+var interval_1 = __webpack_require__(157);
+Observable_1.Observable.interval = interval_1.interval;
+
+
+/***/ }),
+
+/***/ 157:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var IntervalObservable_1 = __webpack_require__(158);
+exports.interval = IntervalObservable_1.IntervalObservable.create;
+
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var isNumeric_1 = __webpack_require__(20);
+var Observable_1 = __webpack_require__(0);
+var async_1 = __webpack_require__(4);
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @extends {Ignored}
+ * @hide true
+ */
+var IntervalObservable = (function (_super) {
+    __extends(IntervalObservable, _super);
+    function IntervalObservable(period, scheduler) {
+        if (period === void 0) { period = 0; }
+        if (scheduler === void 0) { scheduler = async_1.async; }
+        _super.call(this);
+        this.period = period;
+        this.scheduler = scheduler;
+        if (!isNumeric_1.isNumeric(period) || period < 0) {
+            this.period = 0;
+        }
+        if (!scheduler || typeof scheduler.schedule !== 'function') {
+            this.scheduler = async_1.async;
+        }
+    }
+    /**
+     * Creates an Observable that emits sequential numbers every specified
+     * interval of time, on a specified IScheduler.
+     *
+     * <span class="informal">Emits incremental numbers periodically in time.
+     * </span>
+     *
+     * <img src="./img/interval.png" width="100%">
+     *
+     * `interval` returns an Observable that emits an infinite sequence of
+     * ascending integers, with a constant interval of time of your choosing
+     * between those emissions. The first emission is not sent immediately, but
+     * only after the first period has passed. By default, this operator uses the
+     * `async` IScheduler to provide a notion of time, but you may pass any
+     * IScheduler to it.
+     *
+     * @example <caption>Emits ascending numbers, one every second (1000ms)</caption>
+     * var numbers = Rx.Observable.interval(1000);
+     * numbers.subscribe(x => console.log(x));
+     *
+     * @see {@link timer}
+     * @see {@link delay}
+     *
+     * @param {number} [period=0] The interval size in milliseconds (by default)
+     * or the time unit determined by the scheduler's clock.
+     * @param {Scheduler} [scheduler=async] The IScheduler to use for scheduling
+     * the emission of values, and providing a notion of "time".
+     * @return {Observable} An Observable that emits a sequential number each time
+     * interval.
+     * @static true
+     * @name interval
+     * @owner Observable
+     */
+    IntervalObservable.create = function (period, scheduler) {
+        if (period === void 0) { period = 0; }
+        if (scheduler === void 0) { scheduler = async_1.async; }
+        return new IntervalObservable(period, scheduler);
+    };
+    IntervalObservable.dispatch = function (state) {
+        var index = state.index, subscriber = state.subscriber, period = state.period;
+        subscriber.next(index);
+        if (subscriber.closed) {
+            return;
+        }
+        state.index += 1;
+        this.schedule(state, period);
+    };
+    IntervalObservable.prototype._subscribe = function (subscriber) {
+        var index = 0;
+        var period = this.period;
+        var scheduler = this.scheduler;
+        subscriber.add(scheduler.schedule(IntervalObservable.dispatch, period, {
+            index: index, subscriber: subscriber, period: period
+        }));
+    };
+    return IntervalObservable;
+}(Observable_1.Observable));
+exports.IntervalObservable = IntervalObservable;
+
+
+/***/ }),
+
+/***/ 16:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subscriber_1 = __webpack_require__(1);
+/**
+ * Applies a given `project` function to each value emitted by the source
+ * Observable, and emits the resulting values as an Observable.
+ *
+ * <span class="informal">Like [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map),
+ * it passes each source value through a transformation function to get
+ * corresponding output values.</span>
+ *
+ * <img src="./img/map.png" width="100%">
+ *
+ * Similar to the well known `Array.prototype.map` function, this operator
+ * applies a projection to each value and emits that projection in the output
+ * Observable.
+ *
+ * @example <caption>Map every click to the clientX position of that click</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var positions = clicks.map(ev => ev.clientX);
+ * positions.subscribe(x => console.log(x));
+ *
+ * @see {@link mapTo}
+ * @see {@link pluck}
+ *
+ * @param {function(value: T, index: number): R} project The function to apply
+ * to each `value` emitted by the source Observable. The `index` parameter is
+ * the number `i` for the i-th emission that has happened since the
+ * subscription, starting from the number `0`.
+ * @param {any} [thisArg] An optional argument to define what `this` is in the
+ * `project` function.
+ * @return {Observable<R>} An Observable that emits the values from the source
+ * Observable transformed by the given `project` function.
+ * @method map
+ * @owner Observable
+ */
+function map(project, thisArg) {
+    return function mapOperation(source) {
+        if (typeof project !== 'function') {
+            throw new TypeError('argument is not a function. Are you looking for `mapTo()`?');
+        }
+        return source.lift(new MapOperator(project, thisArg));
+    };
+}
+exports.map = map;
+var MapOperator = (function () {
+    function MapOperator(project, thisArg) {
+        this.project = project;
+        this.thisArg = thisArg;
+    }
+    MapOperator.prototype.call = function (subscriber, source) {
+        return source.subscribe(new MapSubscriber(subscriber, this.project, this.thisArg));
+    };
+    return MapOperator;
+}());
+exports.MapOperator = MapOperator;
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var MapSubscriber = (function (_super) {
+    __extends(MapSubscriber, _super);
+    function MapSubscriber(destination, project, thisArg) {
+        _super.call(this, destination);
+        this.project = project;
+        this.count = 0;
+        this.thisArg = thisArg || this;
+    }
+    // NOTE: This looks unoptimized, but it's actually purposefully NOT
+    // using try/catch optimizations.
+    MapSubscriber.prototype._next = function (value) {
+        var result;
+        try {
+            result = this.project.call(this.thisArg, value, this.count++);
+        }
+        catch (err) {
+            this.destination.error(err);
+            return;
+        }
+        this.destination.next(result);
+    };
+    return MapSubscriber;
+}(Subscriber_1.Subscriber));
+
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(0);
+var bufferCount_1 = __webpack_require__(165);
+Observable_1.Observable.prototype.bufferCount = bufferCount_1.bufferCount;
+
+
+/***/ }),
+
+/***/ 165:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var bufferCount_1 = __webpack_require__(59);
+/**
+ * Buffers the source Observable values until the size hits the maximum
+ * `bufferSize` given.
+ *
+ * <span class="informal">Collects values from the past as an array, and emits
+ * that array only when its size reaches `bufferSize`.</span>
+ *
+ * <img src="./img/bufferCount.png" width="100%">
+ *
+ * Buffers a number of values from the source Observable by `bufferSize` then
+ * emits the buffer and clears it, and starts a new buffer each
+ * `startBufferEvery` values. If `startBufferEvery` is not provided or is
+ * `null`, then new buffers are started immediately at the start of the source
+ * and when each buffer closes and is emitted.
+ *
+ * @example <caption>Emit the last two click events as an array</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var buffered = clicks.bufferCount(2);
+ * buffered.subscribe(x => console.log(x));
+ *
+ * @example <caption>On every click, emit the last two click events as an array</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var buffered = clicks.bufferCount(2, 1);
+ * buffered.subscribe(x => console.log(x));
+ *
+ * @see {@link buffer}
+ * @see {@link bufferTime}
+ * @see {@link bufferToggle}
+ * @see {@link bufferWhen}
+ * @see {@link pairwise}
+ * @see {@link windowCount}
+ *
+ * @param {number} bufferSize The maximum size of the buffer emitted.
+ * @param {number} [startBufferEvery] Interval at which to start a new buffer.
+ * For example if `startBufferEvery` is `2`, then a new buffer will be started
+ * on every other value from the source. A new buffer is started at the
+ * beginning of the source by default.
+ * @return {Observable<T[]>} An Observable of arrays of buffered values.
+ * @method bufferCount
+ * @owner Observable
+ */
+function bufferCount(bufferSize, startBufferEvery) {
+    if (startBufferEvery === void 0) { startBufferEvery = null; }
+    return bufferCount_1.bufferCount(bufferSize, startBufferEvery)(this);
+}
+exports.bufferCount = bufferCount;
+
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var root_1 = __webpack_require__(8);
+var Symbol = root_1.root.Symbol;
+exports.rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
+    Symbol.for('rxSubscriber') : '@@rxSubscriber';
+/**
+ * @deprecated use rxSubscriber instead
+ */
+exports.$$rxSubscriber = exports.rxSubscriber;
+
+
+/***/ }),
+
+/***/ 170:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(0);
+var map_1 = __webpack_require__(171);
+Observable_1.Observable.prototype.map = map_1.map;
+
+
+/***/ }),
+
+/***/ 171:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var map_1 = __webpack_require__(16);
+/**
+ * Applies a given `project` function to each value emitted by the source
+ * Observable, and emits the resulting values as an Observable.
+ *
+ * <span class="informal">Like [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map),
+ * it passes each source value through a transformation function to get
+ * corresponding output values.</span>
+ *
+ * <img src="./img/map.png" width="100%">
+ *
+ * Similar to the well known `Array.prototype.map` function, this operator
+ * applies a projection to each value and emits that projection in the output
+ * Observable.
+ *
+ * @example <caption>Map every click to the clientX position of that click</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var positions = clicks.map(ev => ev.clientX);
+ * positions.subscribe(x => console.log(x));
+ *
+ * @see {@link mapTo}
+ * @see {@link pluck}
+ *
+ * @param {function(value: T, index: number): R} project The function to apply
+ * to each `value` emitted by the source Observable. The `index` parameter is
+ * the number `i` for the i-th emission that has happened since the
+ * subscription, starting from the number `0`.
+ * @param {any} [thisArg] An optional argument to define what `this` is in the
+ * `project` function.
+ * @return {Observable<R>} An Observable that emits the values from the source
+ * Observable transformed by the given `project` function.
+ * @method map
+ * @owner Observable
+ */
+function map(project, thisArg) {
+    return map_1.map(project, thisArg)(this);
+}
+exports.map = map;
+
+
+/***/ }),
+
+/***/ 175:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(0);
+var take_1 = __webpack_require__(176);
+Observable_1.Observable.prototype.take = take_1.take;
+
+
+/***/ }),
+
+/***/ 176:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var take_1 = __webpack_require__(60);
+/**
+ * Emits only the first `count` values emitted by the source Observable.
+ *
+ * <span class="informal">Takes the first `count` values from the source, then
+ * completes.</span>
+ *
+ * <img src="./img/take.png" width="100%">
+ *
+ * `take` returns an Observable that emits only the first `count` values emitted
+ * by the source Observable. If the source emits fewer than `count` values then
+ * all of its values are emitted. After that, it completes, regardless if the
+ * source completes.
+ *
+ * @example <caption>Take the first 5 seconds of an infinite 1-second interval Observable</caption>
+ * var interval = Rx.Observable.interval(1000);
+ * var five = interval.take(5);
+ * five.subscribe(x => console.log(x));
+ *
+ * @see {@link takeLast}
+ * @see {@link takeUntil}
+ * @see {@link takeWhile}
+ * @see {@link skip}
+ *
+ * @throws {ArgumentOutOfRangeError} When using `take(i)`, it delivers an
+ * ArgumentOutOrRangeError to the Observer's `error` callback if `i < 0`.
+ *
+ * @param {number} count The maximum number of `next` values to emit.
+ * @return {Observable<T>} An Observable that emits only the first `count`
+ * values emitted by the source Observable, or all of the values from the source
+ * if the source emits fewer than `count` values.
+ * @method take
+ * @owner Observable
+ */
+function take(count) {
+    return take_1.take(count)(this);
+}
+exports.take = take;
+
+
+/***/ }),
+
+/***/ 20:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var isArray_1 = __webpack_require__(10);
+function isNumeric(val) {
+    // parseFloat NaNs numeric-cast false positives (null|true|false|"")
+    // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+    // subtraction forces infinities to NaN
+    // adding 1 corrects loss of precision from parseFloat (#15100)
+    return !isArray_1.isArray(val) && (val - parseFloat(val) + 1) >= 0;
+}
+exports.isNumeric = isNumeric;
+;
+
+
+/***/ }),
+
+/***/ 21:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var root_1 = __webpack_require__(8);
+var Action_1 = __webpack_require__(71);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -846,7 +1366,7 @@ exports.AsyncAction = AsyncAction;
 
 /***/ }),
 
-/***/ 16:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -856,7 +1376,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Scheduler_1 = __webpack_require__(51);
+var Scheduler_1 = __webpack_require__(72);
 var AsyncScheduler = (function (_super) {
     __extends(AsyncScheduler, _super);
     function AsyncScheduler() {
@@ -904,42 +1424,7 @@ exports.AsyncScheduler = AsyncScheduler;
 
 /***/ }),
 
-/***/ 17:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-/**
- * An error thrown when an element was queried at a certain index of an
- * Observable, but no such index or position exists in that sequence.
- *
- * @see {@link elementAt}
- * @see {@link take}
- * @see {@link takeLast}
- *
- * @class ArgumentOutOfRangeError
- */
-var ArgumentOutOfRangeError = (function (_super) {
-    __extends(ArgumentOutOfRangeError, _super);
-    function ArgumentOutOfRangeError() {
-        var err = _super.call(this, 'argument out of range');
-        this.name = err.name = 'ArgumentOutOfRangeError';
-        this.stack = err.stack;
-        this.message = err.message;
-    }
-    return ArgumentOutOfRangeError;
-}(Error));
-exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError;
-
-
-/***/ }),
-
-/***/ 18:
+/***/ 24:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -952,29 +1437,12 @@ exports.isFunction = isFunction;
 
 /***/ }),
 
-/***/ 19:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(5);
-var Symbol = root_1.root.Symbol;
-exports.rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
-    Symbol.for('rxSubscriber') : '@@rxSubscriber';
-/**
- * @deprecated use rxSubscriber instead
- */
-exports.$$rxSubscriber = exports.rxSubscriber;
-
-
-/***/ }),
-
-/***/ 20:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var root_1 = __webpack_require__(5);
+var root_1 = __webpack_require__(8);
 function getSymbolObservable(context) {
     var $$observable;
     var Symbol = context.Symbol;
@@ -1002,120 +1470,51 @@ exports.$$observable = exports.observable;
 
 /***/ }),
 
-/***/ 23:
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var isArray_1 = __webpack_require__(10);
-function isNumeric(val) {
-    // parseFloat NaNs numeric-cast false positives (null|true|false|"")
-    // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
-    // subtraction forces infinities to NaN
-    // adding 1 corrects loss of precision from parseFloat (#15100)
-    return !isArray_1.isArray(val) && (val - parseFloat(val) + 1) >= 0;
+var noop_1 = __webpack_require__(33);
+/* tslint:enable:max-line-length */
+function pipe() {
+    var fns = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        fns[_i - 0] = arguments[_i];
+    }
+    return pipeFromArray(fns);
 }
-exports.isNumeric = isNumeric;
-;
+exports.pipe = pipe;
+/* @internal */
+function pipeFromArray(fns) {
+    if (!fns) {
+        return noop_1.noop;
+    }
+    if (fns.length === 1) {
+        return fns[0];
+    }
+    return function piped(input) {
+        return fns.reduce(function (prev, fn) { return fn(prev); }, input);
+    };
+}
+exports.pipeFromArray = pipeFromArray;
 
 
 /***/ }),
 
-/***/ 28:
+/***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Subscriber_1 = __webpack_require__(1);
-/**
- * Applies a given `project` function to each value emitted by the source
- * Observable, and emits the resulting values as an Observable.
- *
- * <span class="informal">Like [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map),
- * it passes each source value through a transformation function to get
- * corresponding output values.</span>
- *
- * <img src="./img/map.png" width="100%">
- *
- * Similar to the well known `Array.prototype.map` function, this operator
- * applies a projection to each value and emits that projection in the output
- * Observable.
- *
- * @example <caption>Map every click to the clientX position of that click</caption>
- * var clicks = Rx.Observable.fromEvent(document, 'click');
- * var positions = clicks.map(ev => ev.clientX);
- * positions.subscribe(x => console.log(x));
- *
- * @see {@link mapTo}
- * @see {@link pluck}
- *
- * @param {function(value: T, index: number): R} project The function to apply
- * to each `value` emitted by the source Observable. The `index` parameter is
- * the number `i` for the i-th emission that has happened since the
- * subscription, starting from the number `0`.
- * @param {any} [thisArg] An optional argument to define what `this` is in the
- * `project` function.
- * @return {Observable<R>} An Observable that emits the values from the source
- * Observable transformed by the given `project` function.
- * @method map
- * @owner Observable
- */
-function map(project, thisArg) {
-    if (typeof project !== 'function') {
-        throw new TypeError('argument is not a function. Are you looking for `mapTo()`?');
-    }
-    return this.lift(new MapOperator(project, thisArg));
-}
-exports.map = map;
-var MapOperator = (function () {
-    function MapOperator(project, thisArg) {
-        this.project = project;
-        this.thisArg = thisArg;
-    }
-    MapOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new MapSubscriber(subscriber, this.project, this.thisArg));
-    };
-    return MapOperator;
-}());
-exports.MapOperator = MapOperator;
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
-var MapSubscriber = (function (_super) {
-    __extends(MapSubscriber, _super);
-    function MapSubscriber(destination, project, thisArg) {
-        _super.call(this, destination);
-        this.project = project;
-        this.count = 0;
-        this.thisArg = thisArg || this;
-    }
-    // NOTE: This looks unoptimized, but it's actually purposefully NOT
-    // using try/catch optimizations.
-    MapSubscriber.prototype._next = function (value) {
-        var result;
-        try {
-            result = this.project.call(this.thisArg, value, this.count++);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.next(result);
-    };
-    return MapSubscriber;
-}(Subscriber_1.Subscriber));
+/* tslint:disable:no-empty */
+function noop() { }
+exports.noop = noop;
 
 
 /***/ }),
 
-/***/ 31:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1130,35 +1529,61 @@ exports.empty = {
 
 /***/ }),
 
-/***/ 32:
-/***/ (function(module, exports) {
+/***/ 4:
+/***/ (function(module, exports, __webpack_require__) {
 
-var g;
+"use strict";
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
+var AsyncAction_1 = __webpack_require__(21);
+var AsyncScheduler_1 = __webpack_require__(22);
+/**
+ *
+ * Async Scheduler
+ *
+ * <span class="informal">Schedule task as if you used setTimeout(task, duration)</span>
+ *
+ * `async` scheduler schedules tasks asynchronously, by putting them on the JavaScript
+ * event loop queue. It is best used to delay tasks in time or to schedule tasks repeating
+ * in intervals.
+ *
+ * If you just want to "defer" task, that is to perform it right after currently
+ * executing synchronous code ends (commonly achieved by `setTimeout(deferredTask, 0)`),
+ * better choice will be the {@link asap} scheduler.
+ *
+ * @example <caption>Use async scheduler to delay task</caption>
+ * const task = () => console.log('it works!');
+ *
+ * Rx.Scheduler.async.schedule(task, 2000);
+ *
+ * // After 2 seconds logs:
+ * // "it works!"
+ *
+ *
+ * @example <caption>Use async scheduler to repeat task in intervals</caption>
+ * function task(state) {
+ *   console.log(state);
+ *   this.schedule(state + 1, 1000); // `this` references currently executing Action,
+ *                                   // which we reschedule with new state and delay
+ * }
+ *
+ * Rx.Scheduler.async.schedule(task, 3000, 0);
+ *
+ * // Logs:
+ * // 0 after 3s
+ * // 1 after 4s
+ * // 2 after 5s
+ * // 3 after 6s
+ *
+ * @static true
+ * @name async
+ * @owner Scheduler
+ */
+exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 
 
 /***/ }),
 
-/***/ 33:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1171,52 +1596,20 @@ exports.isObject = isObject;
 
 /***/ }),
 
-/***/ 34:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-/**
- * An error thrown when one or more errors have occurred during the
- * `unsubscribe` of a {@link Subscription}.
- */
-var UnsubscriptionError = (function (_super) {
-    __extends(UnsubscriptionError, _super);
-    function UnsubscriptionError(errors) {
-        _super.call(this);
-        this.errors = errors;
-        var err = Error.call(this, errors ?
-            errors.length + " errors occurred during unsubscription:\n  " + errors.map(function (err, i) { return ((i + 1) + ") " + err.toString()); }).join('\n  ') : '');
-        this.name = err.name = 'UnsubscriptionError';
-        this.stack = err.stack;
-        this.message = err.message;
-    }
-    return UnsubscriptionError;
-}(Error));
-exports.UnsubscriptionError = UnsubscriptionError;
-
-
-/***/ }),
-
-/***/ 354:
+/***/ 457:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_interval__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_interval__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_interval___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_interval__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_bufferCount__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_bufferCount__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_bufferCount___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_bufferCount__);
 
 
@@ -1232,17 +1625,17 @@ __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__["Observable"].interval(200)
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var isArray_1 = __webpack_require__(10);
-var isObject_1 = __webpack_require__(33);
-var isFunction_1 = __webpack_require__(18);
-var tryCatch_1 = __webpack_require__(8);
+var isObject_1 = __webpack_require__(42);
+var isFunction_1 = __webpack_require__(24);
+var tryCatch_1 = __webpack_require__(9);
 var errorObject_1 = __webpack_require__(6);
-var UnsubscriptionError_1 = __webpack_require__(34);
+var UnsubscriptionError_1 = __webpack_require__(55);
 /**
  * Represents a disposable resource, such as the execution of an Observable. A
  * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -1432,179 +1825,35 @@ function flattenUnsubscriptionErrors(errors) {
 
 /***/ }),
 
-/***/ 41:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 54:
+/***/ (function(module, exports) {
 
-"use strict";
+var g;
 
-var Subscriber_1 = __webpack_require__(1);
-var rxSubscriber_1 = __webpack_require__(19);
-var Observer_1 = __webpack_require__(31);
-function toSubscriber(nextOrObserver, error, complete) {
-    if (nextOrObserver) {
-        if (nextOrObserver instanceof Subscriber_1.Subscriber) {
-            return nextOrObserver;
-        }
-        if (nextOrObserver[rxSubscriber_1.rxSubscriber]) {
-            return nextOrObserver[rxSubscriber_1.rxSubscriber]();
-        }
-    }
-    if (!nextOrObserver && !error && !complete) {
-        return new Subscriber_1.Subscriber(Observer_1.empty);
-    }
-    return new Subscriber_1.Subscriber(nextOrObserver, error, complete);
-}
-exports.toSubscriber = toSubscriber;
-
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(0);
-var interval_1 = __webpack_require__(48);
-Observable_1.Observable.interval = interval_1.interval;
-
-
-/***/ }),
-
-/***/ 48:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var IntervalObservable_1 = __webpack_require__(49);
-exports.interval = IntervalObservable_1.IntervalObservable.create;
-
-
-/***/ }),
-
-/***/ 49:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var isNumeric_1 = __webpack_require__(23);
-var Observable_1 = __webpack_require__(0);
-var async_1 = __webpack_require__(9);
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @extends {Ignored}
- * @hide true
- */
-var IntervalObservable = (function (_super) {
-    __extends(IntervalObservable, _super);
-    function IntervalObservable(period, scheduler) {
-        if (period === void 0) { period = 0; }
-        if (scheduler === void 0) { scheduler = async_1.async; }
-        _super.call(this);
-        this.period = period;
-        this.scheduler = scheduler;
-        if (!isNumeric_1.isNumeric(period) || period < 0) {
-            this.period = 0;
-        }
-        if (!scheduler || typeof scheduler.schedule !== 'function') {
-            this.scheduler = async_1.async;
-        }
-    }
-    /**
-     * Creates an Observable that emits sequential numbers every specified
-     * interval of time, on a specified IScheduler.
-     *
-     * <span class="informal">Emits incremental numbers periodically in time.
-     * </span>
-     *
-     * <img src="./img/interval.png" width="100%">
-     *
-     * `interval` returns an Observable that emits an infinite sequence of
-     * ascending integers, with a constant interval of time of your choosing
-     * between those emissions. The first emission is not sent immediately, but
-     * only after the first period has passed. By default, this operator uses the
-     * `async` IScheduler to provide a notion of time, but you may pass any
-     * IScheduler to it.
-     *
-     * @example <caption>Emits ascending numbers, one every second (1000ms)</caption>
-     * var numbers = Rx.Observable.interval(1000);
-     * numbers.subscribe(x => console.log(x));
-     *
-     * @see {@link timer}
-     * @see {@link delay}
-     *
-     * @param {number} [period=0] The interval size in milliseconds (by default)
-     * or the time unit determined by the scheduler's clock.
-     * @param {Scheduler} [scheduler=async] The IScheduler to use for scheduling
-     * the emission of values, and providing a notion of "time".
-     * @return {Observable} An Observable that emits a sequential number each time
-     * interval.
-     * @static true
-     * @name interval
-     * @owner Observable
-     */
-    IntervalObservable.create = function (period, scheduler) {
-        if (period === void 0) { period = 0; }
-        if (scheduler === void 0) { scheduler = async_1.async; }
-        return new IntervalObservable(period, scheduler);
-    };
-    IntervalObservable.dispatch = function (state) {
-        var index = state.index, subscriber = state.subscriber, period = state.period;
-        subscriber.next(index);
-        if (subscriber.closed) {
-            return;
-        }
-        state.index += 1;
-        this.schedule(state, period);
-    };
-    IntervalObservable.prototype._subscribe = function (subscriber) {
-        var index = 0;
-        var period = this.period;
-        var scheduler = this.scheduler;
-        subscriber.add(scheduler.schedule(IntervalObservable.dispatch, period, {
-            index: index, subscriber: subscriber, period: period
-        }));
-    };
-    return IntervalObservable;
-}(Observable_1.Observable));
-exports.IntervalObservable = IntervalObservable;
-
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-// CommonJS / Node have global context exposed as "global" variable.
-// We don't want to include the whole node.d.ts this this compilation unit so we'll just fake
-// the global "global" var for now.
-var __window = typeof window !== 'undefined' && window;
-var __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
-    self instanceof WorkerGlobalScope && self;
-var __global = typeof global !== 'undefined' && global;
-var _root = __window || __global || __self;
-exports.root = _root;
-// Workaround Closure Compiler restriction: The body of a goog.module cannot use throw.
-// This is needed when used with angular/tsickle which inserts a goog.module statement.
-// Wrap in IIFE
-(function () {
-    if (!_root) {
-        throw new Error('RxJS could not find any global context (window, self, global)');
-    }
+// This works in non-strict mode
+g = (function() {
+	return this;
 })();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 
-/***/ 50:
+/***/ 55:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1614,111 +1863,24 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscription_1 = __webpack_require__(4);
 /**
- * A unit of work to be executed in a {@link Scheduler}. An action is typically
- * created from within a Scheduler and an RxJS user does not need to concern
- * themselves about creating and manipulating an Action.
- *
- * ```ts
- * class Action<T> extends Subscription {
- *   new (scheduler: Scheduler, work: (state?: T) => void);
- *   schedule(state?: T, delay: number = 0): Subscription;
- * }
- * ```
- *
- * @class Action<T>
+ * An error thrown when one or more errors have occurred during the
+ * `unsubscribe` of a {@link Subscription}.
  */
-var Action = (function (_super) {
-    __extends(Action, _super);
-    function Action(scheduler, work) {
+var UnsubscriptionError = (function (_super) {
+    __extends(UnsubscriptionError, _super);
+    function UnsubscriptionError(errors) {
         _super.call(this);
+        this.errors = errors;
+        var err = Error.call(this, errors ?
+            errors.length + " errors occurred during unsubscription:\n  " + errors.map(function (err, i) { return ((i + 1) + ") " + err.toString()); }).join('\n  ') : '');
+        this.name = err.name = 'UnsubscriptionError';
+        this.stack = err.stack;
+        this.message = err.message;
     }
-    /**
-     * Schedules this action on its parent Scheduler for execution. May be passed
-     * some context object, `state`. May happen at some point in the future,
-     * according to the `delay` parameter, if specified.
-     * @param {T} [state] Some contextual data that the `work` function uses when
-     * called by the Scheduler.
-     * @param {number} [delay] Time to wait before executing the work, where the
-     * time unit is implicit and defined by the Scheduler.
-     * @return {void}
-     */
-    Action.prototype.schedule = function (state, delay) {
-        if (delay === void 0) { delay = 0; }
-        return this;
-    };
-    return Action;
-}(Subscription_1.Subscription));
-exports.Action = Action;
-
-
-/***/ }),
-
-/***/ 51:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * An execution context and a data structure to order tasks and schedule their
- * execution. Provides a notion of (potentially virtual) time, through the
- * `now()` getter method.
- *
- * Each unit of work in a Scheduler is called an {@link Action}.
- *
- * ```ts
- * class Scheduler {
- *   now(): number;
- *   schedule(work, delay?, state?): Subscription;
- * }
- * ```
- *
- * @class Scheduler
- */
-var Scheduler = (function () {
-    function Scheduler(SchedulerAction, now) {
-        if (now === void 0) { now = Scheduler.now; }
-        this.SchedulerAction = SchedulerAction;
-        this.now = now;
-    }
-    /**
-     * Schedules a function, `work`, for execution. May happen at some point in
-     * the future, according to the `delay` parameter, if specified. May be passed
-     * some context object, `state`, which will be passed to the `work` function.
-     *
-     * The given arguments will be processed an stored as an Action object in a
-     * queue of actions.
-     *
-     * @param {function(state: ?T): ?Subscription} work A function representing a
-     * task, or some unit of work to be executed by the Scheduler.
-     * @param {number} [delay] Time to wait before executing the work, where the
-     * time unit is implicit and defined by the Scheduler itself.
-     * @param {T} [state] Some contextual data that the `work` function uses when
-     * called by the Scheduler.
-     * @return {Subscription} A subscription in order to be able to unsubscribe
-     * the scheduled work.
-     */
-    Scheduler.prototype.schedule = function (work, delay, state) {
-        if (delay === void 0) { delay = 0; }
-        return new this.SchedulerAction(this, work).schedule(state, delay);
-    };
-    Scheduler.now = Date.now ? Date.now : function () { return +new Date(); };
-    return Scheduler;
-}());
-exports.Scheduler = Scheduler;
-
-
-/***/ }),
-
-/***/ 58:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(0);
-var bufferCount_1 = __webpack_require__(59);
-Observable_1.Observable.prototype.bufferCount = bufferCount_1.bufferCount;
+    return UnsubscriptionError;
+}(Error));
+exports.UnsubscriptionError = UnsubscriptionError;
 
 
 /***/ }),
@@ -1777,7 +1939,9 @@ var Subscriber_1 = __webpack_require__(1);
  */
 function bufferCount(bufferSize, startBufferEvery) {
     if (startBufferEvery === void 0) { startBufferEvery = null; }
-    return this.lift(new BufferCountOperator(bufferSize, startBufferEvery));
+    return function bufferCountOperatorFunction(source) {
+        return source.lift(new BufferCountOperator(bufferSize, startBufferEvery));
+    };
 }
 exports.bufferCount = bufferCount;
 var BufferCountOperator = (function () {
@@ -1881,31 +2045,7 @@ exports.errorObject = { e: {} };
 
 /***/ }),
 
-/***/ 65:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(0);
-var map_1 = __webpack_require__(28);
-Observable_1.Observable.prototype.map = map_1.map;
-
-
-/***/ }),
-
-/***/ 70:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(0);
-var take_1 = __webpack_require__(71);
-Observable_1.Observable.prototype.take = take_1.take;
-
-
-/***/ }),
-
-/***/ 71:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1916,8 +2056,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(17);
-var EmptyObservable_1 = __webpack_require__(13);
+var ArgumentOutOfRangeError_1 = __webpack_require__(15);
+var EmptyObservable_1 = __webpack_require__(12);
 /**
  * Emits only the first `count` values emitted by the source Observable.
  *
@@ -1952,12 +2092,14 @@ var EmptyObservable_1 = __webpack_require__(13);
  * @owner Observable
  */
 function take(count) {
-    if (count === 0) {
-        return new EmptyObservable_1.EmptyObservable();
-    }
-    else {
-        return this.lift(new TakeOperator(count));
-    }
+    return function (source) {
+        if (count === 0) {
+            return new EmptyObservable_1.EmptyObservable();
+        }
+        else {
+            return source.lift(new TakeOperator(count));
+        }
+    };
 }
 exports.take = take;
 var TakeOperator = (function () {
@@ -2001,7 +2143,168 @@ var TakeSubscriber = (function (_super) {
 
 /***/ }),
 
+/***/ 67:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Subscriber_1 = __webpack_require__(1);
+var rxSubscriber_1 = __webpack_require__(17);
+var Observer_1 = __webpack_require__(38);
+function toSubscriber(nextOrObserver, error, complete) {
+    if (nextOrObserver) {
+        if (nextOrObserver instanceof Subscriber_1.Subscriber) {
+            return nextOrObserver;
+        }
+        if (nextOrObserver[rxSubscriber_1.rxSubscriber]) {
+            return nextOrObserver[rxSubscriber_1.rxSubscriber]();
+        }
+    }
+    if (!nextOrObserver && !error && !complete) {
+        return new Subscriber_1.Subscriber(Observer_1.empty);
+    }
+    return new Subscriber_1.Subscriber(nextOrObserver, error, complete);
+}
+exports.toSubscriber = toSubscriber;
+
+
+/***/ }),
+
+/***/ 71:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subscription_1 = __webpack_require__(5);
+/**
+ * A unit of work to be executed in a {@link Scheduler}. An action is typically
+ * created from within a Scheduler and an RxJS user does not need to concern
+ * themselves about creating and manipulating an Action.
+ *
+ * ```ts
+ * class Action<T> extends Subscription {
+ *   new (scheduler: Scheduler, work: (state?: T) => void);
+ *   schedule(state?: T, delay: number = 0): Subscription;
+ * }
+ * ```
+ *
+ * @class Action<T>
+ */
+var Action = (function (_super) {
+    __extends(Action, _super);
+    function Action(scheduler, work) {
+        _super.call(this);
+    }
+    /**
+     * Schedules this action on its parent Scheduler for execution. May be passed
+     * some context object, `state`. May happen at some point in the future,
+     * according to the `delay` parameter, if specified.
+     * @param {T} [state] Some contextual data that the `work` function uses when
+     * called by the Scheduler.
+     * @param {number} [delay] Time to wait before executing the work, where the
+     * time unit is implicit and defined by the Scheduler.
+     * @return {void}
+     */
+    Action.prototype.schedule = function (state, delay) {
+        if (delay === void 0) { delay = 0; }
+        return this;
+    };
+    return Action;
+}(Subscription_1.Subscription));
+exports.Action = Action;
+
+
+/***/ }),
+
+/***/ 72:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * An execution context and a data structure to order tasks and schedule their
+ * execution. Provides a notion of (potentially virtual) time, through the
+ * `now()` getter method.
+ *
+ * Each unit of work in a Scheduler is called an {@link Action}.
+ *
+ * ```ts
+ * class Scheduler {
+ *   now(): number;
+ *   schedule(work, delay?, state?): Subscription;
+ * }
+ * ```
+ *
+ * @class Scheduler
+ */
+var Scheduler = (function () {
+    function Scheduler(SchedulerAction, now) {
+        if (now === void 0) { now = Scheduler.now; }
+        this.SchedulerAction = SchedulerAction;
+        this.now = now;
+    }
+    /**
+     * Schedules a function, `work`, for execution. May happen at some point in
+     * the future, according to the `delay` parameter, if specified. May be passed
+     * some context object, `state`, which will be passed to the `work` function.
+     *
+     * The given arguments will be processed an stored as an Action object in a
+     * queue of actions.
+     *
+     * @param {function(state: ?T): ?Subscription} work A function representing a
+     * task, or some unit of work to be executed by the Scheduler.
+     * @param {number} [delay] Time to wait before executing the work, where the
+     * time unit is implicit and defined by the Scheduler itself.
+     * @param {T} [state] Some contextual data that the `work` function uses when
+     * called by the Scheduler.
+     * @return {Subscription} A subscription in order to be able to unsubscribe
+     * the scheduled work.
+     */
+    Scheduler.prototype.schedule = function (work, delay, state) {
+        if (delay === void 0) { delay = 0; }
+        return new this.SchedulerAction(this, work).schedule(state, delay);
+    };
+    Scheduler.now = Date.now ? Date.now : function () { return +new Date(); };
+    return Scheduler;
+}());
+exports.Scheduler = Scheduler;
+
+
+/***/ }),
+
 /***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+// CommonJS / Node have global context exposed as "global" variable.
+// We don't want to include the whole node.d.ts this this compilation unit so we'll just fake
+// the global "global" var for now.
+var __window = typeof window !== 'undefined' && window;
+var __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
+    self instanceof WorkerGlobalScope && self;
+var __global = typeof global !== 'undefined' && global;
+var _root = __window || __global || __self;
+exports.root = _root;
+// Workaround Closure Compiler restriction: The body of a goog.module cannot use throw.
+// This is needed when used with angular/tsickle which inserts a goog.module statement.
+// Wrap in IIFE
+(function () {
+    if (!_root) {
+        throw new Error('RxJS could not find any global context (window, self, global)');
+    }
+})();
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+
+/***/ }),
+
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2023,60 +2326,6 @@ function tryCatch(fn) {
 }
 exports.tryCatch = tryCatch;
 ;
-
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var AsyncAction_1 = __webpack_require__(15);
-var AsyncScheduler_1 = __webpack_require__(16);
-/**
- *
- * Async Scheduler
- *
- * <span class="informal">Schedule task as if you used setTimeout(task, duration)</span>
- *
- * `async` scheduler schedules tasks asynchronously, by putting them on the JavaScript
- * event loop queue. It is best used to delay tasks in time or to schedule tasks repeating
- * in intervals.
- *
- * If you just want to "defer" task, that is to perform it right after currently
- * executing synchronous code ends (commonly achieved by `setTimeout(deferredTask, 0)`),
- * better choice will be the {@link asap} scheduler.
- *
- * @example <caption>Use async scheduler to delay task</caption>
- * const task = () => console.log('it works!');
- *
- * Rx.Scheduler.async.schedule(task, 2000);
- *
- * // After 2 seconds logs:
- * // "it works!"
- *
- *
- * @example <caption>Use async scheduler to repeat task in intervals</caption>
- * function task(state) {
- *   console.log(state);
- *   this.schedule(state + 1, 1000); // `this` references currently executing Action,
- *                                   // which we reschedule with new state and delay
- * }
- *
- * Rx.Scheduler.async.schedule(task, 3000, 0);
- *
- * // Logs:
- * // 0 after 3s
- * // 1 after 4s
- * // 2 after 5s
- * // 3 after 6s
- *
- * @static true
- * @name async
- * @owner Scheduler
- */
-exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 
 
 /***/ })
