@@ -5,4 +5,6 @@ node_modules
 Thumb.db
 
 package-lock.json
-/tutorial-sass/package-lock.json
+
+/tutorial-babel-rxjs/build/*.js.map
+/tutorial-typescript-rxjs/build/*.js.map
