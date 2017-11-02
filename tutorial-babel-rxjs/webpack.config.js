@@ -4,6 +4,7 @@ module.exports = {
     'import_all': './src/import_all.js',
     'import_observable': './src/import_observable.js',
     'import_each': './src/import_each.js',
+    'import_pipe': './src/import_pipe.js',
   },
   // ファイルの出力設定
   output: {
