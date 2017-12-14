@@ -74,7 +74,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // sub.jsに定義されたJavaScriptを実行する。
-__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */]();
+Object(__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */])();
 
 /***/ }),
 /* 1 */
