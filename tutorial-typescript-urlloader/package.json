@@ -3,11 +3,11 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.2.3",
-    "source-map-loader": "^0.2.1",
-    "typescript": "^2.5.2",
-    "url-loader": "^0.5.9",
-    "webpack": "^3.5.5"
+    "awesome-typescript-loader": "^3.4.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.7.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0"
   },
   "dependencies": {}
 }

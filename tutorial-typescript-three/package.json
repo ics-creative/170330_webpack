@@ -4,13 +4,13 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.2.3",
+    "awesome-typescript-loader": "^3.4.1",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "@types/three": "^0.84.28",
-    "three": "^0.87.1"
+    "@types/three": "^0.89.5",
+    "three": "^0.89.0"
   }
 }
