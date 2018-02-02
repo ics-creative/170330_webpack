@@ -1,25 +1,25 @@
 import * as React from 'react';
 
 // Propsの型定義
-interface SubComponentProps {
+interface IProps {
   name: string;
 }
-interface SubComponentState {
+
+interface IState {
   count: number;
 }
 
-
-export class SubComponent extends React.Component<SubComponentProps, SubComponentState> {
-  constructor() {
-    super();
+export class SubComponent extends React.Component<IProps, IState> {
+  constructor(props) {
+    super(props);
     this.state = {
-      count: 0
+      count: 0,
     };
   }
 
   handleClick() {
     this.setState({
-      count: this.state.count + 1
+      count: this.state.count + 1,
     });
   }
 
