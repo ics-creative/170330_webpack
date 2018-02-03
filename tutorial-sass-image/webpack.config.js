@@ -11,9 +11,15 @@ module.exports = {
         // 対象となるファイルの拡張子
         test: /\.scss/,
         // Sassファイルの読み込みとコンパイル
-        loaders: [
+        use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // ソースマップを有効にする
+              sourceMap: true,
+            },
+          },
           'sass-loader',
         ]
       },
