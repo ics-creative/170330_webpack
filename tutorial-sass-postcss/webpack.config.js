@@ -6,7 +6,6 @@ module.exports = {
   },
   module: {
     rules: [
-
       {
         // 対象となるファイルの拡張子
         test: /\.scss/,
@@ -16,6 +15,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
+              // オプションでCSS内のurl()メソッドの取り込みを禁止する
+              url: false,
               // ソースマップを有効にする
               sourceMap: true,
             },
@@ -24,17 +25,11 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               // PostCSS側でもソースマップを有効にする
-              sourceMap: true
+              sourceMap: true,
             },
           },
           'sass-loader',
         ],
-      },
-      {
-        // 対象となるファイルの拡張子
-        test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
-        // 画像をBase64として取り込む
-        loader: 'url-loader',
       },
     ],
   },
