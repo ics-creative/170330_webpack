@@ -44,6 +44,11 @@
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -59,33 +64,35 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub__ = __webpack_require__(1);
-// import 文を使って sub.js ファイルを読み込む。
-
-
-// sub.jsに定義されたJavaScriptを実行する。
-Object(__WEBPACK_IMPORTED_MODULE_0__sub__["a" /* hello */])();
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sub */ \"./src/sub.js\");\n// import 文を使って sub.js ファイルを読み込む。\n\n\n// sub.jsに定義されたJavaScriptを実行する。\nObject(_sub__WEBPACK_IMPORTED_MODULE_0__[\"hello\"])();\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ }),
-/* 1 */
+
+/***/ "./src/sub.js":
+/*!********************!*\
+  !*** ./src/sub.js ***!
+  \********************/
+/*! exports provided: hello */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = hello;
-// export文を使ってhello関数を定義する。
-function hello() {
-  alert('helloメソッドが実行された。');
-}
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"hello\", function() { return hello; });\n// export文を使ってhello関数を定義する。\nfunction hello() {\n  alert('helloメソッドが実行された。');\n}\n\n//# sourceURL=webpack:///./src/sub.js?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
