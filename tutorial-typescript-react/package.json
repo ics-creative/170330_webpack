@@ -4,8 +4,7 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^3.5.0",
-    "source-map-loader": "^0.2.3",
+    "ts-loader": "^4.0.0",
     "typescript": "^2.7.2",
     "webpack": "^4.0.0",
     "webpack-cli": "^2.0.9"

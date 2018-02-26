@@ -18,20 +18,14 @@ module.exports = {
         // 拡張子 .ts の場合
         test: /\.ts$/,
         // TypeScript をコンパイルする
-        use: 'awesome-typescript-loader'
-      },
-      // ソースマップファイルの処理
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'source-map-loader'
+        use: 'ts-loader'
       }
     ]
   },
   // import 文で .ts ファイルを解決するため
   resolve: {
     extensions: [
-      '.ts', '.js', '.json'
+      '.ts'
     ],
   }
 };

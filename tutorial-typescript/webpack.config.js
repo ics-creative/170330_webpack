@@ -5,26 +5,14 @@ module.exports = {
 
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: './src/main.ts',
-  // ファイルの出力設定
-  output: {
-    //  出力ファイルのディレクトリ名
-    path: `${__dirname}/dist`,
-    // 出力ファイル名
-    filename: 'main.js'
-  },
+
   module: {
     rules: [
       {
         // 拡張子 .ts の場合
         test: /\.ts$/,
         // TypeScript をコンパイルする
-        use: 'awesome-typescript-loader'
-      },
-      // ソースマップファイルの処理
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'source-map-loader'
+        use: 'ts-loader'
       }
     ]
   },

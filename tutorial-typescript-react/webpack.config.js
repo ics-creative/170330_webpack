@@ -18,13 +18,7 @@ module.exports = {
         // 拡張子 .ts もしくは .tsx の場合
         test: /\.tsx?$/,
         // TypeScript をコンパイルする
-        use: 'awesome-typescript-loader'
-      },
-      // ソースマップファイルの処理
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'source-map-loader'
+        use: 'ts-loader'
       }
     ]
   },
@@ -33,7 +27,5 @@ module.exports = {
     extensions: [
       '.ts', '.tsx', '.js', '.json'
     ],
-  },
-  // ソースマップを有効にする
-  devtool: 'source-map',
+  }
 };

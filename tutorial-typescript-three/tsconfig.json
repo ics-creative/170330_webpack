@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
     // TSはECMAScript 5に変換
     "target": "es5",
     // TSのモジュールはES Modulesとして出力

@@ -79,7 +79,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sub */ \"./src/sub.ts\");\n\r\nvar message = 'Hello World';\r\n// sub.jsに定義されたJavaScriptを実行する。\r\nObject(_sub__WEBPACK_IMPORTED_MODULE_0__[\"hello\"])(message);\r\n\n\n//# sourceURL=webpack:///./src/main.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sub */ \"./src/sub.ts\");\n\nvar message = 'Hello World';\n// sub.jsに定義されたJavaScriptを実行する。\nObject(_sub__WEBPACK_IMPORTED_MODULE_0__[\"hello\"])(message);\n\n\n//# sourceURL=webpack:///./src/main.ts?");
 
 /***/ }),
 
@@ -87,11 +87,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sub
 /*!********************!*\
   !*** ./src/sub.ts ***!
   \********************/
-/*! exports provided: hello */
+/*! exports provided: hello, piyo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"hello\", function() { return hello; });\n// module.exportを使ってhello関数を定義する。\r\nvar hello = function (message) {\r\n    document.body.innerHTML = (\"\" + message);\r\n    console.log(message + \"\\u3092\\u51FA\\u529B\\u3057\\u307E\\u3057\\u305F\");\r\n};\r\n\n\n//# sourceURL=webpack:///./src/sub.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"hello\", function() { return hello; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"piyo\", function() { return piyo; });\n// module.exportを使ってhello関数を定義する。\nvar hello = function (message) {\n    log(message);\n};\nfunction log(message) {\n    document.body.innerHTML = (\"\" + message);\n    console.log(message + \"\\u3092\\u51FA\\u529B\\u3057\\u307E\\u3057\\u305F\");\n}\nfunction piyo() {\n}\n\n\n//# sourceURL=webpack:///./src/sub.ts?");
 
 /***/ })
 

@@ -90,7 +90,7 @@ eval("module.exports = \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gxY
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./images/bg.jpg */ \"./src/images/bg.jpg\");\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__);\n///<reference path=\"./definitions.d.ts\" />\r\n\r\nvar img = document.createElement('img');\r\nimg.src = _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__;\r\ndocument.body.appendChild(img);\r\n\n\n//# sourceURL=webpack:///./src/main.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./images/bg.jpg */ \"./src/images/bg.jpg\");\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__);\n///<reference path=\"./definitions.d.ts\" />\n\nvar img = document.createElement('img');\nimg.src = _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__;\ndocument.body.appendChild(img);\n\n\n//# sourceURL=webpack:///./src/main.ts?");
 
 /***/ }),
 
