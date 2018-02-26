@@ -9,6 +9,7 @@ export class SubComponent extends React.Component {
   }
 
   handleClick() {
+    console.log('クリックされました');
     this.setState({
       count: this.state.count + 1
     });

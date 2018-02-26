@@ -13,5 +13,5 @@ class App extends React.Component {
     );
   }
 }
-
+console.log('ようこそ');
 ReactDOM.render(<App/>, document.querySelector('#app'));
