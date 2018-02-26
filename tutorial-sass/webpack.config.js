@@ -44,6 +44,11 @@ module.exports = {
               url: false,
               // ソースマップを有効にする
               sourceMap: true,
+
+              // 0 => no loaders (default);
+              // 1 => postcss-loader;
+              // 2 => postcss-loader, sass-loader
+              importLoaders: 2
             },
           },
           'sass-loader',

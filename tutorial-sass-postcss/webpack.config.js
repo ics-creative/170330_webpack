@@ -3,11 +3,6 @@ module.exports = {
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: 'development',
 
-  entry: './src/main.js',
-  output: { // ファイルの出力設定
-    path: `${__dirname}/dist`,  //  出力ファイルのディレクトリ名
-    filename: 'main.js'  // 出力ファイル名
-  },
   module: {
     rules: [
       {
@@ -23,6 +18,8 @@ module.exports = {
               url: false,
               // ソースマップを有効にする
               sourceMap: true,
+              // Sass+PostCSSの場合は2を指定
+              importLoaders: 2
             },
           },
           {
