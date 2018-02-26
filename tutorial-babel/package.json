@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "build-dev": "webpack --mode development",
-    "build-prod": "webpack --mode production"
+    "build": "webpack"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
