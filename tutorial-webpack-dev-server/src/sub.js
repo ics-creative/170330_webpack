@@ -1,5 +1,5 @@
 // hello関数を定義する。
-export function hello() {
-  document.body.innerHTML = 'helloメソッドが実行された。';
-  console.log('helloメソッドが実行された。');
+export function hello(message) {
+  document.body.innerHTML = message;
+  console.log(message);
 }

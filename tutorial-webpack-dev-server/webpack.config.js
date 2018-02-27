@@ -3,20 +3,10 @@ module.exports = {
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: 'development',
 
-  // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: `./src/main.js`,
-  // ファイルの出力設定
-  output: {
-    //  出力ファイルのディレクトリ名
-    path: `${__dirname}/dist`,
-    // 出力ファイル名
-    filename: 'main.js'
-  },
-
   // ローカル開発用環境を立ち上げる
-  // ブラウザで http://localhost:8081/ でアクセスできるようになる
+  // 実行時にブラウザが自動的に localhost を開く
   devServer: {
     contentBase: 'dist',
-    port: 8081
+    open: true
   }
 };

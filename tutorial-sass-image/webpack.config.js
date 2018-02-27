@@ -30,5 +30,6 @@ module.exports = {
         loader: 'url-loader'
       }
     ]
-  }
+  },
+  devtool : "inline-source-map"
 };
