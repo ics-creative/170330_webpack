@@ -1,6 +1,12 @@
 const webpack = require('webpack');
 
 module.exports = {
+
+  // モード値を production に設定すると最適化された状態で、
+  // development に設定するとソースマップ有効でJSファイルが出力される
+  mode: 'production',
+
+
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: {
     'import_all': './src/import_all.ts',
@@ -21,13 +27,7 @@ module.exports = {
         // 拡張子 .ts の場合
         test: /\.ts$/,
         // TypeScript をコンパイルする
-        loader: 'awesome-typescript-loader'
-      },
-      // ソースマップファイルの処理
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'source-map-loader'
+        loader: 'ts-loader'
       }
     ]
   },

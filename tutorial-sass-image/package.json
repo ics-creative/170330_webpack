@@ -8,9 +8,8 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
-    "webpack": "^3.10.0"
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.9"
   },
-  "description": "",
-  "repository": "",
-  "license": "MIT"
+  "private": true
 }

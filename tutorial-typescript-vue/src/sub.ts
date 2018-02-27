@@ -10,12 +10,13 @@ import Component from 'vue-class-component';
           <button @click="onClick">Add +1</button>
         </p>
       </div>`,
-  props   : ['message']
+  props   : ['message'],
 })
 export default class MyComponent extends Vue {
   count = 0;
 
   onClick() {
+    console.log('クリックされました');
     this.count = this.count + 1;
   }
 }

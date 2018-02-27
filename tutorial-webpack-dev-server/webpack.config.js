@@ -1,18 +1,12 @@
 module.exports = {
-  // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: `./src/main.js`,
-  // ファイルの出力設定
-  output: {
-    //  出力ファイルのディレクトリ名
-    path: `${__dirname}/build`,
-    // 出力ファイル名
-    filename: 'bundle.js'
-  },
+  // モード値を production に設定すると最適化された状態で、
+  // development に設定するとソースマップ有効でJSファイルが出力される
+  mode: 'development',
 
   // ローカル開発用環境を立ち上げる
-  // ブラウザで http://localhost:8081/ でアクセスできるようになる
+  // 実行時にブラウザが自動的に localhost を開く
   devServer: {
-    contentBase: 'build',
-    port: 8081
+    contentBase: 'dist',
+    open: true
   }
 };

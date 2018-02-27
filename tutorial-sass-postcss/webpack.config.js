@@ -1,9 +1,8 @@
 module.exports = {
-  entry: './src/main.js',
-  output: { // ファイルの出力設定
-    path: `${__dirname}/build`,  //  出力ファイルのディレクトリ名
-    filename: 'bundle.js'  // 出力ファイル名
-  },
+  // モード値を production に設定すると最適化された状態で、
+  // development に設定するとソースマップ有効でJSファイルが出力される
+  mode: 'development',
+
   module: {
     rules: [
       {
@@ -19,6 +18,8 @@ module.exports = {
               url: false,
               // ソースマップを有効にする
               sourceMap: true,
+              // Sass+PostCSSの場合は2を指定
+              importLoaders: 2
             },
           },
           {
@@ -33,4 +34,5 @@ module.exports = {
       },
     ],
   },
+  devtool: "eval-source-map"
 };

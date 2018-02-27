@@ -1,12 +1,10 @@
 module.exports = {
-  entry: './src/main.js',
-  output: { // ファイルの出力設定
-    path: `${__dirname}/build`,  //  出力ファイルのディレクトリ名
-    filename: 'bundle.js'  // 出力ファイル名
-  },
+  // モード値を production に設定すると最適化された状態で、
+  // development に設定するとソースマップ有効でJSファイルが出力される
+  mode: 'development',
+
   module: {
     rules: [
-
       {
         // 対象となるファイルの拡張子
         test: /\.scss/,
@@ -18,6 +16,8 @@ module.exports = {
             options: {
               // ソースマップを有効にする
               sourceMap: true,
+              // Sassの場合
+              importLoaders: 2
             },
           },
           'sass-loader',
@@ -30,5 +30,6 @@ module.exports = {
         loader: 'url-loader'
       }
     ]
-  }
+  },
+  devtool : "inline-source-map"
 };

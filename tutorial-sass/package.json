@@ -3,13 +3,12 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "css-loader": "^0.28.9",
+    "css-loader": "^0.28.10",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.20.1",
-    "webpack": "^3.10.0"
+    "style-loader": "^0.20.2",
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.9"
   },
-  "description": "",
-  "repository": "",
-  "license": "MIT"
+  "private": true
 }

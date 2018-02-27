@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'/>
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    #container {
+      width: 100%;
+      height: 100%;
+      font-family: 'Ropa Sans', cursive;
+      background: lightslategray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #myText {
+      position: relative;
+      text-align: center;
+      font-size: calc(100vw / 30);
+      display: none; /* エフェクト適用前に一瞬見えるのを防ぐため */
+    }
+
+    #myText span {
+      display: inline-block;
+      min-width: 10px;
+      opacity: 0;
+      transform: scale(10);
+    }
+
+    #myText span.motion {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.5s;
+    }
+  </style>
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div id="container">
+    <p id="myText">The quick brown fox jumps over the lazy dog.</p>
+  </div>
+</body>
+</html>
