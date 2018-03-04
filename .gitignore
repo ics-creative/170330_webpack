@@ -5,6 +5,9 @@ node_modules
 Thumb.db
 
 package-lock.json
+yarn.lock
+yarn-error.log
 
 /tutorial-babel-rxjs/build/*.js.map
 /tutorial-typescript-rxjs/build/*.js.map
+
