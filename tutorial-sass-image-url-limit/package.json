@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.9",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10"
+  },
+  "private": true
+}
