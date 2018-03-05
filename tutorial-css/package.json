@@ -8,5 +8,6 @@
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10"
   },
-  "private": true
+  "private": true,
+  "dependencies": {}
 }
