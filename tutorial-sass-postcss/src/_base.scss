@@ -1,0 +1,14 @@
+// ====================================
+// フォントなど全体的なスタイルシート
+// ====================================
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+  font-feature-settings: "palt"; /* プロポーショナルメトリクスを有効に */
+}

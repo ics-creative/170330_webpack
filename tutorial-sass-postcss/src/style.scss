@@ -1,18 +1,4 @@
-@import "_reset";
+@import "base";
+@import "grid";
 
-html {
-  body {
-    background: url(../build/thumb.jpg);
-    font-family: sans-serif;
 
-    h1 {
-      // 灰色にする (AutoPrefixerによってベンダープレフィックスが付与される)
-      filter: blur(4px);
-      user-select: none;
-      pointer-events: none;
-
-      font-size: calc(100vw / 10);
-      background: white;
-    }
-  }
-}
