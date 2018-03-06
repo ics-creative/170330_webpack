@@ -27,7 +27,7 @@ npm i -D webpack webpack-cli node-sass css-loader url-loader file-loader sass-lo
 
 [webpack.config.js](webpack.config.js)のコードを参照ください。
 
-webpackのデフォルト構成としているので、`src`フォルダーにソースファイルを格納すること。
+webpackのデフォルト構成としているので、`src`フォルダーにソースファイルを格納すること。デフォルトではエントリーポイントは`src/index.js`である。
 
 ### ビルドコマンド
 
