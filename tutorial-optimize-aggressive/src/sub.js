@@ -1,4 +1,9 @@
 export function hello() {
-  document.body.innerHTML = 'helloメソッドが実行された。';
-  console.log('helloメソッドが実行された。');
+  const myString = addStrings('helloメソッド', '実行された。');
+  document.body.innerHTML = myString;
+  console.log(myString);
+}
+
+function addStrings(a, b) {
+  return a + 'が' + b;
 }
