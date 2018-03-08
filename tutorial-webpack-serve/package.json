@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-serve"
+  },
+  "devDependencies": {
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-serve": "^0.2.0"
+  },
+  "serve": {
+    "open": true
+  },
+  "private": true
+}
