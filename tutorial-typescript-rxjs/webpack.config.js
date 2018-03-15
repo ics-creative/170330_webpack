@@ -16,8 +16,6 @@ module.exports = {
   },
   // ファイルの出力設定
   output: {
-    //  出力ファイルのディレクトリ名
-    path: `${__dirname}/build`,
     // 出力ファイル名
     filename: '[name].js'
   },
@@ -34,13 +32,7 @@ module.exports = {
   // import 文で .ts ファイルを解決するため
   resolve: {
     extensions: [
-      '.ts', '.js', '.json'
+      '.ts', '.js'
     ]
-  },
-  plugins: [
-    // Scope Hoistingのためのプラグイン
-    new webpack.optimize.ModuleConcatenationPlugin()
-  ],
-  // ソースマップを有効に
-  devtool: 'source-map'
+  }
 };

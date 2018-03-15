@@ -1,5 +1,7 @@
 import {interval} from 'rxjs/observable/interval';
-import {bufferCount, map, take} from 'rxjs/operators';
+import {bufferCount} from 'rxjs/operators/bufferCount';
+import {map} from 'rxjs/operators/map';
+import {take} from 'rxjs/operators/take';
 
 interval(200)
     .pipe(
