@@ -15,6 +15,10 @@ module.exports = {
     // 出力ファイル名
     filename: '[name].js'
   },
+  // 容量検証のためにUglifyJSを無効にしておく
+  optimization: {
+    minimize: false
+  },
   module: {
     rules: [
       {
