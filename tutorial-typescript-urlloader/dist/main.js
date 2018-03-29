@@ -66,7 +66,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -82,26 +82,15 @@ eval("module.exports = \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gxY
 
 /***/ }),
 
-/***/ "./src/main.ts":
-/*!*********************!*\
-  !*** ./src/main.ts ***!
-  \*********************/
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./images/bg.jpg */ \"./src/images/bg.jpg\");\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__);\n///<reference path=\"./definitions.d.ts\" />\n\nvar img = document.createElement('img');\nimg.src = _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__;\ndocument.body.appendChild(img);\n\n\n//# sourceURL=webpack:///./src/main.ts?");
-
-/***/ }),
-
-/***/ 0:
-/*!***************************!*\
-  !*** multi ./src/main.ts ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__(/*! ./src/main.ts */\"./src/main.ts\");\n\n\n//# sourceURL=webpack:///multi_./src/main.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./images/bg.jpg */ \"./src/images/bg.jpg\");\n/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__);\n///<reference path=\"./definitions.d.ts\" />\n\nvar img = document.createElement('img');\nimg.src = _images_bg_jpg__WEBPACK_IMPORTED_MODULE_0__;\ndocument.body.appendChild(img);\n\n\n//# sourceURL=webpack:///./src/index.ts?");
 
 /***/ })
 
