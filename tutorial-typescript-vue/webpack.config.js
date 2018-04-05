@@ -29,7 +29,7 @@ module.exports = {
     ],
     // Webpackで利用するときの設定
     alias: {
-      vue: 'vue/dist/vue.js'
-    }
+      'vue$': 'vue/dist/vue.esm.js'
+    },
   }
 };
