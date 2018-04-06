@@ -8,4 +8,4 @@ export class Main{
 
 new Main();
 
-import "./custom.css"
+import "./index.css"

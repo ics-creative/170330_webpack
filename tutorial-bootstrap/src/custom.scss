@@ -1,0 +1,15 @@
+/*
+Bootstrapのデフォルトの変数をカスタマイズする
+
+参照
+https://getbootstrap.com/docs/4.0/getting-started/theming/#sass-options
+ */
+
+// テーマカラー設定
+$theme-colors: (
+        "primary": #C51162,
+        "secondary": #d0d2cb
+);
+
+// 角丸設定
+$enable-rounded: false;
