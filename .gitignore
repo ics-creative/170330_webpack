@@ -11,3 +11,5 @@ yarn-error.log
 /tutorial-babel-rxjs/build/*.js.map
 /tutorial-typescript-rxjs/build/*.js.map
 
+/tutorial-bootstrap/dist/main.js.map
+/tutorial-bootstrap/dist/style.css.map

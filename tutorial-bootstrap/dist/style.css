@@ -1,11 +1,11 @@
 @charset "UTF-8";
-/* Bootstrap を読み込む */
 /*
 Bootstrapのデフォルトの変数をカスタマイズする
 
 参照
 https://getbootstrap.com/docs/4.0/getting-started/theming/#sass-options
  */
+/* Bootstrap を読み込む */
 /*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -5929,3 +5929,5 @@ a.text-dark:hover, a.text-dark:focus {
 /* 自分のスタイルを書いていく */
 body {
   background: lightgray; }
+
+/*# sourceMappingURL=style.css.map*/

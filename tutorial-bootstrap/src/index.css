@@ -1,8 +1,0 @@
-/* Bootstrap を読み込む */
-@import "custom.scss";
-@import "~bootstrap/scss/bootstrap.scss";
-
-/* 自分のスタイルを書いていく */
-body {
-  background: lightgray;
-}

@@ -4,7 +4,6 @@ Bootstrapのデフォルトの変数をカスタマイズする
 参照
 https://getbootstrap.com/docs/4.0/getting-started/theming/#sass-options
  */
-
 // テーマカラー設定
 $theme-colors: (
         "primary": #C51162,
@@ -13,3 +12,11 @@ $theme-colors: (
 
 // 角丸設定
 $enable-rounded: false;
+
+/* Bootstrap を読み込む */
+@import "~bootstrap/scss/bootstrap.scss";
+
+/* 自分のスタイルを書いていく */
+body {
+  background: lightgray;
+}

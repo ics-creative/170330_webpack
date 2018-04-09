@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 
 // [定数] webpack の出力オプションを指定します
 // 'production' か 'development' を指定
@@ -14,8 +15,8 @@ module.exports = {
   module: {
     rules: [
       {
-        // 対象となるファイルの拡張子
-        test: /\.s?a?css$/,
+        // 対象となるファイルの拡張子(scss)
+        test: /\.scss$/,
         // Sassファイルの読み込みとコンパイル
         use: ExtractTextPlugin.extract([
           // CSSをバンドルするための機能
@@ -37,7 +38,9 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               // PostCSS側でもソースマップを有効にする
-              sourceMap: enabledSourceMap,
+              sourceMap: true,
+              // ベンダープレフィックスを自動付与する
+              plugins: () => [require('autoprefixer')]
             },
           },
           // Sassをバンドルするための機能
@@ -45,7 +48,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               // ソースマップの利用有無
-              sourceMap: enabledSourceMap,
+              sourceMap: true,
             }
           }
         ]),
@@ -55,4 +58,6 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('style.css'),
   ],
+  // source-map方式でないと、CSSの元ソースが追跡できないため
+  devtool: "source-map"
 };
