@@ -1,2 +1,4 @@
+// BootstrapのJavaScript側の機能を読み込む
 import 'bootstrap';
-import "./index.scss"
+// スタイルシートを読み込む
+import './index.scss';
