@@ -1,15 +1,9 @@
-// [定数] webpack の出力オプションを指定します
-// 'production' か 'development' を指定
-const MODE = 'development';
-
-// ソースマップの利用有無(productionのときはソースマップを利用しない)
-const enabledSourceMap = (MODE === 'development');
-
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: MODE,
-devtool:"source-map",
+  mode: 'production',
+  // source-map 方式でないと、CSSの元ソースが追跡できないため
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -23,10 +17,12 @@ devtool:"source-map",
           {
             loader: 'css-loader',
             options: {
-              // オプションでCSS内のurl()メソッドの取り込みを禁止する
+              // CSS内のurl()メソッドの取り込みを禁止する
               url: false,
               // ソースマップの利用有無
-              sourceMap: enabledSourceMap,
+              sourceMap: true,
+              // 空白文字やコメントを削除する
+              minimize: true,
               // Sass+PostCSSの場合は2を指定
               importLoaders: 2
             },
@@ -36,7 +32,12 @@ devtool:"source-map",
             loader: 'postcss-loader',
             options: {
               // PostCSS側でもソースマップを有効にする
-              sourceMap: enabledSourceMap,
+              sourceMap: true,
+              plugins: [
+                // Autoprefixerを有効化
+                // ベンダープレフィックスを自動付与する
+                require('autoprefixer')({grid: true})
+              ]
             },
           },
           // Sassをバンドルするための機能
@@ -44,7 +45,7 @@ devtool:"source-map",
             loader: 'sass-loader',
             options: {
               // ソースマップの利用有無
-              sourceMap: enabledSourceMap,
+              sourceMap: true,
             }
           }
         ],
