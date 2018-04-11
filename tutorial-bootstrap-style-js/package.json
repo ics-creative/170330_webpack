@@ -15,7 +15,7 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3"
   },
