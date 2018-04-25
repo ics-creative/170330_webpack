@@ -3,18 +3,6 @@ module.exports = {
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: 'production',
 
-  // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: {
-    'import_all': './src/import_all.js',
-    'import_observable': './src/import_observable.js',
-    'import_each': './src/import_each.js',
-    'import_pipe': './src/import_pipe.js',
-  },
-  // ファイルの出力設定
-  output: {
-    // 出力ファイル名
-    filename: '[name].js'
-  },
   // 容量検証のためにUglifyJSを無効にしておく
   optimization: {
     minimize: false
