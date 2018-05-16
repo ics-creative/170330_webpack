@@ -10,8 +10,8 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
-    "@types/three": "^0.91.3",
-    "three": "^0.91.0"
+    "@types/three": "^0.92.0",
+    "three": "^0.92.0"
   },
   "private": true
 }
