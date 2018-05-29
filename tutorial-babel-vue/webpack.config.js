@@ -28,8 +28,7 @@ module.exports = {
             // webpack の Tree Shaking 機能が使えない
             ['env', {'modules': false}]
           ]
-        },
-        exclude: /node_modules/
+        }
       },
     ]
   },
