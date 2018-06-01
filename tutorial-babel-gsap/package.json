@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack -w"
+  },
+  "dependencies": {
+    "gsap": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4"
+  },
+  "private": true
+}
