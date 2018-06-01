@@ -1,7 +1,8 @@
-import {Bounce, Cubic} from 'gsap/EasePack';
-// import {TweenLite, TimelineLite} from 'gsap'; // 容量がかさむ
+
+// import {TweenLite, TimelineLite, Bounce} from 'gsap'; // 容量がかさむ
 import TweenLite from 'gsap/TweenLite'; // 最小構成になる
 import TimelineLite from 'gsap/TimelineLite';
+import {Bounce} from 'gsap/EasePack';
 
 // 適当に要素をたくさん用意する
 const rects = [];
