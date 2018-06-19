@@ -1,5 +1,6 @@
 node_modules
 .idea
+.vscode
 
 .DS_Store
 Thumb.db
@@ -13,3 +14,4 @@ yarn-error.log
 
 /tutorial-bootstrap/dist/main.js.map
 /tutorial-bootstrap/dist/style.css.map
+.history
