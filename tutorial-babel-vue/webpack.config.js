@@ -1,3 +1,5 @@
+const { VueLoaderPlugin } = require('vue-loader');
+
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
@@ -39,5 +41,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     },
     extensions: ['*', '.js', '.vue', '.json']
-  }
+  },
+  plugins: [
+    // Vueを読み込めるようにするため
+    new VueLoaderPlugin(),
+  ],
 };
