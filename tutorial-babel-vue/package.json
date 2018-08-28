@@ -7,11 +7,11 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "7.0.0",
+    "@babel/preset-env": "7.0.0",
+    "babel-loader": "^8.0.0",
     "css-loader": "^1.0.0",
-    "file-loader": "^1.1.11",
+    "file-loader": "^2.0.0",
     "vue-loader": "^15.2.4",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.16.3",

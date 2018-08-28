@@ -3,17 +3,6 @@ module.exports = {
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: 'production',
 
-  // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: [
-    'babel-polyfill', // Polyfillも含める
-    './src/app.js',
-  ],
-  // ファイルの出力設定
-  output: {
-    // 出力ファイル名
-    filename: 'main.js'
-  },
-
   module: {
     rules: [
       {
@@ -26,10 +15,8 @@ module.exports = {
             // Babel のオプションを指定する
             options: {
               presets: [
-                // env を指定することで、ES2018 を ES5 に変換。
-                // {modules: false}にしないと import 文が Babel によって CommonJS に変換され、
-                // webpack の Tree Shaking 機能が使えない
-                ['env', {'modules': false}]
+                // env を指定することで、ES2018 を ES5 に変換
+                '@babel/preset-env',
               ]
             }
           }
