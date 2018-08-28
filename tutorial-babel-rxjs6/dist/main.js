@@ -110,31 +110,38 @@ and limitations under the License.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
-var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-    d.__proto__ = b;
-} || function (d, b) {
-    for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-    }
+var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return _extendStatics(d, b);
 };
 
 function __extends(d, b) {
-    extendStatics(d, b);
+    _extendStatics(d, b);
     function __() {
         this.constructor = d;
     }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 }
 
-var __assign = Object.assign || function __assign(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) {
-            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+var _assign = function __assign() {
+    _assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) {
+                if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
         }
-    }
-    return t;
+        return t;
+    };
+    return _assign.apply(this, arguments);
 };
+
 
 function __rest(s, e) {
     var t = {};
@@ -209,8 +216,8 @@ function __generator(thisArg, body) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) {
             try {
-                if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [0, t.value];
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
                 switch (op[0]) {
                     case 0:case 1:
                         t = op;break;
@@ -398,24 +405,8 @@ function isFunction(x) {
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/config.js
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 var _enable_super_gross_mode_that_will_cause_bad_things = false;
-/**
- * The global configuration object for RxJS, used to configure things
- * like what Promise contructor should used to create Promises
- */
 var config = {
-    /**
-     * The promise constructor used by default for methods such as
-     * {@link toPromise} and {@link forEach}
-     */
     Promise: undefined,
-    /**
-     * If true, turns on synchronous error rethrowing, which is a deprecated behavior
-     * in v6 and higher. This behavior enables bad patterns like wrapping a subscribe
-     * call in a try/catch block. It also enables producer interference, a nasty bug
-     * where a multicast can be broken for all observers by a downstream consumer with
-     * an unhandled error. DO NOT USE THIS FLAG UNLESS IT'S NEEDED TO BY TIME
-     * FOR MIGRATION REASONS.
-     */
     set useDeprecatedSynchronousErrorHandling(value) {
         if (value) {
             var error = /*@__PURE__*/new Error();
@@ -431,16 +422,11 @@ var config = {
 };
 //# sourceMappingURL=config.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/hostReportError.js
-/**
- * Throws an error on another job so that it's picked up by the runtime's
- * uncaught error handling mechanism.
- * @param err the error to throw
- */
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 function hostReportError(err) {
-  setTimeout(function () {
-    throw err;
-  });
+    setTimeout(function () {
+        throw err;
+    });
 }
 //# sourceMappingURL=hostReportError.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Observer.js
@@ -475,7 +461,6 @@ function isObject(x) {
 }
 //# sourceMappingURL=isObject.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/errorObject.js
-// typeof any so that it we don't have to cast when comparing a result to the error object
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 var errorObject = { e: {} };
 //# sourceMappingURL=errorObject.js.map
@@ -499,10 +484,6 @@ function tryCatch(fn) {
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/UnsubscriptionError.js
 /** PURE_IMPORTS_START tslib PURE_IMPORTS_END */
 
-/**
- * An error thrown when one or more errors have occurred during the
- * `unsubscribe` of a {@link Subscription}.
- */
 var UnsubscriptionError_UnsubscriptionError = /*@__PURE__*/function (_super) {
     __extends(UnsubscriptionError, _super);
     function UnsubscriptionError(errors) {
@@ -528,45 +509,16 @@ var Subscription_typeof = typeof Symbol === "function" && typeof Symbol.iterator
 
 
 
-/**
- * Represents a disposable resource, such as the execution of an Observable. A
- * Subscription has one important method, `unsubscribe`, that takes no argument
- * and just disposes the resource held by the subscription.
- *
- * Additionally, subscriptions may be grouped together through the `add()`
- * method, which will attach a child Subscription to the current Subscription.
- * When a Subscription is unsubscribed, all its children (and its grandchildren)
- * will be unsubscribed as well.
- *
- * @class Subscription
- */
 var Subscription_Subscription = /*@__PURE__*/function () {
-    /**
-     * @param {function(): void} [unsubscribe] A function describing how to
-     * perform the disposal of resources when the `unsubscribe` method is called.
-     */
     function Subscription(unsubscribe) {
-        /**
-         * A flag to indicate whether this Subscription has already been unsubscribed.
-         * @type {boolean}
-         */
         this.closed = false;
-        /** @internal */
         this._parent = null;
-        /** @internal */
         this._parents = null;
-        /** @internal */
         this._subscriptions = null;
         if (unsubscribe) {
             this._unsubscribe = unsubscribe;
         }
     }
-    /**
-     * Disposes the resources held by the subscription. May, for instance, cancel
-     * an ongoing Observable execution or cancel any other type of work that
-     * started when the Subscription was created.
-     * @return {void}
-     */
     Subscription.prototype.unsubscribe = function () {
         var hasErrors = false;
         var errors;
@@ -581,17 +533,11 @@ var Subscription_Subscription = /*@__PURE__*/function () {
         this.closed = true;
         this._parent = null;
         this._parents = null;
-        // null out _subscriptions first so any child subscriptions that attempt
-        // to remove themselves from this subscription will noop
         this._subscriptions = null;
         var index = -1;
         var len = _parents ? _parents.length : 0;
-        // if this._parent is null, then so is this._parents, and we
-        // don't have to remove ourselves from any parent subscriptions.
         while (_parent) {
             _parent.remove(this);
-            // if this._parents is null or index >= len,
-            // then _parent is set to null, and the loop exits
             _parent = ++index < len && _parents[index] || null;
         }
         if (isFunction(_unsubscribe)) {
@@ -625,24 +571,6 @@ var Subscription_Subscription = /*@__PURE__*/function () {
             throw new UnsubscriptionError_UnsubscriptionError(errors);
         }
     };
-    /**
-     * Adds a tear down to be called during the unsubscribe() of this
-     * Subscription.
-     *
-     * If the tear down being added is a subscription that is already
-     * unsubscribed, is the same reference `add` is being called on, or is
-     * `Subscription.EMPTY`, it will not be added.
-     *
-     * If this subscription is already in an `closed` state, the passed
-     * tear down logic will be executed immediately.
-     *
-     * @param {TeardownLogic} teardown The additional logic to execute on
-     * teardown.
-     * @return {Subscription} Returns the Subscription used or created to be
-     * added to the inner subscriptions list. This Subscription can be used with
-     * `remove()` to remove the passed teardown logic from the inner subscriptions
-     * list.
-     */
     Subscription.prototype.add = function (teardown) {
         if (!teardown || teardown === Subscription.EMPTY) {
             return Subscription.EMPTY;
@@ -660,11 +588,11 @@ var Subscription_Subscription = /*@__PURE__*/function () {
                 } else if (this.closed) {
                     subscription.unsubscribe();
                     return subscription;
-                } else if (typeof subscription._addParent !== 'function' /* quack quack */) {
-                        var tmp = subscription;
-                        subscription = new Subscription();
-                        subscription._subscriptions = [tmp];
-                    }
+                } else if (typeof subscription._addParent !== 'function') {
+                    var tmp = subscription;
+                    subscription = new Subscription();
+                    subscription._subscriptions = [tmp];
+                }
                 break;
             default:
                 throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
@@ -674,12 +602,6 @@ var Subscription_Subscription = /*@__PURE__*/function () {
         subscription._addParent(this);
         return subscription;
     };
-    /**
-     * Removes a Subscription from the internal list of subscriptions that will
-     * unsubscribe during the unsubscribe process of this Subscription.
-     * @param {Subscription} subscription The subscription to remove.
-     * @return {void}
-     */
     Subscription.prototype.remove = function (subscription) {
         var subscriptions = this._subscriptions;
         if (subscriptions) {
@@ -689,25 +611,18 @@ var Subscription_Subscription = /*@__PURE__*/function () {
             }
         }
     };
-    /** @internal */
     Subscription.prototype._addParent = function (parent) {
         var _a = this,
             _parent = _a._parent,
             _parents = _a._parents;
         if (!_parent || _parent === parent) {
-            // If we don't have a parent, or the new parent is the same as the
-            // current parent, then set this._parent to the new parent.
             this._parent = parent;
         } else if (!_parents) {
-            // If there's already one parent, but not multiple, allocate an Array to
-            // store the rest of the parent Subscriptions.
             this._parents = [parent];
         } else if (_parents.indexOf(parent) === -1) {
-            // Only add the new parent to the _parents list if it's not already there.
             _parents.push(parent);
         }
     };
-    /** @nocollapse */
     Subscription.EMPTY = function (empty) {
         empty.closed = true;
         return empty;
@@ -724,9 +639,6 @@ function flattenUnsubscriptionErrors(errors) {
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/symbol/rxSubscriber.js
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 var rxSubscriber = typeof Symbol === 'function' && typeof Symbol.for === 'function' ? /*@__PURE__*/Symbol.for('rxSubscriber') : '@@rxSubscriber';
-/**
- * @deprecated use rxSubscriber instead
- */
 var $$rxSubscriber = rxSubscriber;
 //# sourceMappingURL=rxSubscriber.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Subscriber.js
@@ -740,31 +652,13 @@ var Subscriber_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
 
 
 
-/**
- * Implements the {@link Observer} interface and extends the
- * {@link Subscription} class. While the {@link Observer} is the public API for
- * consuming the values of an {@link Observable}, all Observers get converted to
- * a Subscriber, in order to provide Subscription-like capabilities such as
- * `unsubscribe`. Subscriber is a common type in RxJS, and crucial for
- * implementing operators, but it is rarely used as a public API.
- *
- * @class Subscriber<T>
- */
 var Subscriber_Subscriber = /*@__PURE__*/function (_super) {
     __extends(Subscriber, _super);
-    /**
-     * @param {Observer|function(value: T): void} [destinationOrNext] A partially
-     * defined Observer or a `next` callback function.
-     * @param {function(e: ?any): void} [error] The `error` callback of an
-     * Observer.
-     * @param {function(): void} [complete] The `complete` callback of an
-     * Observer.
-     */
     function Subscriber(destinationOrNext, error, complete) {
         var _this = _super.call(this) || this;
-        /** @internal */_this.syncErrorValue = null;
-        /** @internal */_this.syncErrorThrown = false;
-        /** @internal */_this.syncErrorThrowable = false;
+        _this.syncErrorValue = null;
+        _this.syncErrorThrown = false;
+        _this.syncErrorThrowable = false;
         _this.isStopped = false;
         switch (arguments.length) {
             case 0:
@@ -776,8 +670,6 @@ var Subscriber_Subscriber = /*@__PURE__*/function (_super) {
                     break;
                 }
                 if ((typeof destinationOrNext === 'undefined' ? 'undefined' : Subscriber_typeof(destinationOrNext)) === 'object') {
-                    // HACK(benlesh): For situations where Node has multiple copies of rxjs in
-                    // node_modules, we cannot rely on `instanceof` checks
                     if (isTrustedSubscriber(destinationOrNext)) {
                         var trustedSubscriber = destinationOrNext[rxSubscriber]();
                         _this.syncErrorThrowable = trustedSubscriber.syncErrorThrowable;
@@ -799,54 +691,22 @@ var Subscriber_Subscriber = /*@__PURE__*/function (_super) {
     Subscriber.prototype[rxSubscriber] = function () {
         return this;
     };
-    /**
-     * A static factory for a Subscriber, given a (potentially partial) definition
-     * of an Observer.
-     * @param {function(x: ?T): void} [next] The `next` callback of an Observer.
-     * @param {function(e: ?any): void} [error] The `error` callback of an
-     * Observer.
-     * @param {function(): void} [complete] The `complete` callback of an
-     * Observer.
-     * @return {Subscriber<T>} A Subscriber wrapping the (partially defined)
-     * Observer represented by the given arguments.
-     * @nocollapse
-     */
     Subscriber.create = function (next, error, complete) {
         var subscriber = new Subscriber(next, error, complete);
         subscriber.syncErrorThrowable = false;
         return subscriber;
     };
-    /**
-     * The {@link Observer} callback to receive notifications of type `next` from
-     * the Observable, with a value. The Observable may call this method 0 or more
-     * times.
-     * @param {T} [value] The `next` value.
-     * @return {void}
-     */
     Subscriber.prototype.next = function (value) {
         if (!this.isStopped) {
             this._next(value);
         }
     };
-    /**
-     * The {@link Observer} callback to receive notifications of type `error` from
-     * the Observable, with an attached {@link Error}. Notifies the Observer that
-     * the Observable has experienced an error condition.
-     * @param {any} [err] The `error` exception.
-     * @return {void}
-     */
     Subscriber.prototype.error = function (err) {
         if (!this.isStopped) {
             this.isStopped = true;
             this._error(err);
         }
     };
-    /**
-     * The {@link Observer} callback to receive a valueless notification of type
-     * `complete` from the Observable. Notifies the Observer that the Observable
-     * has finished sending push-based notifications.
-     * @return {void}
-     */
     Subscriber.prototype.complete = function () {
         if (!this.isStopped) {
             this.isStopped = true;
@@ -871,7 +731,6 @@ var Subscriber_Subscriber = /*@__PURE__*/function (_super) {
         this.destination.complete();
         this.unsubscribe();
     };
-    /** @deprecated This is an internal implementation detail, do not use. */
     Subscriber.prototype._unsubscribeAndRecycle = function () {
         var _a = this,
             _parent = _a._parent,
@@ -888,11 +747,6 @@ var Subscriber_Subscriber = /*@__PURE__*/function (_super) {
     return Subscriber;
 }(Subscription_Subscription);
 
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
 var Subscriber_SafeSubscriber = /*@__PURE__*/function (_super) {
     __extends(SafeSubscriber, _super);
     function SafeSubscriber(_parentSubscriber, observerOrNext, error, complete) {
@@ -1009,7 +863,6 @@ var Subscriber_SafeSubscriber = /*@__PURE__*/function (_super) {
         }
         return false;
     };
-    /** @deprecated This is an internal implementation detail, do not use. */
     SafeSubscriber.prototype._unsubscribe = function () {
         var _parentSubscriber = this._parentSubscriber;
         this._context = null;
@@ -1043,19 +896,16 @@ function toSubscriber(nextOrObserver, error, complete) {
 }
 //# sourceMappingURL=toSubscriber.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/symbol/observable.js
-/** Symbol.observable or a string "@@observable". Used for interop */
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 var observable = typeof Symbol === 'function' && Symbol.observable || '@@observable';
 //# sourceMappingURL=observable.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/noop.js
-/* tslint:disable:no-empty */
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 function noop() {}
 //# sourceMappingURL=noop.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/pipe.js
 /** PURE_IMPORTS_START _noop PURE_IMPORTS_END */
 
-/* tslint:enable:max-line-length */
 function pipe() {
     var fns = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -1063,7 +913,6 @@ function pipe() {
     }
     return pipeFromArray(fns);
 }
-/* @internal */
 function pipeFromArray(fns) {
     if (!fns) {
         return noop;
@@ -1084,161 +933,26 @@ function pipeFromArray(fns) {
 
 
 
-/**
- * A representation of any set of values over any amount of time. This is the most basic building block
- * of RxJS.
- *
- * @class Observable<T>
- */
 var Observable_Observable = /*@__PURE__*/function () {
-    /**
-     * @constructor
-     * @param {Function} subscribe the function that is called when the Observable is
-     * initially subscribed to. This function is given a Subscriber, to which new values
-     * can be `next`ed, or an `error` method can be called to raise an error, or
-     * `complete` can be called to notify of a successful completion.
-     */
     function Observable(subscribe) {
-        /** Internal implementation detail, do not use directly. */
         this._isScalar = false;
         if (subscribe) {
             this._subscribe = subscribe;
         }
     }
-    /**
-     * Creates a new Observable, with this Observable as the source, and the passed
-     * operator defined as the new observable's operator.
-     * @method lift
-     * @param {Operator} operator the operator defining the operation to take on the observable
-     * @return {Observable} a new observable with the Operator applied
-     */
     Observable.prototype.lift = function (operator) {
         var observable = new Observable();
         observable.source = this;
         observable.operator = operator;
         return observable;
     };
-    /**
-     * Invokes an execution of an Observable and registers Observer handlers for notifications it will emit.
-     *
-     * <span class="informal">Use it when you have all these Observables, but still nothing is happening.</span>
-     *
-     * `subscribe` is not a regular operator, but a method that calls Observable's internal `subscribe` function. It
-     * might be for example a function that you passed to a {@link create} static factory, but most of the time it is
-     * a library implementation, which defines what and when will be emitted by an Observable. This means that calling
-     * `subscribe` is actually the moment when Observable starts its work, not when it is created, as it is often
-     * thought.
-     *
-     * Apart from starting the execution of an Observable, this method allows you to listen for values
-     * that an Observable emits, as well as for when it completes or errors. You can achieve this in two
-     * following ways.
-     *
-     * The first way is creating an object that implements {@link Observer} interface. It should have methods
-     * defined by that interface, but note that it should be just a regular JavaScript object, which you can create
-     * yourself in any way you want (ES6 class, classic function constructor, object literal etc.). In particular do
-     * not attempt to use any RxJS implementation details to create Observers - you don't need them. Remember also
-     * that your object does not have to implement all methods. If you find yourself creating a method that doesn't
-     * do anything, you can simply omit it. Note however, that if `error` method is not provided, all errors will
-     * be left uncaught.
-     *
-     * The second way is to give up on Observer object altogether and simply provide callback functions in place of its methods.
-     * This means you can provide three functions as arguments to `subscribe`, where first function is equivalent
-     * of a `next` method, second of an `error` method and third of a `complete` method. Just as in case of Observer,
-     * if you do not need to listen for something, you can omit a function, preferably by passing `undefined` or `null`,
-     * since `subscribe` recognizes these functions by where they were placed in function call. When it comes
-     * to `error` function, just as before, if not provided, errors emitted by an Observable will be thrown.
-     *
-     * Whatever style of calling `subscribe` you use, in both cases it returns a Subscription object.
-     * This object allows you to call `unsubscribe` on it, which in turn will stop work that an Observable does and will clean
-     * up all resources that an Observable used. Note that cancelling a subscription will not call `complete` callback
-     * provided to `subscribe` function, which is reserved for a regular completion signal that comes from an Observable.
-     *
-     * Remember that callbacks provided to `subscribe` are not guaranteed to be called asynchronously.
-     * It is an Observable itself that decides when these functions will be called. For example {@link of}
-     * by default emits all its values synchronously. Always check documentation for how given Observable
-     * will behave when subscribed and if its default behavior can be modified with a {@link Scheduler}.
-     *
-     * @example <caption>Subscribe with an Observer</caption>
-     * const sumObserver = {
-     *   sum: 0,
-     *   next(value) {
-     *     console.log('Adding: ' + value);
-     *     this.sum = this.sum + value;
-     *   },
-     *   error() { // We actually could just remove this method,
-     *   },        // since we do not really care about errors right now.
-     *   complete() {
-     *     console.log('Sum equals: ' + this.sum);
-     *   }
-     * };
-     *
-     * Rx.Observable.of(1, 2, 3) // Synchronously emits 1, 2, 3 and then completes.
-     * .subscribe(sumObserver);
-     *
-     * // Logs:
-     * // "Adding: 1"
-     * // "Adding: 2"
-     * // "Adding: 3"
-     * // "Sum equals: 6"
-     *
-     *
-     * @example <caption>Subscribe with functions</caption>
-     * let sum = 0;
-     *
-     * Rx.Observable.of(1, 2, 3)
-     * .subscribe(
-     *   function(value) {
-     *     console.log('Adding: ' + value);
-     *     sum = sum + value;
-     *   },
-     *   undefined,
-     *   function() {
-     *     console.log('Sum equals: ' + sum);
-     *   }
-     * );
-     *
-     * // Logs:
-     * // "Adding: 1"
-     * // "Adding: 2"
-     * // "Adding: 3"
-     * // "Sum equals: 6"
-     *
-     *
-     * @example <caption>Cancel a subscription</caption>
-     * const subscription = Rx.Observable.interval(1000).subscribe(
-     *   num => console.log(num),
-     *   undefined,
-     *   () => console.log('completed!') // Will not be called, even
-     * );                                // when cancelling subscription
-     *
-     *
-     * setTimeout(() => {
-     *   subscription.unsubscribe();
-     *   console.log('unsubscribed!');
-     * }, 2500);
-     *
-     * // Logs:
-     * // 0 after 1s
-     * // 1 after 2s
-     * // "unsubscribed!" after 2.5s
-     *
-     *
-     * @param {Observer|Function} observerOrNext (optional) Either an observer with methods to be called,
-     *  or the first of three possible handlers, which is the handler for each value emitted from the subscribed
-     *  Observable.
-     * @param {Function} error (optional) A handler for a terminal event resulting from an error. If no error handler is provided,
-     *  the error will be thrown as unhandled.
-     * @param {Function} complete (optional) A handler for a terminal event resulting from successful completion.
-     * @return {ISubscription} a subscription reference to the registered handlers
-     * @method subscribe
-     */
     Observable.prototype.subscribe = function (observerOrNext, error, complete) {
         var operator = this.operator;
         var sink = toSubscriber(observerOrNext, error, complete);
         if (operator) {
             operator.call(sink, this.source);
         } else {
-            sink.add(this.source || !sink.syncErrorThrowable ? this._subscribe(sink) : this._trySubscribe(sink));
+            sink.add(this.source || config.useDeprecatedSynchronousErrorHandling && !sink.syncErrorThrowable ? this._subscribe(sink) : this._trySubscribe(sink));
         }
         if (config.useDeprecatedSynchronousErrorHandling) {
             if (sink.syncErrorThrowable) {
@@ -1250,7 +964,6 @@ var Observable_Observable = /*@__PURE__*/function () {
         }
         return sink;
     };
-    /** @deprecated This is an internal implementation detail, do not use. */
     Observable.prototype._trySubscribe = function (sink) {
         try {
             return this._subscribe(sink);
@@ -1262,19 +975,10 @@ var Observable_Observable = /*@__PURE__*/function () {
             sink.error(err);
         }
     };
-    /**
-     * @method forEach
-     * @param {Function} next a handler for each value emitted by the observable
-     * @param {PromiseConstructor} [promiseCtor] a constructor function used to instantiate the Promise
-     * @return {Promise} a promise that either resolves on observable completion or
-     *  rejects with the handled error
-     */
     Observable.prototype.forEach = function (next, promiseCtor) {
         var _this = this;
         promiseCtor = getPromiseCtor(promiseCtor);
         return new promiseCtor(function (resolve, reject) {
-            // Must be declared in a separate statement to avoid a RefernceError when
-            // accessing subscription below in the closure due to Temporal Dead Zone.
             var subscription;
             subscription = _this.subscribe(function (value) {
                 try {
@@ -1288,38 +992,13 @@ var Observable_Observable = /*@__PURE__*/function () {
             }, reject, resolve);
         });
     };
-    /** @deprecated This is an internal implementation detail, do not use. */
     Observable.prototype._subscribe = function (subscriber) {
         var source = this.source;
         return source && source.subscribe(subscriber);
     };
-    /**
-     * An interop point defined by the es7-observable spec https://github.com/zenparsing/es-observable
-     * @method Symbol.observable
-     * @return {Observable} this instance of the observable
-     */
     Observable.prototype[observable] = function () {
         return this;
     };
-    /* tslint:enable:max-line-length */
-    /**
-     * Used to stitch together functional operators into a chain.
-     * @method pipe
-     * @return {Observable} the Observable result of all of the operators having
-     * been called in the order they were passed in.
-     *
-     * @example
-     *
-     * import { map, filter, scan } from 'rxjs/operators';
-     *
-     * Rx.Observable.interval(1000)
-     *   .pipe(
-     *     filter(x => x % 2 === 0),
-     *     map(x => x + x),
-     *     scan((acc, x) => acc + x)
-     *   )
-     *   .subscribe(x => console.log(x))
-     */
     Observable.prototype.pipe = function () {
         var operations = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -1330,7 +1009,6 @@ var Observable_Observable = /*@__PURE__*/function () {
         }
         return pipeFromArray(operations)(this);
     };
-    /* tslint:enable:max-line-length */
     Observable.prototype.toPromise = function (promiseCtor) {
         var _this = this;
         promiseCtor = getPromiseCtor(promiseCtor);
@@ -1345,30 +1023,12 @@ var Observable_Observable = /*@__PURE__*/function () {
             });
         });
     };
-    // HACK: Since TypeScript inherits static properties too, we have to
-    // fight against TypeScript here so Subject can have a different static create signature
-    /**
-     * Creates a new cold Observable by calling the Observable constructor
-     * @static true
-     * @owner Observable
-     * @method create
-     * @param {Function} subscribe? the subscriber function to be passed to the Observable constructor
-     * @return {Observable} a new cold observable
-     * @nocollapse
-     */
     Observable.create = function (subscribe) {
         return new Observable(subscribe);
     };
     return Observable;
 }();
 
-/**
- * Decides between a passed promise constructor from consuming code,
- * A default configured promise constructor, and the native promise
- * constructor and returns it. If nothing can be found, it will throw
- * an error.
- * @param promiseCtor The optional promise constructor to passed by consuming code
- */
 function getPromiseCtor(promiseCtor) {
     if (!promiseCtor) {
         promiseCtor = config.Promise || Promise;
@@ -1383,35 +1043,11 @@ function getPromiseCtor(promiseCtor) {
 /** PURE_IMPORTS_START tslib,_Subscription PURE_IMPORTS_END */
 
 
-/**
- * A unit of work to be executed in a {@link Scheduler}. An action is typically
- * created from within a Scheduler and an RxJS user does not need to concern
- * themselves about creating and manipulating an Action.
- *
- * ```ts
- * class Action<T> extends Subscription {
- *   new (scheduler: Scheduler, work: (state?: T) => void);
- *   schedule(state?: T, delay: number = 0): Subscription;
- * }
- * ```
- *
- * @class Action<T>
- */
 var Action_Action = /*@__PURE__*/function (_super) {
     __extends(Action, _super);
     function Action(scheduler, work) {
         return _super.call(this) || this;
     }
-    /**
-     * Schedules this action on its parent Scheduler for execution. May be passed
-     * some context object, `state`. May happen at some point in the future,
-     * according to the `delay` parameter, if specified.
-     * @param {T} [state] Some contextual data that the `work` function uses when
-     * called by the Scheduler.
-     * @param {number} [delay] Time to wait before executing the work, where the
-     * time unit is implicit and defined by the Scheduler.
-     * @return {void}
-     */
     Action.prototype.schedule = function (state, delay) {
         if (delay === void 0) {
             delay = 0;
@@ -1426,11 +1062,6 @@ var Action_Action = /*@__PURE__*/function (_super) {
 /** PURE_IMPORTS_START tslib,_Action PURE_IMPORTS_END */
 
 
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
 var AsyncAction_AsyncAction = /*@__PURE__*/function (_super) {
     __extends(AsyncAction, _super);
     function AsyncAction(scheduler, work) {
@@ -1447,39 +1078,14 @@ var AsyncAction_AsyncAction = /*@__PURE__*/function (_super) {
         if (this.closed) {
             return this;
         }
-        // Always replace the current state with the new state.
         this.state = state;
         var id = this.id;
         var scheduler = this.scheduler;
-        //
-        // Important implementation note:
-        //
-        // Actions only execute once by default, unless rescheduled from within the
-        // scheduled callback. This allows us to implement single and repeat
-        // actions via the same code path, without adding API surface area, as well
-        // as mimic traditional recursion but across asynchronous boundaries.
-        //
-        // However, JS runtimes and timers distinguish between intervals achieved by
-        // serial `setTimeout` calls vs. a single `setInterval` call. An interval of
-        // serial `setTimeout` calls can be individually delayed, which delays
-        // scheduling the next `setTimeout`, and so on. `setInterval` attempts to
-        // guarantee the interval callback will be invoked more precisely to the
-        // interval period, regardless of load.
-        //
-        // Therefore, we use `setInterval` to schedule single and repeat actions.
-        // If the action reschedules itself with the same delay, the interval is not
-        // canceled. If the action doesn't reschedule, or reschedules with a
-        // different delay, the interval will be canceled after scheduled callback
-        // execution.
-        //
         if (id != null) {
             this.id = this.recycleAsyncId(scheduler, id, delay);
         }
-        // Set the pending flag indicating that this action has been scheduled, or
-        // has recursively rescheduled itself.
         this.pending = true;
         this.delay = delay;
-        // If this action has already an async Id, don't request a new one.
         this.id = this.id || this.requestAsyncId(scheduler, this.id, delay);
         return this;
     };
@@ -1493,18 +1099,11 @@ var AsyncAction_AsyncAction = /*@__PURE__*/function (_super) {
         if (delay === void 0) {
             delay = 0;
         }
-        // If this action is rescheduled with the same delay time, don't clear the interval id.
         if (delay !== null && this.delay === delay && this.pending === false) {
             return id;
         }
-        // Otherwise, if the action's delay time is different from the current delay,
-        // or the action has been rescheduled before it's executed, clear the interval id
         return clearInterval(id) && undefined || undefined;
     };
-    /**
-     * Immediately executes this action and the `work` it contains.
-     * @return {any}
-     */
     AsyncAction.prototype.execute = function (state, delay) {
         if (this.closed) {
             return new Error('executing a cancelled action');
@@ -1514,19 +1113,6 @@ var AsyncAction_AsyncAction = /*@__PURE__*/function (_super) {
         if (error) {
             return error;
         } else if (this.pending === false && this.id != null) {
-            // Dequeue if the action didn't reschedule itself. Don't call
-            // unsubscribe(), because the action could reschedule later.
-            // For example:
-            // ```
-            // scheduler.schedule(function doWork(counter) {
-            //   /* ... I'm a busy worker bee ... */
-            //   var originalAction = this;
-            //   /* wait 100ms before rescheduling the action */
-            //   setTimeout(function () {
-            //     originalAction.schedule(counter + 1);
-            //   }, 100);
-            // }, 1000);
-            // ```
             this.id = this.recycleAsyncId(this.scheduler, this.id, null);
         }
     };
@@ -1544,7 +1130,6 @@ var AsyncAction_AsyncAction = /*@__PURE__*/function (_super) {
             return errorValue;
         }
     };
-    /** @deprecated This is an internal implementation detail, do not use. */
     AsyncAction.prototype._unsubscribe = function () {
         var id = this.id;
         var scheduler = this.scheduler;
@@ -1567,25 +1152,6 @@ var AsyncAction_AsyncAction = /*@__PURE__*/function (_super) {
 
 //# sourceMappingURL=AsyncAction.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Scheduler.js
-/**
- * An execution context and a data structure to order tasks and schedule their
- * execution. Provides a notion of (potentially virtual) time, through the
- * `now()` getter method.
- *
- * Each unit of work in a Scheduler is called an {@link Action}.
- *
- * ```ts
- * class Scheduler {
- *   now(): number;
- *   schedule(work, delay?, state?): Subscription;
- * }
- * ```
- *
- * @class Scheduler
- * @deprecated Scheduler is an internal implementation detail of RxJS, and
- * should not be used directly. Rather, create your own class and implement
- * {@link SchedulerLike}
- */
 var Scheduler = /*@__PURE__*/function () {
     function Scheduler(SchedulerAction, now) {
         if (now === void 0) {
@@ -1594,32 +1160,14 @@ var Scheduler = /*@__PURE__*/function () {
         this.SchedulerAction = SchedulerAction;
         this.now = now;
     }
-    /**
-     * Schedules a function, `work`, for execution. May happen at some point in
-     * the future, according to the `delay` parameter, if specified. May be passed
-     * some context object, `state`, which will be passed to the `work` function.
-     *
-     * The given arguments will be processed an stored as an Action object in a
-     * queue of actions.
-     *
-     * @param {function(state: ?T): ?Subscription} work A function representing a
-     * task, or some unit of work to be executed by the Scheduler.
-     * @param {number} [delay] Time to wait before executing the work, where the
-     * time unit is implicit and defined by the Scheduler itself.
-     * @param {T} [state] Some contextual data that the `work` function uses when
-     * called by the Scheduler.
-     * @return {Subscription} A subscription in order to be able to unsubscribe
-     * the scheduled work.
-     */
     Scheduler.prototype.schedule = function (work, delay, state) {
         if (delay === void 0) {
             delay = 0;
         }
         return new this.SchedulerAction(this, work).schedule(state, delay);
     };
-    /** @nocollapse */
-    Scheduler.now = Date.now ? Date.now : function () {
-        return +new Date();
+    Scheduler.now = function () {
+        return Date.now();
     };
     return Scheduler;
 }();
@@ -1643,20 +1191,7 @@ var AsyncScheduler_AsyncScheduler = /*@__PURE__*/function (_super) {
             }
         }) || this;
         _this.actions = [];
-        /**
-         * A flag to indicate whether the Scheduler is currently executing a batch of
-         * queued actions.
-         * @type {boolean}
-         * @deprecated internal use only
-         */
         _this.active = false;
-        /**
-         * An internal ID used to track the latest asynchronous task such as those
-         * coming from `setTimeout`, `setInterval`, `requestAnimationFrame`, and
-         * others.
-         * @type {any}
-         * @deprecated internal use only
-         */
         _this.scheduled = undefined;
         return _this;
     }
@@ -1682,7 +1217,7 @@ var AsyncScheduler_AsyncScheduler = /*@__PURE__*/function (_super) {
             if (error = action.execute(action.state, action.delay)) {
                 break;
             }
-        } while (action = actions.shift()); // exhaust the scheduler queue
+        } while (action = actions.shift());
         this.active = false;
         if (error) {
             while (action = actions.shift()) {
@@ -1699,58 +1234,12 @@ var AsyncScheduler_AsyncScheduler = /*@__PURE__*/function (_super) {
 /** PURE_IMPORTS_START _AsyncAction,_AsyncScheduler PURE_IMPORTS_END */
 
 
-/**
- *
- * Async Scheduler
- *
- * <span class="informal">Schedule task as if you used setTimeout(task, duration)</span>
- *
- * `async` scheduler schedules tasks asynchronously, by putting them on the JavaScript
- * event loop queue. It is best used to delay tasks in time or to schedule tasks repeating
- * in intervals.
- *
- * If you just want to "defer" task, that is to perform it right after currently
- * executing synchronous code ends (commonly achieved by `setTimeout(deferredTask, 0)`),
- * better choice will be the {@link asap} scheduler.
- *
- * @example <caption>Use async scheduler to delay task</caption>
- * const task = () => console.log('it works!');
- *
- * Rx.Scheduler.async.schedule(task, 2000);
- *
- * // After 2 seconds logs:
- * // "it works!"
- *
- *
- * @example <caption>Use async scheduler to repeat task in intervals</caption>
- * function task(state) {
- *   console.log(state);
- *   this.schedule(state + 1, 1000); // `this` references currently executing Action,
- *                                   // which we reschedule with new state and delay
- * }
- *
- * Rx.Scheduler.async.schedule(task, 3000, 0);
- *
- * // Logs:
- * // 0 after 3s
- * // 1 after 4s
- * // 2 after 5s
- * // 3 after 6s
- *
- * @static true
- * @name async
- * @owner Scheduler
- */
 var async_async = /*@__PURE__*/new AsyncScheduler_AsyncScheduler(AsyncAction_AsyncAction);
 //# sourceMappingURL=async.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/isNumeric.js
 /** PURE_IMPORTS_START _isArray PURE_IMPORTS_END */
 
 function isNumeric(val) {
-    // parseFloat NaNs numeric-cast false positives (null|true|false|"")
-    // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
-    // subtraction forces infinities to NaN
-    // adding 1 corrects loss of precision from parseFloat (#15100)
     return !isArray(val) && val - parseFloat(val) + 1 >= 0;
 }
 //# sourceMappingURL=isNumeric.js.map
@@ -1759,39 +1248,6 @@ function isNumeric(val) {
 
 
 
-/**
- * Creates an Observable that emits sequential numbers every specified
- * interval of time, on a specified IScheduler.
- *
- * <span class="informal">Emits incremental numbers periodically in time.
- * </span>
- *
- * <img src="./img/interval.png" width="100%">
- *
- * `interval` returns an Observable that emits an infinite sequence of
- * ascending integers, with a constant interval of time of your choosing
- * between those emissions. The first emission is not sent immediately, but
- * only after the first period has passed. By default, this operator uses the
- * `async` IScheduler to provide a notion of time, but you may pass any
- * IScheduler to it.
- *
- * @example <caption>Emits ascending numbers, one every second (1000ms)</caption>
- * var numbers = Rx.Observable.interval(1000);
- * numbers.subscribe(x => console.log(x));
- *
- * @see {@link timer}
- * @see {@link delay}
- *
- * @param {number} [period=0] The interval size in milliseconds (by default)
- * or the time unit determined by the scheduler's clock.
- * @param {Scheduler} [scheduler=async] The IScheduler to use for scheduling
- * the emission of values, and providing a notion of "time".
- * @return {Observable} An Observable that emits a sequential number each time
- * interval.
- * @static true
- * @name interval
- * @owner Observable
- */
 function interval(period, scheduler) {
     if (period === void 0) {
         period = 0;
@@ -1821,16 +1277,6 @@ function dispatch(state) {
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/ArgumentOutOfRangeError.js
 /** PURE_IMPORTS_START tslib PURE_IMPORTS_END */
 
-/**
- * An error thrown when an element was queried at a certain index of an
- * Observable, but no such index or position exists in that sequence.
- *
- * @see {@link elementAt}
- * @see {@link take}
- * @see {@link takeLast}
- *
- * @class ArgumentOutOfRangeError
- */
 var ArgumentOutOfRangeError_ArgumentOutOfRangeError = /*@__PURE__*/function (_super) {
     __extends(ArgumentOutOfRangeError, _super);
     function ArgumentOutOfRangeError() {
@@ -1846,66 +1292,18 @@ var ArgumentOutOfRangeError_ArgumentOutOfRangeError = /*@__PURE__*/function (_su
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/observable/empty.js
 /** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
 
-/**
- * The same Observable instance returned by any call to {@link empty} without a
- * {@link Scheduler}. It is preferrable to use this over `empty()`.
- */
 var EMPTY = /*@__PURE__*/new Observable_Observable(function (subscriber) {
-  return subscriber.complete();
+    return subscriber.complete();
 });
-/**
- * Creates an Observable that emits no items to the Observer and immediately
- * emits a complete notification.
- *
- * <span class="informal">Just emits 'complete', and nothing else.
- * </span>
- *
- * <img src="./img/empty.png" width="100%">
- *
- * This static operator is useful for creating a simple Observable that only
- * emits the complete notification. It can be used for composing with other
- * Observables, such as in a {@link mergeMap}.
- *
- * @example <caption>Emit the number 7, then complete.</caption>
- * var result = Rx.Observable.empty().startWith(7);
- * result.subscribe(x => console.log(x));
- *
- * @example <caption>Map and flatten only odd numbers to the sequence 'a', 'b', 'c'</caption>
- * var interval = Rx.Observable.interval(1000);
- * var result = interval.mergeMap(x =>
- *   x % 2 === 1 ? Rx.Observable.of('a', 'b', 'c') : Rx.Observable.empty()
- * );
- * result.subscribe(x => console.log(x));
- *
- * // Results in the following to the console:
- * // x is equal to the count on the interval eg(0,1,2,3,...)
- * // x will occur every 1000ms
- * // if x % 2 is equal to 1 print abc
- * // if x % 2 is not equal to 1 nothing will be output
- *
- * @see {@link create}
- * @see {@link never}
- * @see {@link of}
- * @see {@link throw}
- *
- * @param {Scheduler} [scheduler] A {@link IScheduler} to use for scheduling
- * the emission of the complete notification.
- * @return {Observable} An "empty" Observable: emits only the complete
- * notification.
- * @static true
- * @name empty
- * @owner Observable
- * @deprecated Deprecated in favor of using EMPTY constant.
- */
 function empty_empty(scheduler) {
-  return scheduler ? emptyScheduled(scheduler) : EMPTY;
+    return scheduler ? emptyScheduled(scheduler) : EMPTY;
 }
 function emptyScheduled(scheduler) {
-  return new Observable_Observable(function (subscriber) {
-    return scheduler.schedule(function () {
-      return subscriber.complete();
+    return new Observable_Observable(function (subscriber) {
+        return scheduler.schedule(function () {
+            return subscriber.complete();
+        });
     });
-  });
 }
 //# sourceMappingURL=empty.js.map
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/operators/take.js
@@ -1914,39 +1312,6 @@ function emptyScheduled(scheduler) {
 
 
 
-/**
- * Emits only the first `count` values emitted by the source Observable.
- *
- * <span class="informal">Takes the first `count` values from the source, then
- * completes.</span>
- *
- * <img src="./img/take.png" width="100%">
- *
- * `take` returns an Observable that emits only the first `count` values emitted
- * by the source Observable. If the source emits fewer than `count` values then
- * all of its values are emitted. After that, it completes, regardless if the
- * source completes.
- *
- * @example <caption>Take the first 5 seconds of an infinite 1-second interval Observable</caption>
- * var interval = Rx.Observable.interval(1000);
- * var five = interval.take(5);
- * five.subscribe(x => console.log(x));
- *
- * @see {@link takeLast}
- * @see {@link takeUntil}
- * @see {@link takeWhile}
- * @see {@link skip}
- *
- * @throws {ArgumentOutOfRangeError} When using `take(i)`, it delivers an
- * ArgumentOutOrRangeError to the Observer's `error` callback if `i < 0`.
- *
- * @param {number} count The maximum number of `next` values to emit.
- * @return {Observable<T>} An Observable that emits only the first `count`
- * values emitted by the source Observable, or all of the values from the source
- * if the source emits fewer than `count` values.
- * @method take
- * @owner Observable
- */
 function take(count) {
     return function (source) {
         if (count === 0) {
@@ -1968,11 +1333,6 @@ var take_TakeOperator = /*@__PURE__*/function () {
     };
     return TakeOperator;
 }();
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
 var take_TakeSubscriber = /*@__PURE__*/function (_super) {
     __extends(TakeSubscriber, _super);
     function TakeSubscriber(destination, total) {
@@ -1999,39 +1359,6 @@ var take_TakeSubscriber = /*@__PURE__*/function (_super) {
 /** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
 
 
-/**
- * Applies a given `project` function to each value emitted by the source
- * Observable, and emits the resulting values as an Observable.
- *
- * <span class="informal">Like [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map),
- * it passes each source value through a transformation function to get
- * corresponding output values.</span>
- *
- * <img src="./img/map.png" width="100%">
- *
- * Similar to the well known `Array.prototype.map` function, this operator
- * applies a projection to each value and emits that projection in the output
- * Observable.
- *
- * @example <caption>Map every click to the clientX position of that click</caption>
- * var clicks = Rx.Observable.fromEvent(document, 'click');
- * var positions = clicks.map(ev => ev.clientX);
- * positions.subscribe(x => console.log(x));
- *
- * @see {@link mapTo}
- * @see {@link pluck}
- *
- * @param {function(value: T, index: number): R} project The function to apply
- * to each `value` emitted by the source Observable. The `index` parameter is
- * the number `i` for the i-th emission that has happened since the
- * subscription, starting from the number `0`.
- * @param {any} [thisArg] An optional argument to define what `this` is in the
- * `project` function.
- * @return {Observable<R>} An Observable that emits the values from the source
- * Observable transformed by the given `project` function.
- * @method map
- * @owner Observable
- */
 function map(project, thisArg) {
     return function mapOperation(source) {
         if (typeof project !== 'function') {
@@ -2051,11 +1378,6 @@ var MapOperator = /*@__PURE__*/function () {
     return MapOperator;
 }();
 
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
 var map_MapSubscriber = /*@__PURE__*/function (_super) {
     __extends(MapSubscriber, _super);
     function MapSubscriber(destination, project, thisArg) {
@@ -2065,8 +1387,6 @@ var map_MapSubscriber = /*@__PURE__*/function (_super) {
         _this.thisArg = thisArg || _this;
         return _this;
     }
-    // NOTE: This looks unoptimized, but it's actually purposefully NOT
-    // using try/catch optimizations.
     MapSubscriber.prototype._next = function (value) {
         var result;
         try {
@@ -2084,47 +1404,6 @@ var map_MapSubscriber = /*@__PURE__*/function (_super) {
 /** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
 
 
-/**
- * Buffers the source Observable values until the size hits the maximum
- * `bufferSize` given.
- *
- * <span class="informal">Collects values from the past as an array, and emits
- * that array only when its size reaches `bufferSize`.</span>
- *
- * <img src="./img/bufferCount.png" width="100%">
- *
- * Buffers a number of values from the source Observable by `bufferSize` then
- * emits the buffer and clears it, and starts a new buffer each
- * `startBufferEvery` values. If `startBufferEvery` is not provided or is
- * `null`, then new buffers are started immediately at the start of the source
- * and when each buffer closes and is emitted.
- *
- * @example <caption>Emit the last two click events as an array</caption>
- * var clicks = Rx.Observable.fromEvent(document, 'click');
- * var buffered = clicks.bufferCount(2);
- * buffered.subscribe(x => console.log(x));
- *
- * @example <caption>On every click, emit the last two click events as an array</caption>
- * var clicks = Rx.Observable.fromEvent(document, 'click');
- * var buffered = clicks.bufferCount(2, 1);
- * buffered.subscribe(x => console.log(x));
- *
- * @see {@link buffer}
- * @see {@link bufferTime}
- * @see {@link bufferToggle}
- * @see {@link bufferWhen}
- * @see {@link pairwise}
- * @see {@link windowCount}
- *
- * @param {number} bufferSize The maximum size of the buffer emitted.
- * @param {number} [startBufferEvery] Interval at which to start a new buffer.
- * For example if `startBufferEvery` is `2`, then a new buffer will be started
- * on every other value from the source. A new buffer is started at the
- * beginning of the source by default.
- * @return {Observable<T[]>} An Observable of arrays of buffered values.
- * @method bufferCount
- * @owner Observable
- */
 function bufferCount(bufferSize, startBufferEvery) {
     if (startBufferEvery === void 0) {
         startBufferEvery = null;
@@ -2148,11 +1427,6 @@ var BufferCountOperator = /*@__PURE__*/function () {
     };
     return BufferCountOperator;
 }();
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
 var bufferCount_BufferCountSubscriber = /*@__PURE__*/function (_super) {
     __extends(BufferCountSubscriber, _super);
     function BufferCountSubscriber(destination, bufferSize) {
@@ -2178,11 +1452,6 @@ var bufferCount_BufferCountSubscriber = /*@__PURE__*/function (_super) {
     };
     return BufferCountSubscriber;
 }(Subscriber_Subscriber);
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
 var bufferCount_BufferSkipCountSubscriber = /*@__PURE__*/function (_super) {
     __extends(BufferSkipCountSubscriber, _super);
     function BufferSkipCountSubscriber(destination, bufferSize, startBufferEvery) {
