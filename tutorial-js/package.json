@@ -3,7 +3,7 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "webpack": "^4.16.3",
+    "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },
   "private": true
