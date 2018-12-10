@@ -10,8 +10,6 @@
 
 <script>
   export default {
-    name: 'sub-component',
-
     data(){
       return {
         count: 0

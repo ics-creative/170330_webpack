@@ -8,7 +8,6 @@
 <script>
   import SubComponent from "./SubComponent.vue";
   export default {
-    name: 'app',
     components: {
       SubComponent
     }
