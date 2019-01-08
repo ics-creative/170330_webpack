@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "babylonjs": "^3.3.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1"
+  },
+  "scripts": {
+    "build" : "webpack"
+  },
+  "private": true
+}
