@@ -3,8 +3,8 @@
     "build": "webpack --mode production --module-bind 'js=babel-loader'"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0",
-    "@babel/preset-env": "7.0.0",
+    "@babel/core": "7.4.0",
+    "@babel/preset-env": "7.4.2",
     "babel-loader": "^8.0.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"

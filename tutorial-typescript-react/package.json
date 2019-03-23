@@ -4,7 +4,7 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
-    "ts-loader": "^4.4.2",
+    "ts-loader": "^5.3.3",
     "typescript": "^3.0.1",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"

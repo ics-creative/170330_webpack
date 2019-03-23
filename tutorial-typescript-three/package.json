@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@types/three": "^0.93.15",
-    "three": "^0.100.0"
+    "three": "^0.102.1"
   },
   "private": true
 }
