@@ -473,12 +473,12 @@ function __importStar(mod) {
   if (mod != null) for (var k in mod) {
     if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
   }
-  result.default = mod;
+  result["default"] = mod;
   return result;
 }
 function __importDefault(mod) {
   return mod && mod.__esModule ? mod : {
-    default: mod
+    "default": mod
   };
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/isFunction.js
@@ -518,7 +518,7 @@ var config = {
 function hostReportError(err) {
   setTimeout(function () {
     throw err;
-  });
+  }, 0);
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Observer.js
 /** PURE_IMPORTS_START _config,_util_hostReportError PURE_IMPORTS_END */
@@ -546,61 +546,28 @@ function isObject_typeof(obj) { if (typeof Symbol === "function" && typeof Symbo
 
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 function isObject(x) {
-  return x != null && isObject_typeof(x) === 'object';
-}
-// CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/errorObject.js
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var errorObject = {
-  e: {}
-};
-// CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/tryCatch.js
-/** PURE_IMPORTS_START _errorObject PURE_IMPORTS_END */
-
-var tryCatchTarget;
-
-function tryCatcher() {
-  try {
-    return tryCatchTarget.apply(this, arguments);
-  } catch (e) {
-    errorObject.e = e;
-    return errorObject;
-  }
-}
-
-function tryCatch(fn) {
-  tryCatchTarget = fn;
-  return tryCatcher;
+  return x !== null && isObject_typeof(x) === 'object';
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/UnsubscriptionError.js
-/** PURE_IMPORTS_START tslib PURE_IMPORTS_END */
+/** PURE_IMPORTS_START  PURE_IMPORTS_END */
+function UnsubscriptionErrorImpl(errors) {
+  Error.call(this);
+  this.message = errors ? errors.length + " errors occurred during unsubscription:\n" + errors.map(function (err, i) {
+    return i + 1 + ") " + err.toString();
+  }).join('\n  ') : '';
+  this.name = 'UnsubscriptionError';
+  this.errors = errors;
+  return this;
+}
 
-
-var UnsubscriptionError_UnsubscriptionError =
+UnsubscriptionErrorImpl.prototype =
 /*@__PURE__*/
-function (_super) {
-  __extends(UnsubscriptionError, _super);
-
-  function UnsubscriptionError(errors) {
-    var _this = _super.call(this, errors ? errors.length + " errors occurred during unsubscription:\n  " + errors.map(function (err, i) {
-      return i + 1 + ") " + err.toString();
-    }).join('\n  ') : '') || this;
-
-    _this.errors = errors;
-    _this.name = 'UnsubscriptionError';
-    Object.setPrototypeOf(_this, UnsubscriptionError.prototype);
-    return _this;
-  }
-
-  return UnsubscriptionError;
-}(Error);
-
-
+Object.create(Error.prototype);
+var UnsubscriptionError = UnsubscriptionErrorImpl;
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Subscription.js
 function Subscription_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Subscription_typeof = function _typeof(obj) { return typeof obj; }; } else { Subscription_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Subscription_typeof(obj); }
 
-/** PURE_IMPORTS_START _util_isArray,_util_isObject,_util_isFunction,_util_tryCatch,_util_errorObject,_util_UnsubscriptionError PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _util_isArray,_util_isObject,_util_isFunction,_util_UnsubscriptionError PURE_IMPORTS_END */
 
 
 
@@ -611,8 +578,7 @@ var Subscription_Subscription =
 function () {
   function Subscription(unsubscribe) {
     this.closed = false;
-    this._parent = null;
-    this._parents = null;
+    this._parentOrParents = null;
     this._subscriptions = null;
 
     if (unsubscribe) {
@@ -621,7 +587,6 @@ function () {
   }
 
   Subscription.prototype.unsubscribe = function () {
-    var hasErrors = false;
     var errors;
 
     if (this.closed) {
@@ -629,72 +594,60 @@ function () {
     }
 
     var _a = this,
-        _parent = _a._parent,
-        _parents = _a._parents,
+        _parentOrParents = _a._parentOrParents,
         _unsubscribe = _a._unsubscribe,
         _subscriptions = _a._subscriptions;
 
     this.closed = true;
-    this._parent = null;
-    this._parents = null;
+    this._parentOrParents = null;
     this._subscriptions = null;
-    var index = -1;
-    var len = _parents ? _parents.length : 0;
 
-    while (_parent) {
-      _parent.remove(this);
-
-      _parent = ++index < len && _parents[index] || null;
+    if (_parentOrParents instanceof Subscription) {
+      _parentOrParents.remove(this);
+    } else if (_parentOrParents !== null) {
+      for (var index = 0; index < _parentOrParents.length; ++index) {
+        var parent_1 = _parentOrParents[index];
+        parent_1.remove(this);
+      }
     }
 
     if (isFunction(_unsubscribe)) {
-      var trial = tryCatch(_unsubscribe).call(this);
-
-      if (trial === errorObject) {
-        hasErrors = true;
-        errors = errors || (errorObject.e instanceof UnsubscriptionError_UnsubscriptionError ? flattenUnsubscriptionErrors(errorObject.e.errors) : [errorObject.e]);
+      try {
+        _unsubscribe.call(this);
+      } catch (e) {
+        errors = e instanceof UnsubscriptionError ? flattenUnsubscriptionErrors(e.errors) : [e];
       }
     }
 
     if (isArray(_subscriptions)) {
-      index = -1;
-      len = _subscriptions.length;
+      var index = -1;
+      var len = _subscriptions.length;
 
       while (++index < len) {
         var sub = _subscriptions[index];
 
         if (isObject(sub)) {
-          var trial = tryCatch(sub.unsubscribe).call(sub);
-
-          if (trial === errorObject) {
-            hasErrors = true;
+          try {
+            sub.unsubscribe();
+          } catch (e) {
             errors = errors || [];
-            var err = errorObject.e;
 
-            if (err instanceof UnsubscriptionError_UnsubscriptionError) {
-              errors = errors.concat(flattenUnsubscriptionErrors(err.errors));
+            if (e instanceof UnsubscriptionError) {
+              errors = errors.concat(flattenUnsubscriptionErrors(e.errors));
             } else {
-              errors.push(err);
+              errors.push(e);
             }
           }
         }
       }
     }
 
-    if (hasErrors) {
-      throw new UnsubscriptionError_UnsubscriptionError(errors);
+    if (errors) {
+      throw new UnsubscriptionError(errors);
     }
   };
 
   Subscription.prototype.add = function (teardown) {
-    if (!teardown || teardown === Subscription.EMPTY) {
-      return Subscription.EMPTY;
-    }
-
-    if (teardown === this) {
-      return this;
-    }
-
     var subscription = teardown;
 
     switch (Subscription_typeof(teardown)) {
@@ -702,12 +655,12 @@ function () {
         subscription = new Subscription(teardown);
 
       case 'object':
-        if (subscription.closed || typeof subscription.unsubscribe !== 'function') {
+        if (subscription === this || subscription.closed || typeof subscription.unsubscribe !== 'function') {
           return subscription;
         } else if (this.closed) {
           subscription.unsubscribe();
           return subscription;
-        } else if (typeof subscription._addParent !== 'function') {
+        } else if (!(subscription instanceof Subscription)) {
           var tmp = subscription;
           subscription = new Subscription();
           subscription._subscriptions = [tmp];
@@ -716,13 +669,38 @@ function () {
         break;
 
       default:
-        throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
+        {
+          if (!teardown) {
+            return Subscription.EMPTY;
+          }
+
+          throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
+        }
     }
 
-    var subscriptions = this._subscriptions || (this._subscriptions = []);
-    subscriptions.push(subscription);
+    var _parentOrParents = subscription._parentOrParents;
 
-    subscription._addParent(this);
+    if (_parentOrParents === null) {
+      subscription._parentOrParents = this;
+    } else if (_parentOrParents instanceof Subscription) {
+      if (_parentOrParents === this) {
+        return subscription;
+      }
+
+      subscription._parentOrParents = [_parentOrParents, this];
+    } else if (_parentOrParents.indexOf(this) === -1) {
+      _parentOrParents.push(this);
+    } else {
+      return subscription;
+    }
+
+    var subscriptions = this._subscriptions;
+
+    if (subscriptions === null) {
+      this._subscriptions = [subscription];
+    } else {
+      subscriptions.push(subscription);
+    }
 
     return subscription;
   };
@@ -739,20 +717,6 @@ function () {
     }
   };
 
-  Subscription.prototype._addParent = function (parent) {
-    var _a = this,
-        _parent = _a._parent,
-        _parents = _a._parents;
-
-    if (!_parent || _parent === parent) {
-      this._parent = parent;
-    } else if (!_parents) {
-      this._parents = [parent];
-    } else if (_parents.indexOf(parent) === -1) {
-      _parents.push(parent);
-    }
-  };
-
   Subscription.EMPTY = function (empty) {
     empty.closed = true;
     return empty;
@@ -765,14 +729,16 @@ function () {
 
 function flattenUnsubscriptionErrors(errors) {
   return errors.reduce(function (errs, err) {
-    return errs.concat(err instanceof UnsubscriptionError_UnsubscriptionError ? err.errors : err);
+    return errs.concat(err instanceof UnsubscriptionError ? err.errors : err);
   }, []);
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/symbol/rxSubscriber.js
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var rxSubscriber = typeof Symbol === 'function' && typeof Symbol.for === 'function' ?
+var rxSubscriber = typeof Symbol === 'function' ?
 /*@__PURE__*/
-Symbol.for('rxSubscriber') : '@@rxSubscriber';
+Symbol('rxSubscriber') : '@@rxSubscriber_' +
+/*@__PURE__*/
+Math.random();
 var $$rxSubscriber = rxSubscriber;
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Subscriber.js
 function Subscriber_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Subscriber_typeof = function _typeof(obj) { return typeof obj; }; } else { Subscriber_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Subscriber_typeof(obj); }
@@ -811,11 +777,10 @@ function (_super) {
         }
 
         if (Subscriber_typeof(destinationOrNext) === 'object') {
-          if (isTrustedSubscriber(destinationOrNext)) {
-            var trustedSubscriber = destinationOrNext[rxSubscriber]();
-            _this.syncErrorThrowable = trustedSubscriber.syncErrorThrowable;
-            _this.destination = trustedSubscriber;
-            trustedSubscriber.add(_this);
+          if (destinationOrNext instanceof Subscriber) {
+            _this.syncErrorThrowable = destinationOrNext.syncErrorThrowable;
+            _this.destination = destinationOrNext;
+            destinationOrNext.add(_this);
           } else {
             _this.syncErrorThrowable = true;
             _this.destination = new Subscriber_SafeSubscriber(_this, destinationOrNext);
@@ -890,17 +855,12 @@ function (_super) {
   };
 
   Subscriber.prototype._unsubscribeAndRecycle = function () {
-    var _a = this,
-        _parent = _a._parent,
-        _parents = _a._parents;
-
-    this._parent = null;
-    this._parents = null;
+    var _parentOrParents = this._parentOrParents;
+    this._parentOrParents = null;
     this.unsubscribe();
     this.closed = false;
     this.isStopped = false;
-    this._parent = _parent;
-    this._parents = _parents;
+    this._parentOrParents = _parentOrParents;
     return this;
   };
 
@@ -1066,8 +1026,27 @@ function (_super) {
   return SafeSubscriber;
 }(Subscriber_Subscriber);
 
-function isTrustedSubscriber(obj) {
-  return obj instanceof Subscriber_Subscriber || 'syncErrorThrowable' in obj && obj[rxSubscriber];
+
+// CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/canReportError.js
+/** PURE_IMPORTS_START _Subscriber PURE_IMPORTS_END */
+
+function canReportError(observer) {
+  while (observer) {
+    var _a = observer,
+        closed_1 = _a.closed,
+        destination = _a.destination,
+        isStopped = _a.isStopped;
+
+    if (closed_1 || isStopped) {
+      return false;
+    } else if (destination && destination instanceof Subscriber_Subscriber) {
+      observer = destination;
+    } else {
+      observer = null;
+    }
+  }
+
+  return true;
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/toSubscriber.js
 /** PURE_IMPORTS_START _Subscriber,_symbol_rxSubscriber,_Observer PURE_IMPORTS_END */
@@ -1125,7 +1104,8 @@ function pipeFromArray(fns) {
   };
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/Observable.js
-/** PURE_IMPORTS_START _util_toSubscriber,_internal_symbol_observable,_util_pipe,_config PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _util_canReportError,_util_toSubscriber,_symbol_observable,_util_pipe,_config PURE_IMPORTS_END */
+
 
 
 
@@ -1154,7 +1134,7 @@ function () {
     var sink = toSubscriber(observerOrNext, error, complete);
 
     if (operator) {
-      operator.call(sink, this.source);
+      sink.add(operator.call(sink, this.source));
     } else {
       sink.add(this.source || config.useDeprecatedSynchronousErrorHandling && !sink.syncErrorThrowable ? this._subscribe(sink) : this._trySubscribe(sink));
     }
@@ -1181,7 +1161,11 @@ function () {
         sink.syncErrorValue = err;
       }
 
-      sink.error(err);
+      if (canReportError(sink)) {
+        sink.error(err);
+      } else {
+        console.warn(err);
+      }
     }
   };
 
@@ -1350,7 +1334,8 @@ function (_super) {
       return id;
     }
 
-    return clearInterval(id) && undefined || undefined;
+    clearInterval(id);
+    return undefined;
   };
 
   AsyncAction.prototype.execute = function (state, delay) {
@@ -1570,26 +1555,18 @@ function dispatch(state) {
   }, period);
 }
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/util/ArgumentOutOfRangeError.js
-/** PURE_IMPORTS_START tslib PURE_IMPORTS_END */
+/** PURE_IMPORTS_START  PURE_IMPORTS_END */
+function ArgumentOutOfRangeErrorImpl() {
+  Error.call(this);
+  this.message = 'argument out of range';
+  this.name = 'ArgumentOutOfRangeError';
+  return this;
+}
 
-
-var ArgumentOutOfRangeError_ArgumentOutOfRangeError =
+ArgumentOutOfRangeErrorImpl.prototype =
 /*@__PURE__*/
-function (_super) {
-  __extends(ArgumentOutOfRangeError, _super);
-
-  function ArgumentOutOfRangeError() {
-    var _this = _super.call(this, 'argument out of range') || this;
-
-    _this.name = 'ArgumentOutOfRangeError';
-    Object.setPrototypeOf(_this, ArgumentOutOfRangeError.prototype);
-    return _this;
-  }
-
-  return ArgumentOutOfRangeError;
-}(Error);
-
-
+Object.create(Error.prototype);
+var ArgumentOutOfRangeError = ArgumentOutOfRangeErrorImpl;
 // CONCATENATED MODULE: ./node_modules/rxjs/_esm5/internal/observable/empty.js
 /** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
 
@@ -1601,6 +1578,7 @@ new Observable_Observable(function (subscriber) {
 function empty_empty(scheduler) {
   return scheduler ? emptyScheduled(scheduler) : EMPTY;
 }
+
 function emptyScheduled(scheduler) {
   return new Observable_Observable(function (subscriber) {
     return scheduler.schedule(function () {
@@ -1631,7 +1609,7 @@ function () {
     this.total = total;
 
     if (this.total < 0) {
-      throw new ArgumentOutOfRangeError_ArgumentOutOfRangeError();
+      throw new ArgumentOutOfRangeError();
     }
   }
 

@@ -4,14 +4,14 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
-    "ts-loader": "^4.4.2",
-    "typescript": "^3.0.1",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0"
+    "ts-loader": "^5.4.3",
+    "typescript": "^3.4.4",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
   },
   "dependencies": {
-    "vue": "^2.5.16",
-    "vue-class-component": "^6.2.0"
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.2"
   },
   "private": true
 }

@@ -4,14 +4,14 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.2.2",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.1"
+    "ts-loader": "^5.4.3",
+    "typescript": "^3.4.4",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
   },
   "dependencies": {
-    "@types/three": "^0.93.15",
-    "three": "^0.100.0"
+    "@types/three": "^0.103.2",
+    "three": "^0.103.0"
   },
   "private": true
 }
