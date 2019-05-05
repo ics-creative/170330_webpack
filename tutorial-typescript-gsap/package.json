@@ -4,14 +4,14 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
-    "ts-loader": "^4.4.2",
-    "typescript": "^2.9.2",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0"
+    "ts-loader": "^5.4.5",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "@types/gsap": "^1.19.2",
-    "gsap": "^2.0.1"
+    "@types/gsap": "^1.20.2",
+    "gsap": "^2.1.2"
   },
   "private": true
 }

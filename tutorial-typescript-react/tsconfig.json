@@ -9,7 +9,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "lib": [
-      "es2018",
+      "es2019",
       "dom"
     ]
   }
