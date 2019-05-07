@@ -15,3 +15,4 @@ yarn-error.log
 /tutorial-bootstrap/dist/main.js.map
 /tutorial-bootstrap/dist/style.css.map
 .history
+/tutorial-babel-esnext/dist/main.js.map
