@@ -1,4 +1,4 @@
-# WebPack + SCSS with extract-text-webpack-pluginのサンプル
+# WebPack + SCSS with mini-css-extract-pluginのサンプル
 
 Sass(SCSSファイル)をwebpackで取り込みつつ、cssファイルとして出力するサンプルです。
 

@@ -1,7 +1,7 @@
-# WebPack + CSS with extract-text-webpack-plugin のサンプル
+# WebPack + CSS with mini-css-extract-plugin のサンプル
 
 CSSをwebpackで取り込みつつ、cssファイルを出力するサンプルです。
-[extract\-text\-webpack\-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)の使い方を紹介します。
+[mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)の使い方を紹介します。
 
 
 ## ゼロから環境構築する場合の手順
