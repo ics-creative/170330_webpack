@@ -1,8 +1,8 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // [定数] webpack の出力オプションを指定します
 // 'production' か 'development' を指定
-const MODE = 'development';
+const MODE = 'production';
 
 // ソースマップの利用有無(productionのときはソースマップを利用しない)
 const enabledSourceMap = (MODE === 'development');
@@ -19,7 +19,7 @@ module.exports = {
     //  出力ファイルのディレクトリ名
     path: `${__dirname}/dist`,
     // 出力ファイル名
-    filename: 'main.js'
+    filename: 'main.js',
   },
 
   module: {
@@ -27,9 +27,12 @@ module.exports = {
       // Sassファイルの読み込みとコンパイル
       {
         test: /\.scss/, // 対象となるファイルの拡張子
-        use: ExtractTextPlugin.extract({
-          use:
-            [
+        use:
+          [
+            // CSSファイルを書き出すオプションを有効にする
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
             // CSSをバンドルするための機能
             {
               loader: 'css-loader',
@@ -42,7 +45,7 @@ module.exports = {
                 // 0 => no loaders (default);
                 // 1 => postcss-loader;
                 // 2 => postcss-loader, sass-loader
-                importLoaders: 2
+                importLoaders: 2,
               },
             },
             {
@@ -50,15 +53,18 @@ module.exports = {
               options: {
                 // ソースマップの利用有無
                 sourceMap: enabledSourceMap,
-              }
-            }
-          ]
-        }),
+              },
+            },
+          ],
       },
     ],
   },
 
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    // CSSファイルを外だしにするプラグイン
+    new MiniCssExtractPlugin({
+      // ファイル名を設定します
+      filename: 'style.css',
+    }),
   ],
 };
