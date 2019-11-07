@@ -1,0 +1,59 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "メイリオ", Meiryo, sans-serif;
+  font-feature-settings: "palt"; /* プロポーショナルメトリクスを有効に */
+}
+
+.my-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 50px 1fr 50px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.my-grid-item {
+  /* 中央寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* フォント */
+  color: white;
+  font-size: 2.0rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+
+  background: #3498db;
+}
+
+aside {
+  grid-column: 1;
+  grid-row: 2 / 4;
+
+  background: #e67e22;
+}
+
+main {
+  grid-column: 2;
+  grid-row: 2;
+
+  background: #2ecc71;
+}
+
+footer {
+  grid-column: 2;
+  grid-row: 3;
+
+  background: #95a5a6;
+}
