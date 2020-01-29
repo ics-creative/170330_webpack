@@ -1,5 +1,4 @@
 import '@babel/polyfill';
-import {Hello} from './sub';
 
 const message = 'Hello World';
 
