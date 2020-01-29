@@ -1,6 +1,4 @@
-import {Bounce, Cubic} from 'gsap/EasePack';
-import TimelineMax from 'gsap/TimelineMax';
-import TweenMax from 'gsap/TweenMax';
+import {TimelineMax, TweenMax, Bounce} from 'gsap';
 
 // 適当に要素をたくさん用意する
 const rects = [];

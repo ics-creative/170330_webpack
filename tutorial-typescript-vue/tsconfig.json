@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",
-      "es2019"
+      "es2020"
     ],
     "moduleResolution": "node",
     // デコレーターを有効に設定

@@ -6,8 +6,8 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "private": true
 }

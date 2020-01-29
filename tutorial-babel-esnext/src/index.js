@@ -3,6 +3,11 @@ import {Hello} from './sub';
 
 const message = 'Hello World';
 
-// sub.jsに定義されたJavaScriptを実行する。
-const instance = new Hello();
-instance.say(message);
+init();
+async function init(){
+  // sub.jsに定義されたJavaScriptを実行する。
+  const moduleSub = await import("./sub");
+  console.log("💗ES2020 - ダイナミックインポート")
+  const instance = new moduleSub.Hello();
+  instance.say(message);
+}

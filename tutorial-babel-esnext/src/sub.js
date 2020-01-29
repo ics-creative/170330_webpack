@@ -99,6 +99,12 @@ export class Hello {
 
     }
 
+    {
+      const object = {}
+      const fuga = object.hoge?.fuga;
+      console.log('💗️ES2020 - オプショナルチェイニング', fuga);
+    }
+
   }
 }
 

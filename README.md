@@ -9,8 +9,8 @@ ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140)」�
 - 導入編
   - [最新版で学ぶwebpack入門 \- ICS MEDIA](https://ics.media/entry/12140)
 - ECMAScript 2015+編
-  - [webpack+BabelでES2017環境の構築 \- ICS MEDIA](https://ics.media/entry/16028)
-  - [webpack+TypeScript 2\.7の環境構築 \- ICS MEDIA](https://ics.media/entry/16329)
+  - [webpack+BabelでES2020環境の構築 \- ICS MEDIA](https://ics.media/entry/16028)
+  - [webpack+TypeScriptの環境構築 \- ICS MEDIA](https://ics.media/entry/16329)
 - スタイルシート編
   - [スタイルシート\(CSSやSass\)を取り込む方法 \- ICS MEDIA](https://ics.media/entry/17376)
   - [PostCSSを取り込む方法 \- Qiita](https://qiita.com/clockmaker/items/b8a08fda182faa370a86)
