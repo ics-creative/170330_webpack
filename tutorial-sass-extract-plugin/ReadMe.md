@@ -20,7 +20,7 @@ npm init -y
 その上で、必要なモジュールをインストールする。
 
 ```bash
-npm i -D webpack webpack-cli css-loader node-sass sass-loader mini-css-extract-plugin
+npm i -D webpack webpack-cli css-loader sass sass-loader mini-css-extract-plugin
 ```
 
 ### webpack.config.js の書き方
