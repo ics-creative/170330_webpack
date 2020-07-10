@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-typescript-babylonjs",
+  "version": "1.0.0",
   "dependencies": {
     "babylonjs": "^3.3.0"
   },

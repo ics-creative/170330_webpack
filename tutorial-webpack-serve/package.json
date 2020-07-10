@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-webpack-serve",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack",
     "start": "webpack-serve"

@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-webpack-dev-server",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server"

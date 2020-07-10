@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-optimize-aggressive",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack"
   },

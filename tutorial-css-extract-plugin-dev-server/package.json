@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-css-extract-plugin-dev-server",
+  "version": "1.0.0",
   "scripts": {
     "serve": "webpack-dev-server",
     "build": "webpack"

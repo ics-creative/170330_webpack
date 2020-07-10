@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-sass-image-file",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack"
   },

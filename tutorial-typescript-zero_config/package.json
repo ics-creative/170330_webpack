@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-typescript-zero_config",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack --mode production --module-bind 'ts=ts-loader' --resolve-extensions .ts"
   },

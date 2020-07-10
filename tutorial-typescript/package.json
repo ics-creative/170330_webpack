@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-typescript",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w"

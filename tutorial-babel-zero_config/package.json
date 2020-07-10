@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-babel-zero_config",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack --mode production --module-bind 'js=babel-loader'"
   },

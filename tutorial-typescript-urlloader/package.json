@@ -1,4 +1,6 @@
 {
+  "name": "tutorial-typescript-urlloader",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack"
   },
