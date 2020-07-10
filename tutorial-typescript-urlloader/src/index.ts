@@ -1,5 +1,5 @@
 // import文を解決する
-import * as myImage from './images/bg.jpg';
+import myImage from './images/bg.jpg';
 
 // img要素を生成
 const img = document.createElement('img');
