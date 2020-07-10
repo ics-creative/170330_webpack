@@ -1,4 +1,4 @@
-import { TweenLite, TimelineLite, Bounce } from 'gsap';
+import {gsap} from 'gsap';
 
 // 適当に要素をたくさん用意する
 const rects = [];
@@ -13,13 +13,13 @@ for (let i = 0; i < 50; i++) {
 }
 
 // タイムラインを作成する
-const tl = new TimelineLite({ repeat: -1, yoyo: true });
+const tl = gsap.timeline({ repeat: -1, yoyo: true });
 rects.forEach((rect, index) => {
   // トゥイーンインスタンスを追加する
-  tl.add(TweenLite.to(rect, 3, {
+  tl.add(gsap.to(rect, 3, {
     y: window.innerHeight * 3 / 4,
     rotationZ: 0,
-    ease: Bounce.easeOut,
+    ease: "Bounce.easeOut",
     delay: index * 0.02
   }), 0);
 });
