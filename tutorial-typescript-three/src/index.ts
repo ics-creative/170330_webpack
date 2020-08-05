@@ -1,6 +1,6 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer();
   // レンダラーのサイズを設定
@@ -17,8 +17,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 箱を作成
   const geometry = new THREE.BoxGeometry(250, 250, 250);
-  const material = new THREE.MeshPhongMaterial({color: 0xff0000});
-  const box      = new THREE.Mesh(geometry, material);
+  const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+  const box = new THREE.Mesh(geometry, material);
   box.position.z = -5;
   scene.add(box);
 
@@ -38,5 +38,5 @@ window.addEventListener('DOMContentLoaded', () => {
   };
   tick();
 
-  console.log('Hello Three.js');
+  console.log("Hello Three.js");
 });

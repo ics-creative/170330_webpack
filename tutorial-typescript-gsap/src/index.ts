@@ -17,14 +17,16 @@ for (let i = 0; i < MAX; i++) {
 }
 
 // タイムラインを作成する
-const tl = gsap.timeline({repeat: -1, repeatDelay: 1});
+const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 rects.forEach((rect, index) => {
   // トゥイーンインスタンスを追加する
-  tl.add(gsap.to(rect, {
-    duration: 3,
-    y: window.innerHeight * 3 / 4,
-    ease: Bounce.easeOut,
-    delay: Math.random()
-  }), 0);
+  tl.add(
+    gsap.to(rect, {
+      duration: 3,
+      y: (window.innerHeight * 3) / 4,
+      ease: Bounce.easeOut,
+      delay: Math.random(),
+    }),
+    0
+  );
 });
-

@@ -23,7 +23,7 @@ export class Hello {
       console.log("💚ES2017 - async, await の検証");
 
       const numList = [1, 2, 3];
-      const numList2 = await Promise.all(numList.map(id => id * 2));
+      const numList2 = await Promise.all(numList.map((id) => id * 2));
       console.log(numList2); // [2, 4, 6]
     }
 
@@ -40,14 +40,14 @@ export class Hello {
       // ES2018 : async, await の検証
       const numList = [1, 2, 3];
       for (let i of numList) {
-        await new Promise(resolve => {
+        await new Promise((resolve) => {
           console.log(i);
           resolve();
         });
       }
 
-      numList.forEach(async i => {
-        await new Promise(resolve => {
+      numList.forEach(async (i) => {
+        await new Promise((resolve) => {
           console.log(i);
           resolve();
         });
@@ -60,7 +60,7 @@ export class Hello {
         console.log(p1); // 1
         console.log(p2); // 2
         console.log(p3); // [3, 4, 5]
-      }
+      };
 
       restParam(1, 2, 3, 4, 5);
     }

@@ -1,3 +1,3 @@
-import {hello} from './sub';
+import { hello } from "./sub";
 
 hello("こんにちは、世界!");

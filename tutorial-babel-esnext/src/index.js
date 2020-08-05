@@ -1,12 +1,12 @@
-import '@babel/polyfill';
+import "@babel/polyfill";
 
-const message = 'Hello World';
+const message = "Hello World";
 
 init();
-async function init(){
+async function init() {
   // sub.jsに定義されたJavaScriptを実行する。
   const moduleSub = await import("./sub");
-  console.log("💗ES2020 - ダイナミックインポート")
+  console.log("💗ES2020 - ダイナミックインポート");
   const instance = new moduleSub.Hello();
   instance.say(message);
 }

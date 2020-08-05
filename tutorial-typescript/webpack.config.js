@@ -1,10 +1,10 @@
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: 'development',
+  mode: "development",
 
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: './src/main.ts',
+  entry: "./src/main.ts",
 
   module: {
     rules: [
@@ -12,7 +12,7 @@ module.exports = {
         // 拡張子 .ts の場合
         test: /\.ts$/,
         // TypeScript をコンパイルする
-        use: 'ts-loader',
+        use: "ts-loader",
       },
     ],
   },
@@ -22,8 +22,6 @@ module.exports = {
   // 記載したほうがトラブルに巻き込まれにくい
   resolve: {
     // 拡張子を配列で指定
-    extensions: [
-      '.ts', '.js',
-    ],
+    extensions: [".ts", ".js"],
   },
 };

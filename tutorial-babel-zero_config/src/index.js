@@ -1,6 +1,6 @@
-import {hello} from './sub';
+import { hello } from "./sub";
 
-const message = 'Hello World';
+const message = "Hello World";
 
 // sub.jsに定義されたJavaScriptを実行する。
 hello(message);

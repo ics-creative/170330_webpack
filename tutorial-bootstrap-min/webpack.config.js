@@ -1,7 +1,7 @@
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: 'production',
+  mode: "production",
   module: {
     rules: [
       {
@@ -10,11 +10,11 @@ module.exports = {
         // Sassファイルの読み込みとコンパイル
         use: [
           // スタイルシートをJSからlinkタグに展開する機能
-          'style-loader',
+          "style-loader",
           // CSSをバンドルするための機能
-          'css-loader',
+          "css-loader",
         ],
       },
     ],
-  }
+  },
 };

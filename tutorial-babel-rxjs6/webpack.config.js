@@ -1,11 +1,11 @@
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: 'production',
+  mode: "production",
 
   // 容量検証のためにUglifyJSを無効にしておく
   optimization: {
-    minimize: false
+    minimize: false,
   },
   module: {
     rules: [
@@ -15,17 +15,17 @@ module.exports = {
         use: [
           {
             // Babel を利用する
-            loader: 'babel-loader',
+            loader: "babel-loader",
             // Babel のオプションを指定する
             options: {
               presets: [
                 // プリセットを指定することで、ES2020 を ES5 に変換
-                '@babel/preset-env',
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  }
+                "@babel/preset-env",
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
 };

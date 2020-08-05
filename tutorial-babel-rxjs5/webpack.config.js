@@ -1,23 +1,23 @@
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: 'production',
+  mode: "production",
 
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: {
-    'import_all': './src/import_all.js',
-    'import_observable': './src/import_observable.js',
-    'import_each': './src/import_each.js',
-    'import_pipe': './src/import_pipe.js',
+    import_all: "./src/import_all.js",
+    import_observable: "./src/import_observable.js",
+    import_each: "./src/import_each.js",
+    import_pipe: "./src/import_pipe.js",
   },
   // ファイルの出力設定
   output: {
     // 出力ファイル名
-    filename: '[name].js'
+    filename: "[name].js",
   },
   // 容量検証のためにUglifyJSを無効にしておく
   optimization: {
-    minimize: false
+    minimize: false,
   },
   module: {
     rules: [
@@ -27,19 +27,19 @@ module.exports = {
         use: [
           {
             // Babel を利用する
-            loader: 'babel-loader',
+            loader: "babel-loader",
             // Babel のオプションを指定する
             options: {
               presets: [
                 // プリセットを指定することで、ES2019 を ES5 に変換。
                 // {modules: false}にしないと import 文が Babel によって CommonJS に変換され、
                 // webpack の Tree Shaking 機能が使えない
-                ['env', {'modules': false}]
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  }
+                ["env", { modules: false }],
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
 };

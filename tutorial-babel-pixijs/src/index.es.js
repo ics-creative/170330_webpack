@@ -1,11 +1,11 @@
-import {Application, Graphics} from 'pixi.js/lib/pixi.es.js';
+import { Application, Graphics } from "pixi.js/lib/pixi.es.js";
 
 const app = new Application();
 
 document.body.appendChild(app.view);
 
 const bunny = new Graphics();
-bunny.graphics.beginFill(0xFF0000);
+bunny.graphics.beginFill(0xff0000);
 bunny.graphics.drawRect(0, 0, 10, 10);
 
 bunny.x = app.renderer.width / 2;

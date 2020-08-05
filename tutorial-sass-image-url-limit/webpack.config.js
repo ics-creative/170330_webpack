@@ -1,9 +1,9 @@
 // [定数] webpack の出力オプションを指定します
 // 'production' か 'development' を指定
-const MODE = 'development';
+const MODE = "development";
 
 // ソースマップの利用有無(productionのときはソースマップを利用しない)
-const enabledSourceMap = (MODE === 'development');
+const enabledSourceMap = MODE === "development";
 
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
@@ -18,10 +18,10 @@ module.exports = {
         // ローダー名
         use: [
           // linkタグに出力する機能
-          'style-loader',
+          "style-loader",
           // CSSをバンドルするための機能
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               // オプションでCSS内のurl()メソッドを取り込む
               url: true,
@@ -31,17 +31,17 @@ module.exports = {
               // 0 => no loaders (default);
               // 1 => postcss-loader;
               // 2 => postcss-loader, sass-loader
-              importLoaders: 2
+              importLoaders: 2,
             },
           },
           // Sassをバンドルするための機能
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               // ソースマップの利用有無
               sourceMap: enabledSourceMap,
-            }
-          }
+            },
+          },
         ],
       },
       {
@@ -50,14 +50,14 @@ module.exports = {
         // 画像をBase64として取り込む
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 100 * 1024, // 100KB以上だったら埋め込まずファイルとして分離する
-              name: './img/[name].[ext]'
-            }
-          }
-        ]
-      }
+              name: "./img/[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
 };

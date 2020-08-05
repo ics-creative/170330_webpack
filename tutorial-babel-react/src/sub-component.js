@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
 export class SubComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      count: 0
+      count: 0,
     };
   }
 
   handleClick() {
-    console.log('クリックされました');
+    console.log("クリックされました");
     this.setState({
-      count: this.state.count + 1
+      count: this.state.count + 1,
     });
   }
 

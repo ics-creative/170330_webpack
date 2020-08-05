@@ -1,7 +1,6 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
-window.addEventListener('DOMContentLoaded', () => {
-
+window.addEventListener("DOMContentLoaded", () => {
   const VIEWPORT_W = window.innerWidth;
   const VIEWPORT_H = window.innerHeight;
 
@@ -17,11 +16,16 @@ window.addEventListener('DOMContentLoaded', () => {
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(45, VIEWPORT_W / VIEWPORT_H, 1, 1000);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    VIEWPORT_W / VIEWPORT_H,
+    1,
+    1000
+  );
 
   // 箱を作成
   const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshPhongMaterial({color: 0xff0000});
+  const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
   const box = new THREE.Mesh(geometry, material);
   box.position.z = -5;
   scene.add(box);

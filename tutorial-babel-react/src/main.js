@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import {SubComponent} from './sub-component';
+import { SubComponent } from "./sub-component";
 
 class App extends React.Component {
   render() {
@@ -17,4 +17,4 @@ class App extends React.Component {
     );
   }
 }
-ReactDOM.render(<App/>, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector("#app"));
