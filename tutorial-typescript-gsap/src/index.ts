@@ -1,4 +1,4 @@
-import gsap, { Bounce } from "gsap";
+import { gsap, Bounce } from "gsap";
 
 // 個数
 const MAX = 50;
