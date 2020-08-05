@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "sourceMap": true,
     // TSはECMAScript 5に変換
     "target": "es5",
