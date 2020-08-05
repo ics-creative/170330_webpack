@@ -39,6 +39,7 @@
     "tutorial-typescript-vue",
     "tutorial-typescript-zero_config",
     "tutorial-webpack-dev-server",
-    "tutorial-webpack-serve"
+    "tutorial-webpack-serve",
+    "_tools"
   ]
 }
