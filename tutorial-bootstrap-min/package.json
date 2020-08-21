@@ -6,13 +6,13 @@
     "watch": "webpack --watch"
   },
   "devDependencies": {
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.2.1",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"
   },

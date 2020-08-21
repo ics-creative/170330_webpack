@@ -6,18 +6,18 @@
     "watch": "webpack --watch"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.4",
-    "css-loader": "^3.6.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "autoprefixer": "^9.8.6",
+    "css-loader": "^4.2.1",
+    "mini-css-extract-plugin": "^0.10.0",
     "postcss-loader": "^3.0.0",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.2",
+    "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"
   },

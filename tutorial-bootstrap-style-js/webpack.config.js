@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
@@ -10,7 +10,11 @@ module.exports = {
         // 対象となるファイルの拡張子(scss)
         test: /\.scss$/,
         // Sassファイルの読み込みとコンパイル
-        use: ExtractTextPlugin.extract([
+        use: [
+          // CSSファイルを書き出すオプションを有効にする
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           // CSSをバンドルするための機能
           {
             loader: "css-loader",
@@ -41,11 +45,13 @@ module.exports = {
               sourceMap: true,
             },
           },
-        ]),
+        ],
       },
     ],
   },
-  plugins: [new ExtractTextPlugin("style.css")],
+  plugins: [new MiniCssExtractPlugin({
+    filename: "style.css",
+  }),],
   // source-map方式でないと、CSSの元ソースが追跡できないため
   devtool: "source-map",
 };
