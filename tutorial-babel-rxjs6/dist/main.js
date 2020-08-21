@@ -623,6 +623,7 @@ var Subscription_Subscription = /*@__PURE__*/function () {
     this._subscriptions = null;
 
     if (unsubscribe) {
+      this._ctorUnsubscribe = true;
       this._unsubscribe = unsubscribe;
     }
   }
@@ -636,6 +637,7 @@ var Subscription_Subscription = /*@__PURE__*/function () {
 
     var _a = this,
         _parentOrParents = _a._parentOrParents,
+        _ctorUnsubscribe = _a._ctorUnsubscribe,
         _unsubscribe = _a._unsubscribe,
         _subscriptions = _a._subscriptions;
 
@@ -653,6 +655,10 @@ var Subscription_Subscription = /*@__PURE__*/function () {
     }
 
     if (isFunction(_unsubscribe)) {
+      if (_ctorUnsubscribe) {
+        this._unsubscribe = undefined;
+      }
+
       try {
         _unsubscribe.call(this);
       } catch (e) {
@@ -1856,7 +1862,7 @@ function dispatch(state) {
 
 
 interval(200).pipe(take(9), map(function (x) {
-  return x + '!!!';
+  return x + "!!!";
 }), bufferCount(2)).subscribe(function (value) {
   return console.log(value);
 });
