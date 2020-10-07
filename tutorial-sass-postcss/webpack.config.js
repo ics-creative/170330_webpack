@@ -27,14 +27,19 @@ module.exports = {
           },
           // PostCSSのための設定
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               // PostCSS側でもソースマップを有効にする
-              sourceMap: true,
+              // sourceMap: true,
               postcssOptions: {
-                // Autoprefixerを有効化
-                // ベンダープレフィックスを自動付与する
-                plugins: [["autoprefixer", { grid: true }]]
+                plugins: [
+                  // Autoprefixerを有効化
+                  // ベンダープレフィックスを自動付与する
+                  [
+                    "autoprefixer",
+                    { grid: true }
+                  ]
+                ],
               }
             },
           },

@@ -1,0 +1,1 @@
+(self.webpackChunktutorial_chunk=self.webpackChunktutorial_chunk||[]).push([[569],{569:(e,o,t)=>{"use strict";t.r(o),t.d(o,{default:()=>s});var l=t(784),n=t.n(l);console.log("The print.js module has loaded! See the network tab in dev tools...");const s=()=>{console.log('Button Clicked: Here\'s "some text"! '+n().join(["Hello","webpack"]," "))}}}]);

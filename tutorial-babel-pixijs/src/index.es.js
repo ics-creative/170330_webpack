@@ -5,14 +5,14 @@ const app = new Application();
 document.body.appendChild(app.view);
 
 const bunny = new Graphics();
-bunny.graphics.beginFill(0xff0000);
-bunny.graphics.drawRect(0, 0, 10, 10);
+bunny.beginFill(0xff0000);
+bunny.drawRect(0, 0, 128, 128);
 
 bunny.x = app.renderer.width / 2;
 bunny.y = app.renderer.height / 2;
 
-bunny.anchor.x = 0.5;
-bunny.anchor.y = 0.5;
+bunny.pivot.x = 64;
+bunny.pivot.y = 64;
 
 app.stage.addChild(bunny);
 

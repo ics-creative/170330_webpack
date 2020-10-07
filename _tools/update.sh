@@ -9,7 +9,6 @@ declare -a array=(
     "tutorial-babel-rxjs6"
     "tutorial-babel-three"
     "tutorial-babel-vue"
-    "tutorial-babel-zero_config"
     "tutorial-bootstrap-min"
     "tutorial-bootstrap-style"
     "tutorial-bootstrap-style-js"
@@ -33,9 +32,6 @@ declare -a array=(
     "tutorial-typescript-three"
     "tutorial-typescript-urlloader"
     "tutorial-typescript-vue"
-    "tutorial-typescript-zero_config"
-    "tutorial-webpack-dev-server"
-    "tutorial-webpack-serve"
 )
 
 # とりあえず階層を潜っておく

@@ -36,11 +36,11 @@ module.exports = {
           {
             loader: "postcss-loader",
             options: {
-              // PostCSS側でもソースマップを有効にする
-              sourceMap: true,
               postcssOptions: {
+                // PostCSS側でもソースマップを有効にする
+                sourceMap: true,
                 // ベンダープレフィックスを自動付与する
-                plugins: ["autoprefixer"]
+                plugins: ["autoprefixer"],
               }
             },
           },

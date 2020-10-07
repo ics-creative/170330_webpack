@@ -1,9 +1,20 @@
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: "development",
+  mode: "production",
   devtool: "source-map",
-
+  output: {
+    // IE11対応
+    environment: {
+      arrowFunction: false,
+      bigIntLiteral: false,
+      const: false,
+      destructuring: false,
+      dynamicImport: false,
+      forOf: false,
+      module: false
+    }
+  },
   module: {
     rules: [
       {

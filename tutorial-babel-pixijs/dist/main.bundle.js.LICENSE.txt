@@ -1,0 +1,159 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+ * @pixi/core - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/core is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/display - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/display is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/extract - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/extract is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/filter-displacement - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/filter-displacement is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/interaction - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/interaction is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/loaders - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/loaders is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/math - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/math is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/mesh-extras - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/mesh-extras is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/mixin-get-child-by-name - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/mixin-get-child-by-name is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/mixin-get-global-position - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/mixin-get-global-position is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/particles - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/particles is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/polyfill - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/polyfill is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/prepare - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/prepare is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/settings - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/settings is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/ticker - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/ticker is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/utils - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ *
+ * @pixi/utils is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * resource-loader - v3.0.1
+ * https://github.com/pixijs/pixi-sound
+ * Compiled Tue, 02 Jul 2019 14:06:18 UTC
+ *
+ * resource-loader is licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/*! https://mths.be/punycode v1.3.2 by @mathias */
