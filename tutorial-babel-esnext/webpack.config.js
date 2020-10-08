@@ -12,8 +12,8 @@ module.exports = {
       destructuring: false,
       dynamicImport: false,
       forOf: false,
-      module: false
-    }
+      module: false,
+    },
   },
   module: {
     rules: [

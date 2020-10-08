@@ -2,7 +2,9 @@
 declare -a array=(
     "tutorial-babel"
     "tutorial-babel-esnext"
+    "tutorial-babel-gsap"
     "tutorial-babel-jquery"
+    "tutorial-babel-pixijs"
     "tutorial-babel-react"
     "tutorial-babel-rxjs6"
     "tutorial-babel-three"
@@ -24,6 +26,8 @@ declare -a array=(
     "tutorial-sass-image-url-limit"
     "tutorial-sass-postcss"
     "tutorial-typescript"
+    "tutorial-typescript-babylonjs"
+    "tutorial-typescript-gsap"
     "tutorial-typescript-react"
     "tutorial-typescript-three"
     "tutorial-typescript-urlloader"

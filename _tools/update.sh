@@ -32,6 +32,7 @@ declare -a array=(
     "tutorial-typescript-three"
     "tutorial-typescript-urlloader"
     "tutorial-typescript-vue"
+    "tutorial-webpack-dev-server"
 )
 
 # とりあえず階層を潜っておく

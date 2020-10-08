@@ -35,8 +35,8 @@ module.exports = {
               sourceMap: true,
               postcssOptions: {
                 // ベンダープレフィックスを自動付与する
-                plugins: ["autoprefixer"]
-              }
+                plugins: ["autoprefixer"],
+              },
             },
           },
           // Sassをバンドルするための機能
@@ -51,9 +51,11 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin({
-    filename: "style.css",
-  }),],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "style.css",
+    }),
+  ],
   // source-map方式でないと、CSSの元ソースが追跡できないため
   devtool: "source-map",
 };

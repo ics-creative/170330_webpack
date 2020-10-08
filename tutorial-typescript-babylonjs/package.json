@@ -11,7 +11,7 @@
     "webpack-cli": "^4.0.0-rc.1"
   },
   "scripts": {
-    "build" : "webpack"
+    "build": "webpack"
   },
   "private": true
 }
