@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack serve"
   },
   "devDependencies": {
     "webpack": "^5.0.0-rc.4",

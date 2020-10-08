@@ -2,16 +2,15 @@
   "name": "tutorial-css-extract-plugin-dev-server",
   "version": "1.0.0",
   "scripts": {
-    "serve": "webpack-dev-server",
+    "serve": "webpack serve",
     "build": "webpack"
   },
   "devDependencies": {
-    "css-loader": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "webpack": "^4.41.2",
+    "css-loader": "^4.3.0",
+    "mini-css-extract-plugin": "^0.12.0",
+    "webpack": "^5.0.0-rc.4",
     "webpack-cli": "^4.0.0-rc.1",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.11.0"
   },
-  "private": true,
-  "dependencies": {}
+  "private": true
 }

@@ -13,6 +13,7 @@ declare -a array=(
     "tutorial-chunk"
     "tutorial-css"
     "tutorial-css-extract-plugin"
+    "tutorial-css-extract-plugin-dev-server"
     "tutorial-js"
     "tutorial-optimize"
     "tutorial-optimize-aggressive"
