@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-serve"
+    "start": "webpack serve"
   },
   "devDependencies": {
-    "webpack": "^4.44.1",
+    "@webpack-cli/serve": "^0.2.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-serve": "^3.2.0"
   },

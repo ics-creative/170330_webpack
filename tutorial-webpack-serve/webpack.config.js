@@ -3,6 +3,8 @@ module.exports = {
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: "development",
 
+  entry: "./src/index.js",
+
   // webpack-serve の設定
   serve: {
     open: true,

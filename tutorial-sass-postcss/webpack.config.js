@@ -31,11 +31,11 @@ module.exports = {
             options: {
               // PostCSS側でもソースマップを有効にする
               sourceMap: true,
-              plugins: [
+              postcssOptions: {
                 // Autoprefixerを有効化
                 // ベンダープレフィックスを自動付与する
-                require("autoprefixer")({ grid: true }),
-              ],
+                plugins: [["autoprefixer", { grid: true }]]
+              }
             },
           },
           // Sassをバンドルするための機能

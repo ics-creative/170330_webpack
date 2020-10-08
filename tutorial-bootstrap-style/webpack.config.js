@@ -38,8 +38,10 @@ module.exports = {
             options: {
               // PostCSS側でもソースマップを有効にする
               sourceMap: true,
-              // ベンダープレフィックスを自動付与する
-              plugins: () => [require("autoprefixer")],
+              postcssOptions: {
+                // ベンダープレフィックスを自動付与する
+                plugins: ["autoprefixer"]
+              }
             },
           },
           // Sassをバンドルするための機能

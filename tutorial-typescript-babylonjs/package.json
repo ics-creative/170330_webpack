@@ -2,16 +2,16 @@
   "name": "tutorial-typescript-babylonjs",
   "version": "1.0.0",
   "dependencies": {
-    "babylonjs": "^3.3.0"
+    "babylonjs": "^4.1.0"
   },
   "devDependencies": {
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.2.2",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.1"
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "build" : "webpack"
+    "build": "webpack"
   },
   "private": true
 }
