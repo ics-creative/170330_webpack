@@ -3,18 +3,7 @@ module.exports = {
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: "production",
   devtool: "source-map",
-  output: {
-    // IE11対応
-    environment: {
-      arrowFunction: false,
-      bigIntLiteral: false,
-      const: false,
-      destructuring: false,
-      dynamicImport: false,
-      forOf: false,
-      module: false,
-    },
-  },
+
   module: {
     rules: [
       {
@@ -36,4 +25,6 @@ module.exports = {
       },
     ],
   },
+  // ES5(IE11等)向けの指定
+  target: ["web", "es5"],
 };

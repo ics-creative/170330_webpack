@@ -24,4 +24,6 @@ module.exports = {
     // 拡張子を配列で指定
     extensions: [".ts", ".js"],
   },
+  // ES5(IE11等)向けの指定
+  target: ["web", "es5"],
 };
