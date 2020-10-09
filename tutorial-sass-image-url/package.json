@@ -9,7 +9,6 @@
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "style-loader": "^2.0.0",
-    "url-loader": "^4.1.0",
     "webpack": "^5.0.0-rc.4",
     "webpack-cli": "^4.0.0-rc.1"
   },

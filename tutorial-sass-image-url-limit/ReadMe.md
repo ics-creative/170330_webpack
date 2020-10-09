@@ -1,10 +1,11 @@
 # WebPack + Sass + url-loader + file-loader のサンプル
 
-url-loaderとfile-loaderを使うと、CSS内の画像等を埋め込んだり、外部参照とできます。
+webpackではアセットを取り込むことができます。
+CSS内の画像等を埋め込んだり、外部参照とできます。
 
 - `src`フォルダーに画像を配置しておく
-- 容量の小さい画像はurl-loaderによって`main.js`にバンドルされる
-- 容量の大きい画像はfile-loaderによってビルドするとfile-loaderによって`dist`フォルダーにコピーされる
+- 容量の小さい画像は`main.js`にバンドルされる
+- 容量の大きい画像はビルドすると`dist`フォルダーにコピーされる
 
 
 ## ゼロから環境構築する場合の手順
@@ -20,7 +21,7 @@ npm init -y
 その上で、必要なモジュールをインストールする。
 
 ```bash
-npm i -D webpack webpack-cli sass css-loader url-loader file-loader sass-loader style-loader
+npm i -D webpack webpack-cli sass css-loader sass-loader style-loader
 ```
 
 ### webpack.config.js の書き方

@@ -9,6 +9,9 @@ module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: MODE,
+  output: {
+    assetModuleFilename: "images/[name][ext]",
+  },
 
   module: {
     rules: [
@@ -48,10 +51,7 @@ module.exports = {
         // 対象となるファイルの拡張子
         test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
         // 画像を埋め込まず任意のフォルダに保存する
-        loader: "file-loader",
-        options: {
-          name: "./images/[name].[ext]",
-        },
+        type: "asset/resource",
       },
     ],
   },

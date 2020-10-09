@@ -6,7 +6,6 @@
   },
   "devDependencies": {
     "css-loader": "^4.3.0",
-    "file-loader": "^6.1.0",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "style-loader": "^2.0.0",

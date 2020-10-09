@@ -1,6 +1,6 @@
 # WebPack + Sass + file-loader のサンプル
 
-file-loaderを使うと、CSS内の画像等を埋め込まずに外部参照として利用できます。`src`フォルダーに画像を配置しておき、ビルドするとfile-loaderによって`dist`フォルダーにコピーされます。
+webpackではCSS内の画像等を埋め込まずに外部参照として利用できます。`src`フォルダーに画像を配置しておき、ビルドすると`dist`フォルダーにコピーされます。
 
 css-loaderの`url: false`オプションと似ていますが、`url: false`オプションは`src`フォルダーから`dist`フォルダーにファイルをコピーしません。
 
@@ -17,7 +17,7 @@ npm init -y
 その上で、必要なモジュールをインストールする。
 
 ```bash
-npm i -D webpack webpack-cli sass css-loader file-loader sass-loader style-loader
+npm i -D webpack webpack-cli sass css-loader sass-loader style-loader
 ```
 
 ### webpack.config.js の書き方

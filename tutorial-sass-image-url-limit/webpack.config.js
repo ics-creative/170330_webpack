@@ -9,6 +9,9 @@ module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
   mode: MODE,
+  output: {
+    assetModuleFilename: "imgs/[name][ext]",
+  },
 
   module: {
     rules: [
@@ -47,16 +50,14 @@ module.exports = {
       {
         // 対象となるファイルの拡張子
         test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
-        // 画像をBase64として取り込む
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 100 * 1024, // 100KB以上だったら埋め込まずファイルとして分離する
-              name: "./img/[name].[ext]",
-            },
+        // 閾値以上だったら埋め込まずファイルとして分離する
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            // 100KB以上だったら埋め込まずファイルとして分離する
+            maxSize: 100 * 1024,
           },
-        ],
+        },
       },
     ],
   },
