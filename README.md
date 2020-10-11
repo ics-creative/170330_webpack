@@ -1,6 +1,6 @@
 # 最新版で学ぶwebpack入門
 
-ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140)」のサンプルコード集です。ReactやBabelなど20以上の構成のサンプルを用意しています。
+ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140/)」のサンプルコード集です。ReactやBabelなど30以上の構成のサンプルを用意しています。
 
 各フォルダーの構成は常に最新を保っているので、安心して参照してください。
 
@@ -13,6 +13,4 @@ ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140)」�
   - [webpack+TypeScriptの環境構築 \- ICS MEDIA](https://ics.media/entry/16329)
 - スタイルシート編
   - [スタイルシート\(CSSやSass\)を取り込む方法 \- ICS MEDIA](https://ics.media/entry/17376)
-  - [PostCSSを取り込む方法 \- Qiita](https://qiita.com/clockmaker/items/b8a08fda182faa370a86)
-- その他
-  - [Gulpで始めるwebpack 3入門 \- Qiita](https://qiita.com/tonkotsuboy_com/items/2d4f3862e6d05dc0bea1)
+  - [Bootstrapをバンドルする方法 \- ICS MEDIA](https://ics.media/entry/17749/)
