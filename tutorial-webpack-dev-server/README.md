@@ -30,7 +30,7 @@ module.exports = {
 実行
 
 ```bash
-npx webpack-dev-server
+npx webpack serve
 ```
 
 
