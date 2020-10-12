@@ -1,6 +1,6 @@
 # webpack-dev-server のサンプル
 
-ICS MEDIA「[最新版で学ぶwebpack 4入門](https://ics.media/entry/12140)」で紹介している webpack-dev-server の解説用サンプルです。
+ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140)」で紹介している webpack-dev-server の解説用サンプルです。
 
 ## 使い方
 
