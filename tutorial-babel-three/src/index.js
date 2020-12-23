@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import "core-js"; // IEで動作するようにポリフィルを導入
 
 window.addEventListener("DOMContentLoaded", () => {
   const VIEWPORT_W = window.innerWidth;
