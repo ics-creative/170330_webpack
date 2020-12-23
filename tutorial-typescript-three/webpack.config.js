@@ -25,6 +25,11 @@ module.exports = {
   // import 文で .ts ファイルを解決するため
   resolve: {
     extensions: [".ts", ".js"],
+    alias: {
+      // Three.jsでmodules版を使うとIE11で構文エラーが発生するので、
+      // あえて、レガシーなバージョンを利用する
+      three: "three/build/three.js",
+    },
   },
   // ES5(IE11等)向けの指定
   target: ["web", "es5"],
