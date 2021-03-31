@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 箱を作成
   const geometry = new THREE.BoxGeometry(250, 250, 250);
-  const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+  const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
   const box = new THREE.Mesh(geometry, material);
   box.position.z = -5;
   scene.add(box);

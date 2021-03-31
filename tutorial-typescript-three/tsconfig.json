@@ -6,6 +6,8 @@
     "module": "es2015",
     // node_modules からライブラリを読み込む
     "moduleResolution": "node",
+    // 厳密モード
+    "strict": true,
     "lib": [
       "es2020",
       "dom"
