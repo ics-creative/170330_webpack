@@ -16,14 +16,29 @@ module.exports = {
     rules: [
       {
         // 拡張子 .ts の場合
-        test: /\.ts$/,
-        // TypeScript をコンパイルする
-        use: "ts-loader",
+        test: /\.(ts|js)$/,
+        use: [
+          {
+            // Babel を利用する
+            loader: "babel-loader",
+            // Babel のオプションを指定する
+            options: {
+              presets: [
+                // プリセットを指定することで、ES2020 を ES5 に変換
+                "@babel/preset-env",
+                // TypeScript をコンパイルする
+                "@babel/preset-typescript"
+              ],
+            },
+          },
+        ],
       },
     ],
   },
   // import 文で .ts ファイルを解決するため
   resolve: {
     extensions: [".ts", ".js"]
-  }
+  },
+  // ES5(IE11等)向けの指定
+  target: ["web", "es5"],
 };
