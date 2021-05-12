@@ -2,9 +2,9 @@
   "compilerOptions": {
     "sourceMap": true,
     // TSはECMAScript 5に変換
-    "target": "es5",
+    "target": "ES5",
     // TSのモジュールはES Modulesとして出力
-    "module": "es2015",
+    "module": "ES2015",
     // これの設定も必要 デフォルトインポートの有効化
     "allowSyntheticDefaultImports": true
   }
