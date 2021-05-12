@@ -1,3 +1,4 @@
+import "core-js"
 import * as THREE from "three";
 
 window.addEventListener("DOMContentLoaded", () => {
