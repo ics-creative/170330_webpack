@@ -5,8 +5,8 @@
     "build": "webpack"
   },
   "dependencies": {
-    "core-js": "2",
-    "three": "^0.124.0"
+    "@babel/polyfill": "^7.12.1",
+    "three": "^0.128.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

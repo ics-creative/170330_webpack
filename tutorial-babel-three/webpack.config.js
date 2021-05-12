@@ -12,6 +12,7 @@ module.exports = {
     // 出力ファイル名
     filename: "main.js",
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -26,11 +27,7 @@ module.exports = {
               presets: [
                 // プリセットを指定することで、ES2020 を ES5 に変換
                 [
-                  "@babel/preset-env",
-                  {
-                    useBuiltIns: "entry",
-                    corejs: 2,
-                  },
+                  "@babel/preset-env"
                 ],
               ],
             },
