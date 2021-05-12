@@ -9,15 +9,15 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "babel-loader": "^8.1.0",
-    "css-loader": "^4.3.0",
-    "file-loader": "^6.1.1",
-    "vue-loader": "^15.9.3",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "file-loader": "^6.2.0",
+    "vue-loader": "^15.9.7",
     "vue-template-compiler": "^2.6.12",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
   },
   "private": true
 }
