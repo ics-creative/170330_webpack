@@ -24,6 +24,6 @@ module.exports = {
   },
   // import 文で .ts ファイルを解決するため
   resolve: {
-    extensions: [".ts", ".js"]
-  }
+    extensions: [".ts", ".js"],
+  },
 };

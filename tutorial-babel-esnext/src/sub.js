@@ -79,7 +79,7 @@ export class Hello {
       console.log(day); // 30
     }
 
-    try{
+    try {
       const instance = new MyClass();
       instance.show();
 
@@ -104,8 +104,7 @@ export class Hello {
         // (error)の指定は必須
         console.warn("💗️ES2019 - エラーの省略");
       }
-    }catch(error){
-
+    } catch (error) {
       // IE11向けにはArray#flat()はポリフィルでも利用できない
       // https://github.com/babel/babel/issues/9749#issuecomment-475686062
       // core-js@3を利用する方法も案としてあげられるが、別の問題がつきまとい現実的ではない

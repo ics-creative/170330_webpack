@@ -27,7 +27,7 @@ module.exports = {
                 // プリセットを指定することで、ES2020 を ES5 に変換
                 "@babel/preset-env",
                 // TypeScript をコンパイルする
-                "@babel/preset-typescript"
+                "@babel/preset-typescript",
               ],
             },
           },
@@ -37,7 +37,7 @@ module.exports = {
   },
   // import 文で .ts ファイルを解決するため
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: [".ts", ".js"],
   },
   // ES5(IE11等)向けの指定
   target: ["web", "es5"],
