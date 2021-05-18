@@ -9,8 +9,8 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.1",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",
     "file-loader": "^6.2.0",
