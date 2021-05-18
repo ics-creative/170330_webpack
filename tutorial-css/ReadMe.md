@@ -1,4 +1,4 @@
-# WebPack + CSS のサンプル
+# webpack + CSS のサンプル
 
 プレーンなCSSをwebpackで取り込むサンプルです。
 

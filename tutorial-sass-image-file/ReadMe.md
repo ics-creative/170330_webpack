@@ -1,4 +1,4 @@
-# WebPack + Sass + file-loader のサンプル
+# webpack + Sass + file-loader のサンプル
 
 webpackではCSS内の画像等を埋め込まずに外部参照として利用できます。`src`フォルダーに画像を配置しておき、ビルドすると`dist`フォルダーにコピーされます。
 

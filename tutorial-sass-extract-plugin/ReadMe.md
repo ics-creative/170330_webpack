@@ -1,4 +1,4 @@
-# WebPack + SCSS with mini-css-extract-pluginのサンプル
+# webpack + SCSS with mini-css-extract-pluginのサンプル
 
 Sass(SCSSファイル)をwebpackで取り込みつつ、cssファイルとして出力するサンプルです。
 
@@ -32,7 +32,7 @@ webpackのデフォルト構成としているので、`src`フォルダーに�
 ### ビルドコマンド
 
 ```bash
-npx webpack
+npm run build
 ```
 
 `dist`フォルダーに成果物が出力されます。

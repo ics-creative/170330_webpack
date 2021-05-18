@@ -49,10 +49,12 @@ module.exports = {
       },
       {
         // 対象となるファイルの拡張子
-        test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
+        test: /\.(gif|png|jpg|svg)$/,
         // 画像を埋め込まず任意のフォルダに保存する
         type: "asset/resource",
       },
     ],
   },
+  // ES5(IE11等)向けの指定
+  target: ["web", "es5"],
 };

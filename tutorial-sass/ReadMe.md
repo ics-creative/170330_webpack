@@ -1,4 +1,4 @@
-# WebPack + SCSS のサンプル
+# webpack + SCSS のサンプル
 
 Sass(SCSSファイル)をwebpackで取り込むサンプルです。
 

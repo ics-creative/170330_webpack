@@ -1,4 +1,4 @@
-# WebPack + Sass + url-loader + file-loader のサンプル
+# webpack + Sass + url-loader + file-loader のサンプル
 
 webpackではアセットを取り込むことができます。
 CSS内の画像等を埋め込んだり、外部参照とできます。

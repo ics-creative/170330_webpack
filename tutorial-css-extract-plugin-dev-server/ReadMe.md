@@ -1,4 +1,4 @@
-# WebPack + CSS with mini-css-extract-plugin のサンプル
+# webpack + CSS with mini-css-extract-plugin のサンプル
 
 CSSをwebpackで取り込みつつ、cssファイルを出力するサンプルです。
 [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)の使い方を紹介します。

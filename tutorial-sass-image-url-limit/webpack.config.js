@@ -49,7 +49,7 @@ module.exports = {
       },
       {
         // 対象となるファイルの拡張子
-        test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
+        test: /\.(gif|png|jpg|svg)$/,
         // 閾値以上だったら埋め込まずファイルとして分離する
         type: "asset",
         parser: {
@@ -61,4 +61,6 @@ module.exports = {
       },
     ],
   },
+  // ES5(IE11等)向けの指定
+  target: ["web", "es5"],
 };

@@ -66,4 +66,7 @@ module.exports = {
       filename: "style.css",
     }),
   ],
+
+  // ES5(IE11等)向けの指定
+  target: ["web", "es5"],
 };
