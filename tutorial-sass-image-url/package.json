@@ -6,8 +6,8 @@
   },
   "devDependencies": {
     "css-loader": "^5.2.4",
-    "sass": "^1.32.12",
-    "sass-loader": "^11.1.0",
+    "sass": "^1.32.13",
+    "sass-loader": "^11.1.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.37.0",
     "webpack-cli": "^4.7.0"
