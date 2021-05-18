@@ -1,5 +1,5 @@
-import * as THREE from "three";
 import "@babel/polyfill"; // IEで動作するようにポリフィルを導入
+import * as THREE from "three";
 
 window.addEventListener("DOMContentLoaded", () => {
   const VIEWPORT_W = window.innerWidth;
