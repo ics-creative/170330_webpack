@@ -12,8 +12,8 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
-    "bootstrap": "^5.0.0",
-    "@popperjs/core": "^2.9.2"
+    "@popperjs/core": "^2.9.2",
+    "bootstrap": "^5.0.1"
   },
   "private": true
 }
