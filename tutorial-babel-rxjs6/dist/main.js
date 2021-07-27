@@ -748,7 +748,44 @@ function createNotification(kind, value, error) {
     error: error
   };
 }
+;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/errorContext.js
+
+var context = null;
+function errorContext(cb) {
+  if (config.useDeprecatedSynchronousErrorHandling) {
+    var isRoot = !context;
+
+    if (isRoot) {
+      context = {
+        errorThrown: false,
+        error: null
+      };
+    }
+
+    cb();
+
+    if (isRoot) {
+      var _a = context,
+          errorThrown = _a.errorThrown,
+          error = _a.error;
+      context = null;
+
+      if (errorThrown) {
+        throw error;
+      }
+    }
+  } else {
+    cb();
+  }
+}
+function captureError(err) {
+  if (config.useDeprecatedSynchronousErrorHandling && context) {
+    context.errorThrown = true;
+    context.error = err;
+  }
+}
 ;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/Subscriber.js
+
 
 
 
@@ -900,11 +937,7 @@ function wrapForErrorHandling(handler, instance) {
       handler.apply(void 0, __spreadArray([], __read(args)));
     } catch (err) {
       if (config.useDeprecatedSynchronousErrorHandling) {
-        if (instance._syncErrorHack_isSubscribing) {
-          instance.__syncError = err;
-        } else {
-          throw err;
-        }
+        captureError(err);
       } else {
         reportUnhandledError(err);
       }
@@ -971,6 +1004,7 @@ function pipeFromArray(fns) {
 
 
 
+
 var Observable_Observable = function () {
   function Observable(subscribe) {
     if (subscribe) {
@@ -986,51 +1020,16 @@ var Observable_Observable = function () {
   };
 
   Observable.prototype.subscribe = function (observerOrNext, error, complete) {
-    var subscriber = isSubscriber(observerOrNext) ? observerOrNext : new SafeSubscriber(observerOrNext, error, complete);
+    var _this = this;
 
-    if (config.useDeprecatedSynchronousErrorHandling) {
-      this._deprecatedSyncErrorSubscribe(subscriber);
-    } else {
-      var _a = this,
+    var subscriber = isSubscriber(observerOrNext) ? observerOrNext : new SafeSubscriber(observerOrNext, error, complete);
+    errorContext(function () {
+      var _a = _this,
           operator = _a.operator,
           source = _a.source;
-
-      subscriber.add(operator ? operator.call(subscriber, source) : source ? this._subscribe(subscriber) : this._trySubscribe(subscriber));
-    }
-
+      subscriber.add(operator ? operator.call(subscriber, source) : source ? _this._subscribe(subscriber) : _this._trySubscribe(subscriber));
+    });
     return subscriber;
-  };
-
-  Observable.prototype._deprecatedSyncErrorSubscribe = function (subscriber) {
-    var localSubscriber = subscriber;
-    localSubscriber._syncErrorHack_isSubscribing = true;
-    var operator = this.operator;
-
-    if (operator) {
-      subscriber.add(operator.call(subscriber, this.source));
-    } else {
-      try {
-        subscriber.add(this._subscribe(subscriber));
-      } catch (err) {
-        localSubscriber.__syncError = err;
-      }
-    }
-
-    var dest = localSubscriber;
-
-    while (dest) {
-      if ('__syncError' in dest) {
-        try {
-          throw dest.__syncError;
-        } finally {
-          subscriber.unsubscribe();
-        }
-      }
-
-      dest = dest.destination;
-    }
-
-    localSubscriber._syncErrorHack_isSubscribing = false;
   };
 
   Observable.prototype._trySubscribe = function (sink) {

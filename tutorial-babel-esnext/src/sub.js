@@ -116,6 +116,15 @@ export class Hello {
       const fuga = object.hoge?.fuga;
       console.log("💗️ES2020 - オプショナルチェイニング", fuga);
     }
+
+    {
+      const str = '田中家の田中一郎です'.replaceAll("田中", "鈴木");
+      console.log("😊ES2021 - replaceAll()メソッド", str);
+    }
+    {
+      const num1 = 1_000_000_000; // 10億（1,000,000,000）
+      console.log("😊ES2021 - 数値の _ 記号", num1);
+    }
   }
 }
 

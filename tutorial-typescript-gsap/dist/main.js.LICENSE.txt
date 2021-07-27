@@ -1,5 +1,5 @@
 /*!
- * GSAP 3.6.1
+ * GSAP 3.7.1
  * https://greensock.com
  *
  * @license Copyright 2008-2021, GreenSock. All rights reserved.
