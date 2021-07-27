@@ -118,12 +118,17 @@ export class Hello {
     }
 
     {
-      const str = '田中家の田中一郎です'.replaceAll("田中", "鈴木");
-      console.log("😊ES2021 - replaceAll()メソッド", str);
-    }
-    {
       const num1 = 1_000_000_000; // 10億（1,000,000,000）
       console.log("😊ES2021 - 数値の _ 記号", num1);
+    }
+    {
+      const human = {name: "鈴木"};
+      human.name ??= "佐藤";
+      // human.name は nullish ではないので、何も代入されない
+      human.address ??= "港区";
+      // human.address は nullish なので、「港区」が代入される
+      // 結果： {name: "鈴木", address: "港区"}
+      console.log("😊ES2021 - ??=演算子", human);
     }
   }
 }
