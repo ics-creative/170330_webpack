@@ -1,6 +1,6 @@
 # webpack-dev-server のサンプル
 
-ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140)」で紹介している webpack-dev-server の解説用サンプルです。
+ICS MEDIA「[最新版で学ぶwebpack入門](https://ics.media/entry/12140/)」で紹介している webpack-dev-server の解説用サンプルです。
 
 ## 使い方
 
@@ -21,7 +21,7 @@ module.exports = {
   // ローカル開発用環境を立ち上げる
   // 実行時にブラウザが自動的に localhost を開く
   devServer: {
-    contentBase: 'dist',
+    static: 'dist',
     open: true
   }
 };
@@ -34,4 +34,4 @@ npx webpack serve
 ```
 
 
-詳しくは[記事の説明](https://ics.media/entry/12140)をご確認ください。
+詳しくは[記事の説明](https://ics.media/entry/12140/)をご確認ください。

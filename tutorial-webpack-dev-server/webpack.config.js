@@ -6,7 +6,7 @@ module.exports = {
   // ローカル開発用環境を立ち上げる
   // 実行時にブラウザが自動的に localhost を開く
   devServer: {
-    contentBase: "dist",
+    static: "dist",
     open: true,
   },
   // ES5(IE11等)向けの指定
