@@ -1,39 +1,24 @@
 import * as React from 'react';
+import {useCallback, useState} from "react";
 
 // Propsの型定義
 interface IProps {
-  name: string;
+    name: string;
 }
 
-interface IState {
-  count: number;
-}
+export const SubComponent: React.VFC<IProps> = (props) => {
 
-export class SubComponent extends React.Component<IProps, IState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
-  }
-
-  handleClick() {
-    console.log('クリックされました');
-
-    this.setState({
-      count: this.state.count + 1,
-    });
-  }
-
-  render() {
+    const [count, setCount] = useState(0)
+    const handleClick = useCallback(() => {
+      console.log('クリックされました');
+        setCount(count + 1)
+    }, [count])
 
     return (
         <div>
-          <h2>{this.props.name}</h2>
-          <div>{this.state.count}</div>
-          <button onClick={this.handleClick.bind(this)}>Add +1</button>
+            <h2>{props.name}</h2>
+            <div>{count}</div>
+            <button onClick={handleClick}>Add +1</button>
         </div>
     );
-  }
 }
-

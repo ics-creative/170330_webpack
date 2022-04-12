@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    // 厳密モードとして設定
+    "strict": true,
+    // ソースマップを有効化
     "sourceMap": true,
     // TSはECMAScript 5に変換
     "target": "ES5",
@@ -9,7 +12,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "lib": [
-      "ES2020",
+      "ES2021",
       "DOM"
     ]
   }

@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.6.2"
   },
   "scripts": {
     "format": "prettier --write '../*/src/*.{js,ts}' && prettier --write '../*/webpack.config.js'"

@@ -122,7 +122,7 @@ export class Hello {
       console.log("😊ES2021 - 数値の _ 記号", num1);
     }
     {
-      const human = {name: "鈴木"};
+      const human = { name: "鈴木" };
       human.name ??= "佐藤";
       // human.name は nullish ではないので、何も代入されない
       human.address ??= "港区";

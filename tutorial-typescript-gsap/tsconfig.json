@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // 厳密モードとして設定
     "strict": true,
     "sourceMap": true,
     // TSはECMAScript 5に変換

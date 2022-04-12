@@ -3,6 +3,8 @@
     "module": "esnext",
     "target": "ES5",
     "sourceMap": true,
+    // 厳密モードとして設定
+    "strict": true,
     "moduleResolution": "node",
     "lib": [
       "ES2018",
