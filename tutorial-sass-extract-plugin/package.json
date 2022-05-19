@@ -7,9 +7,9 @@
   "devDependencies": {
     "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.0",
-    "sass": "^1.50.0",
-    "sass-loader": "^12.6.0",
-    "webpack": "^5.72.0",
+    "sass": "^1.51.0",
+    "sass-loader": "^13.0.0",
+    "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   },
   "private": true
