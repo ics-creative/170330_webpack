@@ -1,5 +1,6 @@
 import "@babel/polyfill"; // IEで動作するようにポリフィルを導入
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 window.addEventListener("DOMContentLoaded", () => {
   const VIEWPORT_W = window.innerWidth;
@@ -21,12 +22,20 @@ window.addEventListener("DOMContentLoaded", () => {
     45,
     VIEWPORT_W / VIEWPORT_H,
     1,
-    1000
+    10000
   );
+  camera.position.set(0, 0, 1000);
+
+  // カメラコントローラーを作成
+  const controls = new OrbitControls(camera, renderer.domElement);
+
+  // 滑らかにカメラコントローラーを制御する
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.2;
 
   // 箱を作成
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+  const geometry = new THREE.BoxGeometry(250, 250, 250);
+  const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
   const box = new THREE.Mesh(geometry, material);
   box.position.z = -5;
   scene.add(box);
@@ -39,11 +48,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const tick = () => {
     requestAnimationFrame(tick);
 
-    box.rotation.x += 0.05;
-    box.rotation.y += 0.05;
+    // カメラコントローラーを更新
+    controls.update();
+
+    box.rotation.x += 0.01;
+    box.rotation.y += 0.01;
 
     // 描画
     renderer.render(scene, camera);
   };
   tick();
+
+  console.log("Hello Three.js");
 });
