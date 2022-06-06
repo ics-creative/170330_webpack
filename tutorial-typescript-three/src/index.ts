@@ -1,62 +1,60 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+// ページの読み込みを待つ
+window.addEventListener("DOMContentLoaded", init);
 
-window.addEventListener("DOMContentLoaded", () => {
-  const VIEWPORT_W = window.innerWidth;
-  const VIEWPORT_H = window.innerHeight;
+function init() {
+  // サイズを指定
+  const width = 960;
+  const height = 540;
 
   // レンダラーを作成
-  const renderer = new THREE.WebGLRenderer();
-  // レンダラーのサイズを設定
-  renderer.setSize(VIEWPORT_W, VIEWPORT_H);
+  const canvasElement = document.querySelector(
+    "#myCanvas"
+  ) as HTMLCanvasElement;
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvasElement,
+  });
   renderer.setPixelRatio(window.devicePixelRatio);
-  // canvasをbodyに追加
-  document.body.appendChild(renderer.domElement);
+  renderer.setSize(width, height);
 
   // シーンを作成
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    VIEWPORT_W / VIEWPORT_H,
-    1,
-    10000
-  );
-  camera.position.set(0, 0, 1000);
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
+  // カメラの初期座標を設定
+  camera.position.set(2, 2, 2);
 
   // カメラコントローラーを作成
-  const controls = new OrbitControls(camera, renderer.domElement);
+  const controls = new OrbitControls(camera, canvasElement);
+  controls.target.set(0, 0, 0);
+  controls.update();
 
-  // 滑らかにカメラコントローラーを制御する
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.2;
+  // 平行光源を作成
+  const directionalLight = new THREE.DirectionalLight(0xffffff);
+  directionalLight.position.set(1, 1, 1);
+  scene.add(directionalLight);
+  // 環境光を追加
+  const ambientLight = new THREE.AmbientLight(0xffffff);
+  scene.add(ambientLight);
 
-  // 箱を作成
-  const geometry = new THREE.BoxGeometry(250, 250, 250);
-  const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
-  const box = new THREE.Mesh(geometry, material);
-  box.position.z = -5;
-  scene.add(box);
+  // GLTF形式のモデルデータを読み込む
+  const loader = new GLTFLoader();
+  // GLTFファイルのパスを指定
+  loader.load("./DamagedHelmet/glTF/DamagedHelmet.gltf", (gltf) => {
+    // 読み込み後に3D空間に追加
+    const model = gltf.scene;
+    scene.add(model);
+  });
 
-  // 平行光源を生成
-  const light = new THREE.DirectionalLight(0xffffff);
-  light.position.set(1, 1, 1);
-  scene.add(light);
-
-  const tick = () => {
-    requestAnimationFrame(tick);
-
-    // カメラコントローラーを更新
-    controls.update();
-
-    box.rotation.x += 0.01;
-    box.rotation.y += 0.01;
-
-    // 描画
-    renderer.render(scene, camera);
-  };
   tick();
 
-  console.log("Hello Three.js");
-});
+  // 毎フレーム時に実行されるループイベントです
+  function tick() {
+    // レンダリング
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+}

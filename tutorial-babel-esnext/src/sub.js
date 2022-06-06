@@ -130,6 +130,30 @@ export class Hello {
       // 結果： {name: "鈴木", address: "港区"}
       console.log("😊ES2021 - ??=演算子", human);
     }
+
+    {
+      const instance = new MyClass2022();
+      console.log(instance.show());
+      console.log(MyClass2022.myStaticField);
+    }
+
+    {
+      const element = ["a", "b", "c", "d", "e"].at(-1); // e
+      console.log("🍋ES2022 - .at. last element is " + element);
+    }
+    {
+      const object = { foo: false };
+      console.log(
+        "🍋ES2022 - .Accessible Object.prototype.hasOwnProperty, " +
+          object.hasOwnProperty("foo")
+      );
+    }
+
+    {
+      const result = /EF(GH)(I)J/d.exec("ABCDEFGHIJK");
+      console.log("🍋ES2022 - RegExp Match Indices");
+      console.table(result.indices);
+    }
   }
 }
 
@@ -140,5 +164,19 @@ class MyClass {
 
   show() {
     // console.log(this.hoge);
+  }
+}
+
+class MyClass2022 {
+  static myStaticField = "🍋ES2022 - staticフィールドの検査法";
+  #privateFiled = "🍋ES2022 - プライベートフィールドの検証";
+
+  constructor() {}
+
+  show() {
+    console.log(this.#privateFiled);
+  }
+  #show() {
+    console.log(this.#privateFiled);
   }
 }
