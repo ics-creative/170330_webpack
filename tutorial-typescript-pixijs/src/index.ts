@@ -1,6 +1,6 @@
 import { Application, Graphics } from "pixi.js";
 
-const app = new Application();
+const app = new Application<HTMLCanvasElement>();
 
 document.body.appendChild(app.view);
 
