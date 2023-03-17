@@ -154,6 +154,13 @@ export class Hello {
       console.log("🍋ES2022 - RegExp Match Indices");
       console.table(result.indices);
     }
+
+    {
+      const list1 = [1, 2, 3];
+      const list2 = list1.toReversed(); // 逆転
+
+      console.log("🍋ES2023 - toReversed()", {list1, list2});
+    }
   }
 }
 

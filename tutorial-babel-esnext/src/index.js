@@ -1,4 +1,4 @@
-import "@babel/polyfill";
+import "core-js/stable";
 
 const message = "Hello World";
 
