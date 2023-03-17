@@ -6,8 +6,8 @@
   },
   "devDependencies": {
     "css-loader": "^6.7.3",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.75.0",
+    "style-loader": "^3.3.2",
+    "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
   "private": true,
