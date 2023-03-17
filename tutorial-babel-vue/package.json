@@ -6,17 +6,17 @@
     "watch": "webpack --watch"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.47"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
-    "file-loader": "^6.2.0",
     "vue-loader": "^17.0.1",
+    "vue-style-loader": "^4.1.3",
     "vue-template-compiler": "^2.7.14",
-    "webpack": "^5.75.0",
+    "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
   "private": true

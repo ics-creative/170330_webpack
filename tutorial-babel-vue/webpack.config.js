@@ -22,7 +22,7 @@ module.exports = {
         // Babel のオプションを指定する
         options: {
           presets: [
-            // プリセットを指定することで、ES2020 を ES5 に変換
+            // プリセットを指定することで、ES5 に変換
             "@babel/preset-env",
           ],
         },
@@ -33,7 +33,7 @@ module.exports = {
   resolve: {
     // Webpackで利用するときの設定
     alias: {
-      vue$: "vue/dist/vue.esm.js",
+      vue$: 'vue/dist/vue.runtime.esm-bundler.js',
     },
     extensions: ["*", ".js", ".vue", ".json"],
   },
