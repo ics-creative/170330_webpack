@@ -1,17 +1,18 @@
 {
   "name": "tutorial-typescript-pixijs",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w"
   },
   "devDependencies": {
     "ts-loader": "^9.4.2",
-    "typescript": "^4.9.5",
-    "webpack": "^5.75.0",
+    "typescript": "^5.0.2",
+    "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "pixi.js": "^7.1.2"
+    "pixi.js": "^7.2.0"
   },
   "private": true
 }

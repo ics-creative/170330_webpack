@@ -12,7 +12,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "lib": [
-      "ES2021",
+      "ES2023",
       "DOM"
     ]
   }
