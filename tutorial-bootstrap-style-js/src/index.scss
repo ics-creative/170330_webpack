@@ -2,7 +2,7 @@
 Bootstrapのデフォルトの変数をカスタマイズする
 
 参照
-https://getbootstrap.com/docs/4.0/getting-started/theming/#sass-options
+https://getbootstrap.com/docs/5.3/customize/options/
  */
 
 // 例えば角丸設定を上書きする
@@ -10,9 +10,6 @@ $enable-rounded: false;
 
 // テーマカラー設定
 $primary: #C51162;
-
-// ヒーロースペースの背景色
-$jumbotron-bg: #d9f5ff;
 
 // フォントを変える
 $font-family-base: serif;
