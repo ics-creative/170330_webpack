@@ -9,7 +9,7 @@
     // TSのモジュールはES Modulesとして出力
     "module": "ES2015",
     // JSXの書式を有効に設定
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "lib": [
       "ES2023",
