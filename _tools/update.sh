@@ -31,7 +31,6 @@ declare -a array=(
     "tutorial-typescript-pixijs"
     "tutorial-typescript-react"
     "tutorial-typescript-three"
-    "tutorial-typescript-three-es5"
     "tutorial-typescript-urlloader"
     "tutorial-typescript-vue"
     "tutorial-webpack-dev-server"
