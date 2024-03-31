@@ -1,12 +1,12 @@
 import { Application, Graphics } from "pixi.js";
 
 const app = new Application();
-
-document.body.appendChild(app.view);
+await app.init({ background: 'black', resizeTo: window });
+document.body.appendChild(app.canvas);
 
 const bunny = new Graphics();
-bunny.beginFill(0xff0000);
-bunny.drawRect(0, 0, 128, 128);
+bunny.rect(0, 0, 128, 128);
+bunny.fill(0xff0000);
 
 bunny.x = app.renderer.width / 2;
 bunny.y = app.renderer.height / 2;

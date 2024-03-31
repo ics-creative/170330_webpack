@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
-    // 厳密モードとして設定
     "strict": true,
     "sourceMap": true,
-    // TSはECMAScript 5に変換
-    "target": "ES5",
-    // TSのモジュールはES Modulesとして出力
-    "module": "ES2015",
+    "target": "ES2022",
+    "module": "ESNext",
     "moduleResolution": "node"
   }
 }

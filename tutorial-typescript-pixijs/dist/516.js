@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktutorial_typescript_pixijs=self.webpackChunktutorial_typescript_pixijs||[]).push([[516],{6516:function(t,i,p){p.r(i),p(3046),p(1135),p(8751),p(3050),p(8427),p(8339),p(8333),p(637),p(9797),p(4550),p(8933)}}]);
