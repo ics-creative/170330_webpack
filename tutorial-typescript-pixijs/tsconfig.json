@@ -2,8 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "sourceMap": true,
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "node"
+    "target": "ES5",
+    "module": "ES2015",
+    "moduleResolution": "bundler"
   }
 }
