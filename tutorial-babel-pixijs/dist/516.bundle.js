@@ -1,1 +1,1 @@
-"use strict";(self.webpackChunktutorial_babel_pixijs=self.webpackChunktutorial_babel_pixijs||[]).push([[516],{6516:function(i,e,s){s.r(e),s(3046),s(1135),s(8751),s(3050),s(8427),s(8339),s(8333),s(637),s(9797),s(4550),s(8933)}}]);
+"use strict";(self.webpackChunktutorial_babel_pixijs=self.webpackChunktutorial_babel_pixijs||[]).push([[516],{6516:function(i,e,s){s.r(e),s(3046),s(8602),s(8751),s(3050),s(8427),s(8339),s(8381),s(637),s(2178),s(4550),s(8933)}}]);

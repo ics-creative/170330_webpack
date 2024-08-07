@@ -15,7 +15,6 @@
       "ES2020"
     ],
     "moduleResolution": "node",
-    // デコレーターを有効に設定
     "experimentalDecorators": true
   }
 }
