@@ -1,6 +1,6 @@
 import "core-js/stable"; // 古いブラウザで動作するようにポリフィルを導入
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   const VIEWPORT_W = window.innerWidth;

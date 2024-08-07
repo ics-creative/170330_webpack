@@ -5,7 +5,7 @@
     // TSのモジュールはES Modulesとして出力
     "module": "ES2015",
     // node_modules からライブラリを読み込む
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     // 厳密モード
     "strict": true,
     "lib": [

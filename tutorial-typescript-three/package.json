@@ -2,8 +2,8 @@
   "name": "tutorial-typescript-three",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack -w"
+    "build": "webpack --mode production",
+    "watch": "webpack -w --mode development"
   },
   "devDependencies": {
     "ts-loader": "^9.5.1",

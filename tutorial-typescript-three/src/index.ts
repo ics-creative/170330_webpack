@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // ページの読み込みを待つ
 window.addEventListener("DOMContentLoaded", init);
 
-function init() {
+async function init() {
   // サイズを指定
   const width = 960;
   const height = 540;
@@ -43,11 +43,11 @@ function init() {
   // GLTF形式のモデルデータを読み込む
   const loader = new GLTFLoader();
   // GLTFファイルのパスを指定
-  loader.load("./DamagedHelmet/glTF/DamagedHelmet.gltf", (gltf) => {
-    // 読み込み後に3D空間に追加
-    const model = gltf.scene;
-    scene.add(model);
-  });
+  const gltf = await loader.loadAsync("./DamagedHelmet/glTF/DamagedHelmet.gltf");
+
+  // 読み込み後に3D空間に追加
+  const model = gltf.scene;
+  scene.add(model);
 
   tick();
 
