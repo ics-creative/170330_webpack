@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    // Three.jsがES5未サポートなので、割り切って比較的新しい仕様でビルドする
-    "target": "ES2022",
     // TSのモジュールはES Modulesとして出力
     "module": "ESNext",
     // node_modules からライブラリを読み込む

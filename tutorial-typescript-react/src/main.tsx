@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import {SubComponent} from './sub-component';
 
 const  App = () => <div>
@@ -7,4 +7,4 @@ const  App = () => <div>
     <SubComponent name="My Counter for TypeScript"/>
 </div>
 
-ReactDOM.render(<App/>, document.querySelector('#app'));
+createRoot(document.querySelector('#app')!).render(<App/>);

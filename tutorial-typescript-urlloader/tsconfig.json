@@ -3,8 +3,6 @@
     // 厳密モードとして設定
     "strict": true,
     "sourceMap": true,
-    // TSは下位ECMAScriptに変換
-    "target": "ES5",
     "module": "ES2015",
     // これの設定も必要 デフォルトインポートの有効化
     "allowSyntheticDefaultImports": true

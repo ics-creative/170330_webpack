@@ -6,7 +6,7 @@ interface IProps {
     name: string;
 }
 
-export const SubComponent: React.VFC<IProps> = (props) => {
+export const SubComponent: React.FC<IProps> = (props) => {
 
     const [count, setCount] = useState(0)
     const handleClick = useCallback(() => {

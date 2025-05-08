@@ -1,7 +1,7 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 
-;// CONCATENATED MODULE: ../node_modules/tslib/tslib.es6.mjs
+;// ../node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -16,7 +16,7 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
+/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
 
 var extendStatics = function(d, b) {
   extendStatics = Object.setPrototypeOf ||
@@ -127,8 +127,8 @@ function __awaiter(thisArg, _arguments, P, generator) {
 }
 
 function __generator(thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
   function verb(n) { return function (v) { return step([n, v]); }; }
   function step(op) {
       if (f) throw new TypeError("Generator is already executing.");
@@ -232,7 +232,7 @@ function __await(v) {
 function __asyncGenerator(thisArg, _arguments, generator) {
   if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
   var g = generator.apply(thisArg, _arguments || []), i, q = [];
-  return i = {}, verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
+  return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
   function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
   function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
   function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
@@ -267,10 +267,19 @@ var __setModuleDefault = Object.create ? (function(o, v) {
   o["default"] = v;
 };
 
+var ownKeys = function(o) {
+  ownKeys = Object.getOwnPropertyNames || function (o) {
+    var ar = [];
+    for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+    return ar;
+  };
+  return ownKeys(o);
+};
+
 function __importStar(mod) {
   if (mod && mod.__esModule) return mod;
   var result = {};
-  if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
   __setModuleDefault(result, mod);
   return result;
 }
@@ -330,20 +339,34 @@ function __disposeResources(env) {
     env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
     env.hasError = true;
   }
+  var r, s = 0;
   function next() {
-    while (env.stack.length) {
-      var rec = env.stack.pop();
+    while (r = env.stack.pop()) {
       try {
-        var result = rec.dispose && rec.dispose.call(rec.value);
-        if (rec.async) return Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+        if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
+        if (r.dispose) {
+          var result = r.dispose.call(r.value);
+          if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+        }
+        else s |= 1;
       }
       catch (e) {
-          fail(e);
+        fail(e);
       }
     }
+    if (s === 1) return env.hasError ? Promise.reject(env.error) : Promise.resolve();
     if (env.hasError) throw env.error;
   }
   return next();
+}
+
+function __rewriteRelativeImportExtension(path, preserveJsx) {
+  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+      return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
+          return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
+      });
+  }
+  return path;
 }
 
 /* harmony default export */ var tslib_es6 = ({
@@ -352,6 +375,10 @@ function __disposeResources(env) {
   __rest,
   __decorate,
   __param,
+  __esDecorate,
+  __runInitializers,
+  __propKey,
+  __setFunctionName,
   __metadata,
   __awaiter,
   __generator,
@@ -374,13 +401,14 @@ function __disposeResources(env) {
   __classPrivateFieldIn,
   __addDisposableResource,
   __disposeResources,
+  __rewriteRelativeImportExtension,
 });
 
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/isFunction.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/isFunction.js
 function isFunction(value) {
   return typeof value === 'function';
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/createErrorClass.js
 function createErrorClass(createImpl) {
   var _super = function _super(instance) {
     Error.call(instance);
@@ -391,7 +419,7 @@ function createErrorClass(createImpl) {
   ctorFunc.prototype.constructor = ctorFunc;
   return ctorFunc;
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js
 
 var UnsubscriptionError = createErrorClass(function (_super) {
   return function UnsubscriptionErrorImpl(errors) {
@@ -403,14 +431,14 @@ var UnsubscriptionError = createErrorClass(function (_super) {
     this.errors = errors;
   };
 });
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/arrRemove.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/arrRemove.js
 function arrRemove(arr, item) {
   if (arr) {
     var index = arr.indexOf(item);
     0 <= index && arr.splice(index, 1);
   }
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/Subscription.js
+;// ../node_modules/rxjs/dist/esm5/internal/Subscription.js
 
 
 
@@ -551,7 +579,7 @@ function execFinalizer(finalizer) {
     finalizer.unsubscribe();
   }
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/config.js
+;// ../node_modules/rxjs/dist/esm5/internal/config.js
 var config = {
   onUnhandledError: null,
   onStoppedNotification: null,
@@ -559,7 +587,7 @@ var config = {
   useDeprecatedSynchronousErrorHandling: false,
   useDeprecatedNextContext: false
 };
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js
 
 var timeoutProvider = {
   setTimeout: function (_setTimeout) {
@@ -595,7 +623,7 @@ var timeoutProvider = {
   }),
   delegate: undefined
 };
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js
 
 
 function reportUnhandledError(err) {
@@ -608,9 +636,9 @@ function reportUnhandledError(err) {
     }
   });
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/noop.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/noop.js
 function noop() {}
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/NotificationFactories.js
+;// ../node_modules/rxjs/dist/esm5/internal/NotificationFactories.js
 var COMPLETE_NOTIFICATION = function () {
   return createNotification('C', undefined, undefined);
 }();
@@ -627,7 +655,7 @@ function createNotification(kind, value, error) {
     error: error
   };
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/errorContext.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/errorContext.js
 
 var context = null;
 function errorContext(cb) {
@@ -659,7 +687,7 @@ function captureError(err) {
     context.error = err;
   }
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/Subscriber.js
+;// ../node_modules/rxjs/dist/esm5/internal/Subscriber.js
 
 
 
@@ -834,15 +862,15 @@ var EMPTY_OBSERVER = {
   error: defaultErrorHandler,
   complete: noop
 };
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/symbol/observable.js
+;// ../node_modules/rxjs/dist/esm5/internal/symbol/observable.js
 var observable = function () {
   return typeof Symbol === 'function' && Symbol.observable || '@@observable';
 }();
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/identity.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/identity.js
 function identity(x) {
   return x;
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/pipe.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/pipe.js
 
 function pipe() {
   var fns = [];
@@ -864,7 +892,7 @@ function pipeFromArray(fns) {
     }, input);
   };
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/Observable.js
+;// ../node_modules/rxjs/dist/esm5/internal/Observable.js
 
 
 
@@ -965,7 +993,7 @@ function isObserver(value) {
 function isSubscriber(value) {
   return value && value instanceof Subscriber || isObserver(value) && isSubscription(value);
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/observable/empty.js
+;// ../node_modules/rxjs/dist/esm5/internal/observable/empty.js
 
 var EMPTY = new Observable_Observable(function (subscriber) {
   return subscriber.complete();
@@ -980,7 +1008,7 @@ function emptyScheduled(scheduler) {
     });
   });
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/lift.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/lift.js
 
 function hasLift(source) {
   return isFunction(source === null || source === void 0 ? void 0 : source.lift);
@@ -999,7 +1027,7 @@ function operate(init) {
     throw new TypeError('Unable to lift unknown Observable type');
   };
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js
+;// ../node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js
 
 
 function createOperatorSubscriber(destination, onNext, onComplete, onError, onFinalize) {
@@ -1049,7 +1077,7 @@ var OperatorSubscriber = function (_super) {
   return OperatorSubscriber;
 }(Subscriber);
 
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/operators/take.js
+;// ../node_modules/rxjs/dist/esm5/internal/operators/take.js
 
 
 
@@ -1068,7 +1096,7 @@ function take(count) {
     }));
   });
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/operators/map.js
+;// ../node_modules/rxjs/dist/esm5/internal/operators/map.js
 
 
 function map(project, thisArg) {
@@ -1079,7 +1107,7 @@ function map(project, thisArg) {
     }));
   });
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/operators/bufferCount.js
+;// ../node_modules/rxjs/dist/esm5/internal/operators/bufferCount.js
 
 
 
@@ -1161,7 +1189,7 @@ function bufferCount(bufferSize, startBufferEvery) {
     }));
   });
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/Action.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/Action.js
 
 
 var Action = function (_super) {
@@ -1178,7 +1206,7 @@ var Action = function (_super) {
   return Action;
 }(Subscription);
 
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/intervalProvider.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/intervalProvider.js
 
 var intervalProvider = {
   setInterval: function (_setInterval) {
@@ -1214,7 +1242,7 @@ var intervalProvider = {
   }),
   delegate: undefined
 };
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/AsyncAction.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/AsyncAction.js
 
 
 
@@ -1310,14 +1338,14 @@ var AsyncAction = function (_super) {
   return AsyncAction;
 }(Action);
 
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/dateTimestampProvider.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/dateTimestampProvider.js
 var dateTimestampProvider = {
   now: function now() {
     return (dateTimestampProvider.delegate || Date).now();
   },
   delegate: undefined
 };
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/Scheduler.js
+;// ../node_modules/rxjs/dist/esm5/internal/Scheduler.js
 
 var Scheduler = function () {
   function Scheduler(schedulerActionCtor, now) {
@@ -1337,7 +1365,7 @@ var Scheduler = function () {
   return Scheduler;
 }();
 
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/AsyncScheduler.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/AsyncScheduler.js
 
 
 var AsyncScheduler = function (_super) {
@@ -1375,21 +1403,21 @@ var AsyncScheduler = function (_super) {
   return AsyncScheduler;
 }(Scheduler);
 
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/scheduler/async.js
+;// ../node_modules/rxjs/dist/esm5/internal/scheduler/async.js
 
 
 var asyncScheduler = new AsyncScheduler(AsyncAction);
 var async_async = asyncScheduler;
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/isScheduler.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/isScheduler.js
 
 function isScheduler(value) {
   return value && isFunction(value.schedule);
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/util/isDate.js
+;// ../node_modules/rxjs/dist/esm5/internal/util/isDate.js
 function isValidDate(value) {
   return value instanceof Date && !isNaN(value);
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/observable/timer.js
+;// ../node_modules/rxjs/dist/esm5/internal/observable/timer.js
 
 
 
@@ -1427,7 +1455,7 @@ function timer(dueTime, intervalOrScheduler, scheduler) {
     }, due);
   });
 }
-;// CONCATENATED MODULE: ../node_modules/rxjs/dist/esm5/internal/observable/interval.js
+;// ../node_modules/rxjs/dist/esm5/internal/observable/interval.js
 
 
 function interval(period, scheduler) {
@@ -1442,7 +1470,7 @@ function interval(period, scheduler) {
   }
   return timer(period, period, scheduler);
 }
-;// CONCATENATED MODULE: ./src/index.js
+;// ./src/index.js
 
 
 

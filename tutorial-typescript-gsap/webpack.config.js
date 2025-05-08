@@ -17,6 +17,4 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  // ES5(IE11等)向けの指定
-  target: ["web", "es5"],
 };
