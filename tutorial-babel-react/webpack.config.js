@@ -27,7 +27,7 @@ module.exports = {
                 // プリセットを指定することで、ES5 に変換
                 "@babel/preset-env",
                 // React の JSX を解釈
-                "@babel/react",
+                "@babel/preset-react",
               ],
             },
           },

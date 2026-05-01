@@ -1,7 +1,6 @@
-import Vue from "vue";
-import Component from "vue-class-component";
+import { defineComponent } from "vue";
 
-@Component({
+export default defineComponent({
   template: ` <div>
     <h2>{{ message }}</h2>
     <p>{{ count }}</p>
@@ -10,12 +9,15 @@ import Component from "vue-class-component";
     </p>
   </div>`,
   props: ["message"],
-})
-export default class MyComponent extends Vue {
-  count = 0;
-
-  onClick() {
-    console.log("クリックされました");
-    this.count = this.count + 1;
-  }
-}
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  methods: {
+    onClick() {
+      console.log("クリックされました");
+      this.count = this.count + 1;
+    },
+  },
+});

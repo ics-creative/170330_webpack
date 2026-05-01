@@ -900,7 +900,7 @@ function pipeFromArray(fns) {
 
 
 
-var Observable_Observable = function () {
+var Observable = function () {
   function Observable(subscribe) {
     if (subscribe) {
       this._subscribe = subscribe;
@@ -994,15 +994,16 @@ function isSubscriber(value) {
   return value && value instanceof Subscriber || isObserver(value) && isSubscription(value);
 }
 ;// ../node_modules/rxjs/dist/esm5/internal/observable/empty.js
+/* unused harmony import specifier */ var empty_Observable;
 
-var EMPTY = new Observable_Observable(function (subscriber) {
+var EMPTY = new Observable(function (subscriber) {
   return subscriber.complete();
 });
 function empty(scheduler) {
   return scheduler ? emptyScheduled(scheduler) : EMPTY;
 }
 function emptyScheduled(scheduler) {
-  return new Observable(function (subscriber) {
+  return new empty_Observable(function (subscriber) {
     return scheduler.schedule(function () {
       return subscriber.complete();
     });
@@ -1437,7 +1438,7 @@ function timer(dueTime, intervalOrScheduler, scheduler) {
       intervalDuration = intervalOrScheduler;
     }
   }
-  return new Observable_Observable(function (subscriber) {
+  return new Observable(function (subscriber) {
     var due = isValidDate(dueTime) ? +dueTime - scheduler.now() : dueTime;
     if (due < 0) {
       due = 0;

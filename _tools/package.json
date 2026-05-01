@@ -1,10 +1,10 @@
 {
-  "name": "_tools",
+  "name": "tools",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^2.6.2"
+    "prettier": "^3.8.3"
   },
   "scripts": {
     "format": "prettier --write '../*/src/*.{js,ts}' && prettier --write '../*/webpack.config.js'"

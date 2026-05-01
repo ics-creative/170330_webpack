@@ -1,8 +1,7 @@
-import Vue from "vue";
+import { createApp, defineComponent } from "vue";
 import MyComponent from "./sub";
 
-new Vue({
-  el: "#app",
+const App = defineComponent({
   template: `<div class="app">
         <h1>Hello Vue.js!</h1>
         <my-component message="My Counter for TypeScript"></my-component>
@@ -12,3 +11,5 @@ new Vue({
     "my-component": MyComponent,
   },
 });
+
+createApp(App).mount("#app");

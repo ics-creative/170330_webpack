@@ -6,14 +6,14 @@
     "watch": "webpack -w --mode development"
   },
   "devDependencies": {
-    "ts-loader": "^9.5.2",
-    "typescript": "^5.8.3",
-    "webpack": "^5.99.8",
-    "webpack-cli": "^6.0.1"
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2"
   },
   "dependencies": {
-    "@types/three": "^0.176.0",
-    "three": "^0.176.0"
+    "@types/three": "^0.184.0",
+    "three": "^0.184.0"
   },
   "private": true
 }

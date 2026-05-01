@@ -27,7 +27,7 @@ module.exports = {
     extensions: [".ts"],
     // Webpackで利用するときの設定
     alias: {
-      vue$: "vue/dist/vue.esm.js",
+      vue$: "vue/dist/vue.esm-bundler.js",
     },
   },
   // ES5(IE11等)向けの指定

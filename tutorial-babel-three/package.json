@@ -5,15 +5,15 @@
     "build": "webpack"
   },
   "dependencies": {
-    "core-js": "^3.42.0",
-    "three": "^0.176.0"
+    "core-js": "^3.49.0",
+    "three": "^0.184.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.27.2",
-    "babel-loader": "^10.0.0",
-    "webpack": "^5.99.8",
-    "webpack-cli": "^6.0.1"
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.3",
+    "babel-loader": "^10.1.1",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2"
   },
   "private": true
 }

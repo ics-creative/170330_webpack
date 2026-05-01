@@ -1,11 +1,15 @@
-import {
+import * as BabylonModule from "babylonjs";
+
+const {
   Engine,
   FreeCamera,
   HemisphericLight,
   Mesh,
   Scene,
   Vector3,
-} from "babylonjs";
+} =
+  (BabylonModule as unknown as { default?: typeof BabylonModule }).default ??
+  BabylonModule;
 
 // Get the canvas DOM element
 const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;

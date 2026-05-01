@@ -6,15 +6,15 @@
     "sourceMap": true,
     // TSはECMAScript 5に変換
     "target": "ES5",
+    "ignoreDeprecations": "6.0",
     // TSのモジュールはES Modulesとして出力
     "module": "ES2015",
-    // import Vue from 'vue' の書き方を許容する
+    // Vueパッケージの型解決に必要な指定
     "allowSyntheticDefaultImports": true,
     "lib": [
       "DOM",
       "ES2020"
     ],
-    "moduleResolution": "node",
-    "experimentalDecorators": true
+    "moduleResolution": "bundler"
   }
 }

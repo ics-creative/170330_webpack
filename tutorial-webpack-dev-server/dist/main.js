@@ -10,25 +10,25 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.js":
+/***/ "./src/index.js"
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sub */ \"./src/sub.js\");\n\n\n(0,_sub__WEBPACK_IMPORTED_MODULE_0__.hello)(\"こんにちは、世界 !\");\n\n\n//# sourceURL=webpack://tutorial-webpack-dev-server/./src/index.js?");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sub */ \"./src/sub.js\");\n\n\n(0,_sub__WEBPACK_IMPORTED_MODULE_0__.hello)(\"こんにちは、世界 !\");\n\n\n//# sourceURL=webpack://tutorial-webpack-dev-server/./src/index.js?\n}");
 
-/***/ }),
+/***/ },
 
-/***/ "./src/sub.js":
+/***/ "./src/sub.js"
 /*!********************!*\
   !*** ./src/sub.js ***!
   \********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   hello: () => (/* binding */ hello)\n/* harmony export */ });\n// hello関数を定義する。\nfunction hello(message) {\n  document.body.innerHTML = message;\n  console.log(message);\n}\n\n\n//# sourceURL=webpack://tutorial-webpack-dev-server/./src/sub.js?");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   hello: () => (/* binding */ hello)\n/* harmony export */ });\n// hello関数を定義する。\nfunction hello(message) {\n  document.body.innerHTML = message;\n  console.log(message);\n}\n\n\n//# sourceURL=webpack://tutorial-webpack-dev-server/./src/sub.js?\n}");
 
-/***/ })
+/***/ }
 
 /******/ 	});
 /************************************************************************/
@@ -50,6 +50,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module

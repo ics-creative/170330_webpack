@@ -3,6 +3,7 @@
     "strict": true,
     "sourceMap": true,
     "target": "ES5",
+    "ignoreDeprecations": "6.0",
     "module": "ES2015",
     "moduleResolution": "bundler"
   }
