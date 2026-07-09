@@ -5,10 +5,10 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "ts-loader": "^9.5.7",
     "typescript": "^6.0.3",
-    "webpack": "^5.106.2",
-    "webpack-cli": "^7.0.2"
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1",
+    "ts-loader": "^9.6.2"
   },
   "private": true
 }

@@ -12,8 +12,8 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.3",
     "babel-loader": "^10.1.1",
-    "webpack": "^5.106.2",
-    "webpack-cli": "^7.0.2"
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1"
   },
   "private": true
 }

@@ -1,7 +1,8 @@
 {
   "private": true,
-  "dependencies": {
-
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^6.0.3"
   },
   "workspaces": [
     "tutorial-babel",

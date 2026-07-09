@@ -9,8 +9,8 @@
     "sass": "^1.99.0",
     "sass-loader": "^16.0.7",
     "style-loader": "^4.0.0",
-    "webpack": "^5.106.2",
-    "webpack-cli": "^7.0.2"
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1"
   },
   "private": true
 }

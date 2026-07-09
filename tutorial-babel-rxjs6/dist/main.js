@@ -329,10 +329,10 @@ function __addDisposableResource(env, value, async) {
   return value;
 }
 
-var _SuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+var _SuppressedError = (/* unused pure expression or super */ null && (typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
   var e = new Error(message);
   return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
-};
+}));
 
 function __disposeResources(env) {
   function fail(e) {
@@ -369,7 +369,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   return path;
 }
 
-/* harmony default export */ var tslib_es6 = ({
+/* harmony default export */ var tslib_es6 = ((/* unused pure expression or super */ null && ({
   __extends,
   __assign,
   __rest,
@@ -402,7 +402,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __addDisposableResource,
   __disposeResources,
   __rewriteRelativeImportExtension,
-});
+})));
 
 ;// ../node_modules/rxjs/dist/esm5/internal/util/isFunction.js
 function isFunction(value) {
